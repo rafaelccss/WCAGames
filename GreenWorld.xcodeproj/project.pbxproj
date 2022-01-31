@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5319BD6527A8233F00BB5291 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5319BD6427A8233F00BB5291 /* Actions.sks */; };
 		5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B027A8156A003B8C6B /* AppDelegate.swift */; };
 		5360A3B327A8156A003B8C6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3B227A8156A003B8C6B /* GameScene.sks */; };
 		5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B627A8156A003B8C6B /* GameScene.swift */; };
@@ -17,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5319BD6427A8233F00BB5291 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		5360A3AD27A8156A003B8C6B /* GreenWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5360A3B027A8156A003B8C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5360A3B227A8156A003B8C6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 				5360A3B027A8156A003B8C6B /* AppDelegate.swift */,
 				5360A3B227A8156A003B8C6B /* GameScene.sks */,
 				5360A3B627A8156A003B8C6B /* GameScene.swift */,
-				5319BD6427A8233F00BB5291 /* Actions.sks */,
 				5360A3B827A8156A003B8C6B /* GameViewController.swift */,
 				5360A3BA27A8156A003B8C6B /* Main.storyboard */,
 				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
@@ -130,7 +127,6 @@
 				5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */,
 				5360A3B327A8156A003B8C6B /* GameScene.sks in Resources */,
 				5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */,
-				5319BD6527A8233F00BB5291 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  GreenWorld
-//
-//  Created by Rafael on 31/01/22.
-//
-
 import UIKit
 
 @main
