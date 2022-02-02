@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5354A09827A96A5700593B96 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5354A09727A96A5700593B96 /* Player.swift */; };
 		5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B027A8156A003B8C6B /* AppDelegate.swift */; };
 		5360A3B327A8156A003B8C6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3B227A8156A003B8C6B /* GameScene.sks */; };
 		5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B627A8156A003B8C6B /* GameScene.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5354A09727A96A5700593B96 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5360A3AD27A8156A003B8C6B /* GreenWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5360A3B027A8156A003B8C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5360A3B227A8156A003B8C6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -56,15 +58,56 @@
 		5360A3AF27A8156A003B8C6B /* GreenWorld */ = {
 			isa = PBXGroup;
 			children = (
-				5360A3B027A8156A003B8C6B /* AppDelegate.swift */,
-				5360A3B227A8156A003B8C6B /* GameScene.sks */,
-				5360A3B627A8156A003B8C6B /* GameScene.swift */,
-				5360A3B827A8156A003B8C6B /* GameViewController.swift */,
-				5360A3BA27A8156A003B8C6B /* Main.storyboard */,
+				53BD7FEE27A9654300DBB096 /* Cenas */,
+				53BD7FED27A9645C00DBB096 /* Main */,
+				53BD7FEC27A95BF400DBB096 /* Sistema */,
+				53BD7FEB27A95B4E00DBB096 /* Componente */,
+				53BD7FEA27A95B4700DBB096 /* Entidade */,
 				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
-				5360A3BF27A8156C003B8C6B /* Info.plist */,
 			);
 			path = GreenWorld;
+			sourceTree = "<group>";
+		};
+		53BD7FEA27A95B4700DBB096 /* Entidade */ = {
+			isa = PBXGroup;
+			children = (
+				5354A09727A96A5700593B96 /* Player.swift */,
+			);
+			path = Entidade;
+			sourceTree = "<group>";
+		};
+		53BD7FEB27A95B4E00DBB096 /* Componente */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Componente;
+			sourceTree = "<group>";
+		};
+		53BD7FEC27A95BF400DBB096 /* Sistema */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sistema;
+			sourceTree = "<group>";
+		};
+		53BD7FED27A9645C00DBB096 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5360A3BF27A8156C003B8C6B /* Info.plist */,
+				5360A3B027A8156A003B8C6B /* AppDelegate.swift */,
+				5360A3B827A8156A003B8C6B /* GameViewController.swift */,
+				5360A3BA27A8156A003B8C6B /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		53BD7FEE27A9654300DBB096 /* Cenas */ = {
+			isa = PBXGroup;
+			children = (
+				5360A3B227A8156A003B8C6B /* GameScene.sks */,
+				5360A3B627A8156A003B8C6B /* GameScene.swift */,
+			);
+			path = Cenas;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5354A09827A96A5700593B96 /* Player.swift in Sources */,
 				5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */,
 				5360A3B927A8156A003B8C6B /* GameViewController.swift in Sources */,
 				5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */,
@@ -208,6 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -263,6 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -279,7 +325,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = GreenWorld/Info.plist;
+				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -297,7 +343,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = GreenWorld/Info.plist;
+				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
