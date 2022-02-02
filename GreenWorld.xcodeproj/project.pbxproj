@@ -15,7 +15,6 @@
 		5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BA27A8156A003B8C6B /* Main.storyboard */; };
 		5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BD27A8156C003B8C6B /* Assets.xcassets */; };
 		538CB2D727AAAE13008DAF41 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2D627AAAE13008DAF41 /* Empty.swift */; };
-		538CB2D927AAAE22008DAF41 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2D827AAAE22008DAF41 /* Empty.swift */; };
 		D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */; };
 		D67F4DCD27AAB02000D58283 /* WalkDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCC27AAB02000D58283 /* WalkDirection.swift */; };
 		D67F4DCF27AAB36900D58283 /* AnimatedSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */; };
@@ -32,7 +31,6 @@
 		5360A3BD27A8156C003B8C6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5360A3BF27A8156C003B8C6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		538CB2D627AAAE13008DAF41 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
-		538CB2D827AAAE22008DAF41 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkComponent.swift; sourceTree = "<group>"; };
 		D67F4DCC27AAB02000D58283 /* WalkDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkDirection.swift; sourceTree = "<group>"; };
 		D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSpriteComponent.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 		53BD7FEB27A95B4E00DBB096 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				538CB2D827AAAE22008DAF41 /* Empty.swift */,
 				D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */,
 				D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */,
 			);
@@ -203,7 +200,6 @@
 				D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */,
 				5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */,
 				D67F4DCD27AAB02000D58283 /* WalkDirection.swift in Sources */,
-				538CB2D927AAAE22008DAF41 /* Empty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
