@@ -17,9 +17,8 @@ class GameScene: SKScene {
 
     func setupNodesPosition() {
         guard let groundComponent = ground.component(ofType: GroundComponent.self)?.groundNode else { return }
-
         groundComponent.zPosition = 2
-        groundComponent.position = CGPoint(x: 0, y: 200)
+        groundComponent.position = CGPoint(x: self.size.width / 2, y: 50)
         self.addChild(groundComponent)
     }
 
