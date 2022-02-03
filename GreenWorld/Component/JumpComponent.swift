@@ -6,8 +6,9 @@ import GameplayKit
 class JumpComponent: GKComponent {
 
 	let impulse: CGFloat
-	var velocity: CGFloat? {
-		self.entity?.component(ofType: walk)
+	//variável do tipo computada
+	var dx: CGFloat? {
+		self.entity?.component(ofType: WalkComponent.self)?.velocity
 	}
 
 	var animatedSpriteComponent: AnimatedSpriteComponent? {
@@ -25,8 +26,8 @@ class JumpComponent: GKComponent {
 
 	func jump(completion: @escaping () -> Void = { }) {
 		let sequence = SKAction.sequence([
-			SKAction.move(by: CGVector(dx: 0, dy: impulse), duration: 0.75),
-			SKAction.move(by: CGVector(dx: 0, dy: -impulse), duration: 0.75)
+			SKAction.move(by: CGVector(dx: dx ?? 10, dy: impulse), duration: 0.75),
+			SKAction.move(by: CGVector(dx: dx ?? 10, dy: -impulse), duration: 0.75)
 		])
 		sequence.duration = 1.5
 		sequence.timingMode = .easeIn
