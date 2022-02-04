@@ -1,10 +1,3 @@
-//
-//  IdleState.swift
-//  GreenWorld
-//
-//  Created by Luís Filipe Nascimento on 03/02/22.
-//
-
 import UIKit
 import GameplayKit
 

@@ -5,9 +5,13 @@ class GameScene: SKScene {
 
     // MARK: - Entities
 
-    private var player: SKShapeNode?
+    let player = Player()
     let ground = Ground(size: CGSize(width: 500, height: 10))
     let platarform = Plataform()
+
+    var playerControlComponent: PlayerControlComponent? {
+        player.component(ofType: PlayerControlComponent.self)
+    }
     
     
     override func didMove(to view: SKView) {
@@ -19,14 +23,20 @@ class GameScene: SKScene {
 
     func setupNodesPosition() {
         guard let groundComponent = ground.component(ofType: GroundComponent.self)?.groundNode,
-              let plataformComponet = platarform.component(ofType: PlataformComponent.self)?.plataformNode else { return }
+              let plataformComponent = platarform.component(ofType: PlataformComponent.self)?.plataformNode,
+              let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
         groundComponent.position = CGPoint(x: scene!.frame.minX + groundComponent.size.width/2, y: 50)
-        plataformComponet.position = positionBasedOnLastElement(lastNode: groundComponent,
-                                                                presentNode: plataformComponet,
+        plataformComponent.position = positionBasedOnLastElement(lastNode: groundComponent,
+                                                                presentNode: plataformComponent,
                                                                 dx: 0,
                                                                 dy: 80)
+        playerNode.position = positionBasedOnLastElement(lastNode: groundComponent,
+                                                         presentNode: playerNode,
+                                                         dx: -200,
+                                                         dy: 45 + groundComponent.size.height/2)
         self.addChild(groundComponent)
-        self.addChild(plataformComponet)
+        self.addChild(plataformComponent)
+        self.addChild(playerNode)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
