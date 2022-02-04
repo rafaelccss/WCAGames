@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CD253A27AACDC60046CEF2 /* JumpComponent.swift */; };
 		5354A09827A96A5700593B96 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5354A09727A96A5700593B96 /* Player.swift */; };
 		5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B027A8156A003B8C6B /* AppDelegate.swift */; };
 		5360A3B327A8156A003B8C6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3B227A8156A003B8C6B /* GameScene.sks */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16CD253A27AACDC60046CEF2 /* JumpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpComponent.swift; sourceTree = "<group>"; };
 		5354A09727A96A5700593B96 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5360A3AD27A8156A003B8C6B /* GreenWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5360A3B027A8156A003B8C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,8 @@
 		53BD7FEB27A95B4E00DBB096 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				538CB2D827AAAE22008DAF41 /* Empty.swift */,
+				16CD253A27AACDC60046CEF2 /* JumpComponent.swift */,
 				D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */,
 				D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */,
 				D607A19A27ABFA1400A6F9D8 /* PlayerControlComponent.swift */,
@@ -206,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */,
 				5354A09827A96A5700593B96 /* Player.swift in Sources */,
 				D67F4DCF27AAB36900D58283 /* AnimatedSpriteComponent.swift in Sources */,
 				D607A19B27ABFA1400A6F9D8 /* PlayerControlComponent.swift in Sources */,
