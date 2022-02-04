@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CD253A27AACDC60046CEF2 /* JumpComponent.swift */; };
+		531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6827AC038F00ADB483 /* PlataformComponent.swift */; };
+		531E7C6B27AC048300ADB483 /* Platarfom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6A27AC048300ADB483 /* Platarfom.swift */; };
 		5354A09827A96A5700593B96 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5354A09727A96A5700593B96 /* Player.swift */; };
 		5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B027A8156A003B8C6B /* AppDelegate.swift */; };
-		5360A3B327A8156A003B8C6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3B227A8156A003B8C6B /* GameScene.sks */; };
 		5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B627A8156A003B8C6B /* GameScene.swift */; };
 		5360A3B927A8156A003B8C6B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B827A8156A003B8C6B /* GameViewController.swift */; };
 		5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BA27A8156A003B8C6B /* Main.storyboard */; };
@@ -25,14 +26,18 @@
 		D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36827AD4CA0009D3AC8 /* Textures.swift */; };
 		D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */; };
 		D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */; };
+		538CB2D927AAAE22008DAF41 /* GroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2D827AAAE22008DAF41 /* GroundComponent.swift */; };
+		538CB2DB27AAAF3C008DAF41 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2DA27AAAF3C008DAF41 /* Ground.swift */; };
+		53ADE60227AD51470047F26E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 53ADE60127AD51470047F26E /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		16CD253A27AACDC60046CEF2 /* JumpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpComponent.swift; sourceTree = "<group>"; };
+		531E7C6827AC038F00ADB483 /* PlataformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlataformComponent.swift; sourceTree = "<group>"; };
+		531E7C6A27AC048300ADB483 /* Platarfom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platarfom.swift; sourceTree = "<group>"; };
 		5354A09727A96A5700593B96 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5360A3AD27A8156A003B8C6B /* GreenWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5360A3B027A8156A003B8C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5360A3B227A8156A003B8C6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5360A3B627A8156A003B8C6B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5360A3B827A8156A003B8C6B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5360A3BB27A8156A003B8C6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +53,9 @@
 		D6A5F36827AD4CA0009D3AC8 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkState.swift; sourceTree = "<group>"; };
 		D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackState.swift; sourceTree = "<group>"; };
+		538CB2D827AAAE22008DAF41 /* GroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundComponent.swift; sourceTree = "<group>"; };
+		538CB2DA27AAAF3C008DAF41 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
+		53ADE60127AD51470047F26E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,8 @@
 				53BD7FEE27A9654300DBB096 /* Scenes */,
 				D607A19C27ABFC3800A6F9D8 /* States */,
 				53BD7FEC27A95BF400DBB096 /* System */,
+				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
+				53ADE60127AD51470047F26E /* GameScene.sks */,
 			);
 			path = GreenWorld;
 			sourceTree = "<group>";
@@ -95,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				5354A09727A96A5700593B96 /* Player.swift */,
+				538CB2DA27AAAF3C008DAF41 /* Ground.swift */,
+				531E7C6A27AC048300ADB483 /* Platarfom.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -106,6 +118,8 @@
 				D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */,
 				D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */,
 				D607A19A27ABFA1400A6F9D8 /* PlayerControlComponent.swift */,
+				538CB2D827AAAE22008DAF41 /* GroundComponent.swift */,
+				531E7C6827AC038F00ADB483 /* PlataformComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -125,8 +139,8 @@
 			children = (
 				5360A3BF27A8156C003B8C6B /* Info.plist */,
 				5360A3B027A8156A003B8C6B /* AppDelegate.swift */,
-				5360A3B827A8156A003B8C6B /* GameViewController.swift */,
 				5360A3BA27A8156A003B8C6B /* Main.storyboard */,
+				5360A3B827A8156A003B8C6B /* GameViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -134,7 +148,6 @@
 		53BD7FEE27A9654300DBB096 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5360A3B227A8156A003B8C6B /* GameScene.sks */,
 				5360A3B627A8156A003B8C6B /* GameScene.swift */,
 			);
 			path = Scenes;
@@ -209,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */,
-				5360A3B327A8156A003B8C6B /* GameScene.sks in Resources */,
+				53ADE60227AD51470047F26E /* GameScene.sks in Resources */,
 				5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,7 +240,10 @@
 				D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */,
 				D607A19B27ABFA1400A6F9D8 /* PlayerControlComponent.swift in Sources */,
 				5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */,
+				538CB2DB27AAAF3C008DAF41 /* Ground.swift in Sources */,
 				538CB2D727AAAE13008DAF41 /* Empty.swift in Sources */,
+				531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */,
+				531E7C6B27AC048300ADB483 /* Platarfom.swift in Sources */,
 				5360A3B927A8156A003B8C6B /* GameViewController.swift in Sources */,
 				D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */,
 				D607A19E27ABFC7900A6F9D8 /* IdleState.swift in Sources */,
@@ -236,6 +252,7 @@
 				D67F4DCD27AAB02000D58283 /* MoveDirection.swift in Sources */,
 				D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */,
 				D6A5F36727AD4BDC009D3AC8 /* JumpState.swift in Sources */,
+				538CB2D927AAAE22008DAF41 /* GroundComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D7KS69836R;
+				DEVELOPMENT_TEAM = 5H2RJVTS74;
 				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
