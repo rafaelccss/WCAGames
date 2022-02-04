@@ -1,10 +1,10 @@
 import GameplayKit
 
-class Ground: GKEntity {
+class Plataform: GKEntity {
 
-    init(size: CGSize) {
+    override init() {
         super.init()
-        self.addComponent(GroundComponent(size: size))
+        self.addComponent(PlataformComponent())
     }
 
     required init?(coder: NSCoder) {

@@ -2,19 +2,20 @@ import Foundation
 import GameplayKit
 
 class GroundComponent: GKComponent {
-    var groundNode: SKSpriteNode
-    /*
-     Enmum do tipo tamanho para definir o tamanho das plataformas que Niara irá pular.
-     */
 
-    override init() {
-        self.groundNode = SKSpriteNode(color: SKColor.red,
-                                       size: CGSize(width: UIScreen.main.bounds.width, height: 200))
+    // MARK: - Properties
+
+    var groundNode: SKSpriteNode
+
+    // MARK: - Init
+
+    init(size: CGSize) {
+        self.groundNode = SKSpriteNode(color: SKColor.brown,
+                                       size: size)
         super.init()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
