@@ -2,7 +2,7 @@ import GameplayKit
 
 class WalkComponent: GKComponent {
     
-    var direction: WalkDirection = .none
+    var direction: MoveDirection = .none
     var velocity: CGFloat
     
     var spriteNode: SKSpriteNode? {
@@ -18,7 +18,7 @@ class WalkComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func walk(_ direction: WalkDirection) {
+    func walk(_ direction: MoveDirection) {
         self.direction = direction
     }
     
