@@ -1,10 +1,3 @@
-//
-//  Shot.swift
-//  GreenWorld
-//
-//  Created by Nathan Batista de Oliveira on 04/02/22.
-//
-
 import UIKit
 import GameplayKit
 import SpriteKit
@@ -24,10 +17,10 @@ class ShotEntity: GKEntity {
                 nameTexture = "NormalShot"
         }
         let texture = SKTexture(imageNamed:nameTexture)
-        let spriteComponent = SpriteComponent(entity:self,texture:texture,size: texture.size())
-        spriteComponent.node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
-        spriteComponent.node.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
-        spriteComponent.node.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue
+        let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        spriteComponent.spriteNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
+        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue
     }
     
     required init?(coder: NSCoder) {

@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  GreenWorld
-//
-//  Created by Nathan Batista de Oliveira on 04/02/22.
-//
-
 import Foundation
 import SpriteKit
 import GameplayKit
@@ -23,13 +16,13 @@ class EntityManager {
   func add(_ entity: GKEntity) {
     entities.insert(entity)
 
-    if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
+    if let spriteNode = entity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
       scene.addChild(spriteNode)
     }
   }
   // 4
   func remove(_ entity: GKEntity) {
-    if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
+    if let spriteNode = entity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
       spriteNode.removeFromParent()
     }
 
