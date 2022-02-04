@@ -20,14 +20,14 @@ class PlayerControlComponent: GKComponent {
             moveLeft()
         case .right:
             moveRight()
-        case .jump:
+        case .up:
             jump()
         default: break
         }
     }
     
     func halt() {
-        guard stateMachine.currentState!.classForCoder != JumpState.self else { return }
+        guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
         
         stateMachine.enter(IdleState.self)
     }
@@ -45,7 +45,7 @@ class PlayerControlComponent: GKComponent {
     }
     
     func attack() {
-        guard stateMachine.currentState!.classForCoder != JumpState.self else { return }
+        guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
         
         stateMachine.enter(AttackState.self)
     }

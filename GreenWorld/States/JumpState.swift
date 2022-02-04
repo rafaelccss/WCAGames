@@ -26,4 +26,8 @@ class JumpState: GKState {
         })
     }
     
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+    }
+    
 }
