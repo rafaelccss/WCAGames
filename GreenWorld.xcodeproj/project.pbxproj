@@ -21,6 +21,10 @@
 		D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */; };
 		D67F4DCD27AAB02000D58283 /* MoveDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCC27AAB02000D58283 /* MoveDirection.swift */; };
 		D67F4DCF27AAB36900D58283 /* AnimatedSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */; };
+		D6A5F36727AD4BDC009D3AC8 /* JumpState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36627AD4BDC009D3AC8 /* JumpState.swift */; };
+		D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36827AD4CA0009D3AC8 /* Textures.swift */; };
+		D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */; };
+		D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkComponent.swift; sourceTree = "<group>"; };
 		D67F4DCC27AAB02000D58283 /* MoveDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveDirection.swift; sourceTree = "<group>"; };
 		D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSpriteComponent.swift; sourceTree = "<group>"; };
+		D6A5F36627AD4BDC009D3AC8 /* JumpState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpState.swift; sourceTree = "<group>"; };
+		D6A5F36827AD4CA0009D3AC8 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkState.swift; sourceTree = "<group>"; };
+		D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +102,6 @@
 		53BD7FEB27A95B4E00DBB096 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				538CB2D827AAAE22008DAF41 /* Empty.swift */,
 				16CD253A27AACDC60046CEF2 /* JumpComponent.swift */,
 				D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */,
 				D67F4DCE27AAB36900D58283 /* AnimatedSpriteComponent.swift */,
@@ -108,6 +115,7 @@
 			children = (
 				538CB2D627AAAE13008DAF41 /* Empty.swift */,
 				D67F4DCC27AAB02000D58283 /* MoveDirection.swift */,
+				D6A5F36827AD4CA0009D3AC8 /* Textures.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -136,6 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				D607A19D27ABFC7900A6F9D8 /* IdleState.swift */,
+				D6A5F36627AD4BDC009D3AC8 /* JumpState.swift */,
+				D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */,
+				D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -213,14 +224,18 @@
 				16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */,
 				5354A09827A96A5700593B96 /* Player.swift in Sources */,
 				D67F4DCF27AAB36900D58283 /* AnimatedSpriteComponent.swift in Sources */,
+				D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */,
 				D607A19B27ABFA1400A6F9D8 /* PlayerControlComponent.swift in Sources */,
 				5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */,
 				538CB2D727AAAE13008DAF41 /* Empty.swift in Sources */,
 				5360A3B927A8156A003B8C6B /* GameViewController.swift in Sources */,
 				D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */,
 				D607A19E27ABFC7900A6F9D8 /* IdleState.swift in Sources */,
+				D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */,
 				5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */,
 				D67F4DCD27AAB02000D58283 /* MoveDirection.swift in Sources */,
+				D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */,
+				D6A5F36727AD4BDC009D3AC8 /* JumpState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

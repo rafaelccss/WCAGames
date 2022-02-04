@@ -23,14 +23,43 @@ class PlayerControlComponent: GKComponent {
     
     func handle(direction: MoveDirection) {
         switch direction {
-        case .none:
-            <#code#>
         case .left:
-            <#code#>
+            moveLeft()
         case .right:
-            <#code#>
+            moveRight()
         case .jump:
-            <#code#>
+            jump()
+        default: break
         }
+    }
+    
+    func halt() {
+        guard stateMachine.currentState!.classForCoder != JumpState.self else { return }
+        
+        stateMachine.enter(IdleState.self)
+    }
+    
+    func jump() {
+        stateMachine.enter(JumpState.self)
+    }
+    
+    func moveLeft() {
+        stateMachine.enter(LeftWalkState.self)
+    }
+    
+    func moveRight() {
+        stateMachine.enter(RightWalkState.self)
+    }
+    
+    func attack() {
+        guard stateMachine.currentState!.classForCoder != JumpState.self else { return }
+        
+        stateMachine.enter(AttackState.self)
+    }
+    
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        
+        self.entity?.component(ofType: WalkComponent.self)?.update(deltaTime: seconds)
     }
 }
