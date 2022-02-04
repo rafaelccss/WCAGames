@@ -13,10 +13,15 @@ class Player: GKEntity {
         self.addComponent(
             PlayerControlComponent(states: [
                 IdleState(self),
+                AttackState(self),
+                JumpState(self),
+                LeftWalkState(self),
+                RightWalkState(self)
             ])
         )
         
         self.addComponent(WalkComponent())
+        self.addComponent(JumpComponent(impulse: 600))
     }
 
     required init?(coder: NSCoder) {
