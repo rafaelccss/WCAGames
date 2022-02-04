@@ -9,14 +9,40 @@ class GameScene: SKScene {
     let ground = Ground(size: CGSize(width: 500, height: 10))
     let platarform = Plataform()
 
+    private var previousUpdateTime: TimeInterval = TimeInterval()
     var playerControlComponent: PlayerControlComponent? {
         player.component(ofType: PlayerControlComponent.self)
     }
-    
-    
+
+    // MARK: - Gestures
+    // lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
+    lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
+
+    @objc
+    func walk(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            playerControlComponent?.handle(direction: sender.direction)
+
+        case .ended:
+            playerControlComponent?.halt()
+
+        default:
+            break
+        }
+    }
+
+    override func update(_ currentTime: TimeInterval) {
+
+        let timeSincePreviousUpdate = currentTime - previousUpdateTime
+        playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
+        previousUpdateTime = currentTime
+    }
+
     override func didMove(to view: SKView) {
-        //Nodes
+        // MARK: - Nodes
         self.setupNodesPosition()
+        view.addGestureRecognizer(panGesture)
     }
 
     // MARK: - Adding Nodes to Scene

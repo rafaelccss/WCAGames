@@ -19,7 +19,6 @@ class IdleState: GKState {
     
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        
-        
+        walkComponent?.halt()
     }
 }
