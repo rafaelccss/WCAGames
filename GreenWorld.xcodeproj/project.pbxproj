@@ -17,6 +17,11 @@
 		5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BA27A8156A003B8C6B /* Main.storyboard */; };
 		5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BD27A8156C003B8C6B /* Assets.xcassets */; };
 		538CB2D727AAAE13008DAF41 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2D627AAAE13008DAF41 /* Empty.swift */; };
+		C2778BB327AD6D5800644B59 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB227AD6D5800644B59 /* Protocols.swift */; };
+		C2778BB527AD6D6300644B59 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB427AD6D6300644B59 /* Enums.swift */; };
+		C2778BB727AD6DC700644B59 /* ShotEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB627AD6DC700644B59 /* ShotEntity.swift */; };
+		C2778BB927AD6E1600644B59 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB827AD6E1600644B59 /* EntityManager.swift */; };
+		C2778BBB27AD6E3E00644B59 /* ShootingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BBA27AD6E3E00644B59 /* ShootingComponent.swift */; };
 		D607A19B27ABFA1400A6F9D8 /* PlayerControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607A19A27ABFA1400A6F9D8 /* PlayerControlComponent.swift */; };
 		D607A19E27ABFC7900A6F9D8 /* IdleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607A19D27ABFC7900A6F9D8 /* IdleState.swift */; };
 		D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */; };
@@ -44,6 +49,11 @@
 		5360A3BD27A8156C003B8C6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5360A3BF27A8156C003B8C6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		538CB2D627AAAE13008DAF41 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
+		C2778BB227AD6D5800644B59 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		C2778BB427AD6D6300644B59 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		C2778BB627AD6DC700644B59 /* ShotEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotEntity.swift; sourceTree = "<group>"; };
+		C2778BB827AD6E1600644B59 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
+		C2778BBA27AD6E3E00644B59 /* ShootingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootingComponent.swift; sourceTree = "<group>"; };
 		D607A19A27ABFA1400A6F9D8 /* PlayerControlComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlComponent.swift; sourceTree = "<group>"; };
 		D607A19D27ABFC7900A6F9D8 /* IdleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleState.swift; sourceTree = "<group>"; };
 		D67F4DCA27AAAEEE00D58283 /* WalkComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkComponent.swift; sourceTree = "<group>"; };
@@ -88,6 +98,7 @@
 		5360A3AF27A8156A003B8C6B /* GreenWorld */ = {
 			isa = PBXGroup;
 			children = (
+				C2778BB127AD6D4300644B59 /* Extra */,
 				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
 				53BD7FEB27A95B4E00DBB096 /* Component */,
 				53BD7FEA27A95B4700DBB096 /* Entity */,
@@ -107,6 +118,7 @@
 				5354A09727A96A5700593B96 /* Player.swift */,
 				538CB2DA27AAAF3C008DAF41 /* Ground.swift */,
 				531E7C6A27AC048300ADB483 /* Platarfom.swift */,
+				C2778BB627AD6DC700644B59 /* ShotEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -120,6 +132,7 @@
 				D607A19A27ABFA1400A6F9D8 /* PlayerControlComponent.swift */,
 				538CB2D827AAAE22008DAF41 /* GroundComponent.swift */,
 				531E7C6827AC038F00ADB483 /* PlataformComponent.swift */,
+				C2778BBA27AD6E3E00644B59 /* ShootingComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -130,6 +143,7 @@
 				538CB2D627AAAE13008DAF41 /* Empty.swift */,
 				D67F4DCC27AAB02000D58283 /* MoveDirection.swift */,
 				D6A5F36827AD4CA0009D3AC8 /* Textures.swift */,
+				C2778BB827AD6E1600644B59 /* EntityManager.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -151,6 +165,15 @@
 				5360A3B627A8156A003B8C6B /* GameScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C2778BB127AD6D4300644B59 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C2778BB227AD6D5800644B59 /* Protocols.swift */,
+				C2778BB427AD6D6300644B59 /* Enums.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 		D607A19C27ABFC3800A6F9D8 /* States */ = {
@@ -234,11 +257,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2778BBB27AD6E3E00644B59 /* ShootingComponent.swift in Sources */,
 				16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */,
 				5354A09827A96A5700593B96 /* Player.swift in Sources */,
 				D67F4DCF27AAB36900D58283 /* AnimatedSpriteComponent.swift in Sources */,
 				D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */,
 				D607A19B27ABFA1400A6F9D8 /* PlayerControlComponent.swift in Sources */,
+				C2778BB527AD6D6300644B59 /* Enums.swift in Sources */,
 				5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */,
 				538CB2DB27AAAF3C008DAF41 /* Ground.swift in Sources */,
 				538CB2D727AAAE13008DAF41 /* Empty.swift in Sources */,
@@ -251,8 +276,11 @@
 				5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */,
 				D67F4DCD27AAB02000D58283 /* MoveDirection.swift in Sources */,
 				D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */,
+				C2778BB727AD6DC700644B59 /* ShotEntity.swift in Sources */,
 				D6A5F36727AD4BDC009D3AC8 /* JumpState.swift in Sources */,
 				538CB2D927AAAE22008DAF41 /* GroundComponent.swift in Sources */,
+				C2778BB927AD6E1600644B59 /* EntityManager.swift in Sources */,
+				C2778BB327AD6D5800644B59 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
