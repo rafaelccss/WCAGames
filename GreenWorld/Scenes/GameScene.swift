@@ -65,11 +65,6 @@ class GameScene: SKScene {
         self.addChild(playerNode)
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            print(touch.location(in: self.view))
-        }
-    }
 
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
