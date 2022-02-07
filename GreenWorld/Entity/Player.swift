@@ -33,7 +33,7 @@ class Player: GKEntity {
     
     func addPhysics(node: SKSpriteNode) {
         //node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
-        node.physicsBody = SKPhysicsBody()
+        node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 90))
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.Enemy.rawValue | CollisionType.enemyWeapon.rawValue
