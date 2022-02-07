@@ -4,7 +4,12 @@ class Plataform: GKEntity {
 
     override init() {
         super.init()
-        self.addComponent(PlataformComponent())
+        let plataformComponent = PlataformComponent()
+        plataformComponent.plataformNode.physicsBody = SKPhysicsBody()
+        plataformComponent.plataformNode.physicsBody?.isDynamic = false
+        plataformComponent.plataformNode.physicsBody?.categoryBitMask = CollisionType.ground.rawValue
+        plataformComponent.plataformNode.physicsBody?.contactTestBitMask = CollisionType.ground.rawValue
+        self.addComponent(plataformComponent)
     }
 
     required init?(coder: NSCoder) {
