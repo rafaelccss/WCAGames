@@ -21,6 +21,11 @@ class AnimatedSpriteComponent: GKComponent {
 //        self.spriteNode.texture = animationTextures.first!
     }
     
+    init(color: UIColor, size: CGSize) {
+        super.init()
+        self.spriteNode = SKSpriteNode(color: color, size: size)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

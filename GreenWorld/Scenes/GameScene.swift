@@ -58,8 +58,14 @@ class GameScene: SKScene {
                                                                 dy: 80)
         playerNode.position = positionBasedOnLastElement(lastNode: groundComponent,
                                                          presentNode: playerNode,
-                                                         dx: -200,
-                                                         dy: 300 + groundComponent.size.height/2)
+                                                         dx: -300,
+                                                         dy: 50 + groundComponent.size.height / 2)
+        
+        let enemy = Enemy()
+        if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
+            enemyNode.position = positionBasedOnLastElement(lastNode: groundComponent, presentNode: enemyNode, dx: -100, dy: enemyNode.size.height + groundComponent.size.height / 2 + 10)
+            self.addChild(enemyNode)
+        }
         self.addChild(groundComponent)
         self.addChild(plataformComponent)
         self.addChild(playerNode)
