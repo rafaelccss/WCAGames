@@ -6,8 +6,9 @@ class Ground: GKEntity {
         super.init()
         let groundComponent = GroundComponent(size: size)
         groundComponent.groundNode.physicsBody = SKPhysicsBody()
-        groundComponent.groundNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
-        groundComponent.groundNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue
+        groundComponent.groundNode.physicsBody?.isDynamic = false
+        groundComponent.groundNode.physicsBody?.categoryBitMask = CollisionType.ground.rawValue
+        groundComponent.groundNode.physicsBody?.contactTestBitMask = CollisionType.ground.rawValue
         self.addComponent(groundComponent)
     }
 
