@@ -65,6 +65,7 @@ class GameScene: SKScene {
         self.addChild(playerNode)
     }
 
+
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
