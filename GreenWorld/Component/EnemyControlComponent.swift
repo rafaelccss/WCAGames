@@ -1,12 +1,11 @@
 import GameplayKit
 
-class PlayerControlComponent: GKComponent {
-    
+class EnemyControlComponent: GKComponent {
+
     var stateMachine: GKStateMachine
     
     init(states: [GKState]) {
         self.stateMachine = GKStateMachine(states: states)
-        //self.stateMachine.enter()
         super.init()
     }
     
@@ -20,20 +19,12 @@ class PlayerControlComponent: GKComponent {
             moveLeft()
         case .right:
             moveRight()
-        case .jump:
-            jump()
         default: break
         }
     }
     
     func halt() {
-        guard stateMachine.currentState!.classForCoder != JumpState.self else { return }
-        
         stateMachine.enter(IdleState.self)
-    }
-    
-    func jump() {
-        stateMachine.enter(JumpState.self)
     }
     
     func moveLeft() {
@@ -42,12 +33,6 @@ class PlayerControlComponent: GKComponent {
     
     func moveRight() {
         stateMachine.enter(RightWalkState.self)
-    }
-    
-    func attack() {
-        guard stateMachine.currentState!.classForCoder != JumpState.self else { return }
-        
-        stateMachine.enter(AttackState.self)
     }
     
     override func update(deltaTime seconds: TimeInterval) {
