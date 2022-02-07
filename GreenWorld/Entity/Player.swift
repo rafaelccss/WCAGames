@@ -28,3 +28,13 @@ class Player: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension Player:ContactNotifiable{
+    func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
+        if entity is ShotEntity{
+            guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}
+            self.life -= shotComponent.damage
+            self.life = self.life < 0 ? 0 : self.life
+        }
+    }
+}
