@@ -4,7 +4,11 @@ class Ground: GKEntity {
 
     init(size: CGSize) {
         super.init()
-        self.addComponent(GroundComponent(size: size))
+        let groundComponent = GroundComponent(size: size)
+        groundComponent.groundNode.physicsBody = SKPhysicsBody()
+        groundComponent.groundNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
+        groundComponent.groundNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue
+        self.addComponent(groundComponent)
     }
 
     required init?(coder: NSCoder) {
