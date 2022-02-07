@@ -1,10 +1,3 @@
-//
-//  AttackState.swift
-//  GreenWorld
-//
-//  Created by Luís Filipe Nascimento on 04/02/22.
-//
-
 import UIKit
 import GameplayKit
 
