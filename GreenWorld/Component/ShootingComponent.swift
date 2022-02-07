@@ -15,8 +15,8 @@ class ShotComponent: GKComponent {
     var velocity = 10
     var entityManager: EntityManager
     
-    init(_ power:Powers, x positionX:Int, y positionY:Int, _ entityManager:EntityManager){
-        switch power {
+    init(_ power:Powers, _ entityManager:EntityManager){
+        switch power{
             case .Tupã,.Guaraci:
                 self.damage = 100
                 break

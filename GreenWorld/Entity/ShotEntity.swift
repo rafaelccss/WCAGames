@@ -3,8 +3,9 @@ import GameplayKit
 import SpriteKit
 
 class ShotEntity: GKEntity {
-
-    init(entityManager: EntityManager, power: Powers) {
+    var direction : MoveDirection
+    init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection){
+        self.direction = directionShot
         super.init()
         var nameTexture: String
         switch power {
@@ -19,9 +20,15 @@ class ShotEntity: GKEntity {
         }
         let texture = SKTexture(imageNamed: nameTexture)
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        let player = entityManager.getPlayer()
         spriteComponent.spriteNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
         spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
-        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue
+        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
+        spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
+        let moveComponent = WalkComponent(velocity: 10)
+        moveComponent.direction = directionShot
+        addComponent(moveComponent)
+        addComponent(spriteComponent)
     }
     
     required init?(coder: NSCoder) {
