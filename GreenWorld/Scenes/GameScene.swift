@@ -59,7 +59,7 @@ class GameScene: SKScene {
         playerNode.position = positionBasedOnLastElement(lastNode: groundComponent,
                                                          presentNode: playerNode,
                                                          dx: -200,
-                                                         dy: 45 + groundComponent.size.height/2)
+                                                         dy: 300 + groundComponent.size.height/2)
         self.addChild(groundComponent)
         self.addChild(plataformComponent)
         self.addChild(playerNode)

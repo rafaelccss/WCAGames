@@ -35,6 +35,7 @@ class Player: GKEntity {
         //node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
         node.physicsBody = SKPhysicsBody()
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.Enemy.rawValue | CollisionType.enemyWeapon.rawValue
         node.physicsBody?.isDynamic = true
     }
