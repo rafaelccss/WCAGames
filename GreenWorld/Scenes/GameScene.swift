@@ -34,6 +34,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             break
         }
     }
+
     @objc
     func attack(){
         entityManager.playerAttack()
@@ -61,6 +62,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     // MARK: - Adding Nodes to Scene
+
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
