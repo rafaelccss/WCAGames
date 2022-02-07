@@ -28,4 +28,7 @@ class EntityManager {
 
     entities.remove(entity)
   }
+    func getPlayer(){
+        return
+    }
 }

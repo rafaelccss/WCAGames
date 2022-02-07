@@ -20,6 +20,7 @@ class ShotEntity: GKEntity {
         }
         let texture = SKTexture(imageNamed:nameTexture)
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        let player = entityManager.getPlayer()
         spriteComponent.spriteNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
         spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
         spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
