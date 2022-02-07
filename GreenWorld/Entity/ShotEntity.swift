@@ -20,15 +20,18 @@ class ShotEntity: GKEntity {
         }
         let texture = SKTexture(imageNamed: nameTexture)
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        addComponent(spriteComponent)
         let player = entityManager.getPlayer()
-        spriteComponent.spriteNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}
+        spriteComponent.spriteNode.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.size)
+        spriteComponent.spriteNode.position = CGPoint(x: playerNode.position.x + 10, y: playerNode.position.y + 20)
         spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
         spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
-        spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
+        spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.ground.rawValue
+        spriteComponent.spriteNode.physicsBody?.isDynamic = false
         let moveComponent = WalkComponent(velocity: 10)
         moveComponent.direction = directionShot
         addComponent(moveComponent)
-        addComponent(spriteComponent)
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +41,6 @@ class ShotEntity: GKEntity {
 
 extension ShotEntity:ContactNotifiable{
     func contactDidBegin(with entity: GKEntity,_ manager:EntityManager) {
-        manager.remove(self)
+        manager.removeShot(self)
     }
 }

@@ -14,9 +14,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         player.component(ofType: PlayerControlComponent.self)
     }
     // MARK: - Gestures
-    // lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
-
+    
     @objc
     func walk(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
@@ -30,19 +30,27 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             break
         }
     }
+    @objc
+    func attack(){
+        entityManager.playerAttack()
+    }
 
     override func update(_ currentTime: TimeInterval) {
 
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
+        entityManager.updateShot(timeSincePreviousUpdate)
         previousUpdateTime = currentTime
     }
 
     override func didMove(to view: SKView) {
         // MARK: - Nodes
+        physicsWorld.contactDelegate = self
         self.entityManager = EntityManager(scene: self)
+        entityManager.player = self.player
         self.setupNodesPosition()
         view.addGestureRecognizer(panGesture)
+        view.addGestureRecognizer(tapGesture)
     }
 
     // MARK: - Adding Nodes to Scene
@@ -84,6 +92,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let entityA = contact.bodyA.node?.entity
         let entityB = contact.bodyB.node?.entity
+        print("Colidi")
 
         if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
             notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
