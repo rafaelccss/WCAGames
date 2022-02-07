@@ -4,11 +4,14 @@ import GameplayKit
 class Player: GKEntity {
     
     var life: Int = 100
+    
 
     override init() {
         super.init()
         
-        self.addComponent(AnimatedSpriteComponent(atlasName: ""))
+        let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        addPhysics(node: spriteComponent.spriteNode)
+        self.addComponent(spriteComponent)
         
         self.addComponent(
             PlayerControlComponent(states: [
@@ -26,5 +29,10 @@ class Player: GKEntity {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addPhysics(node: SKSpriteNode) {
+        node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
+        
     }
 }
