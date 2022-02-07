@@ -37,7 +37,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        self.sceneCamera.position = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position
+        self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
@@ -49,6 +49,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         self.entityManager = EntityManager(scene: self)
         self.setupNodesPosition()
         self.camera = sceneCamera
+        self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
     }
     
