@@ -25,15 +25,7 @@ class JumpComponent: GKComponent {
 	}
 
 	func jump(completion: @escaping () -> Void = { }) {
-        print("jump")
-		let sequence = SKAction.sequence([
-			SKAction.move(by: CGVector(dx: 150, dy: impulse), duration: 0.75),
-			SKAction.move(by: CGVector(dx: 150, dy: -impulse), duration: 0.75)
-		])
-		sequence.duration = 1.5
-		sequence.timingMode = .easeIn
-		
-		animatedSpriteComponent?.spriteNode.run(sequence, completion: completion)
+        animatedSpriteComponent?.spriteNode.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 25))
 	}
 }
 
