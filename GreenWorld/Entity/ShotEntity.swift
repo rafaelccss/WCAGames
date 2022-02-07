@@ -7,8 +7,8 @@ class ShotEntity: GKEntity {
     init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection){
         self.direction = directionShot
         super.init()
-        var nameTexture:String
-        switch power{
+        var nameTexture: String
+        switch power {
             case .Tupã:
                 nameTexture = "TupãShot"
                 break
@@ -18,7 +18,7 @@ class ShotEntity: GKEntity {
             default:
                 nameTexture = "NormalShot"
         }
-        let texture = SKTexture(imageNamed:nameTexture)
+        let texture = SKTexture(imageNamed: nameTexture)
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
         let player = entityManager.getPlayer()
         spriteComponent.spriteNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
@@ -35,7 +35,6 @@ class ShotEntity: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
 
 extension ShotEntity:ContactNotifiable{
     func contactDidBegin(with entity: GKEntity,_ manager:EntityManager) {

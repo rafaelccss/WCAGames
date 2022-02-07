@@ -20,5 +20,4 @@ public extension UIPanGestureRecognizer {
         default: return .none
         }
     }
-    
 }
