@@ -78,6 +78,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         let entityB = contact.bodyB.node?.entity
         print("Colidi")
 
+
         if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
             notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
         }
