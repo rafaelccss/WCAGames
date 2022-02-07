@@ -1,10 +1,3 @@
-//
-//  IdleState.swift
-//  GreenWorld
-//
-//  Created by Luís Filipe Nascimento on 03/02/22.
-//
-
 import UIKit
 import GameplayKit
 
@@ -26,7 +19,6 @@ class IdleState: GKState {
     
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        
-        
+        walkComponent?.halt()
     }
 }
