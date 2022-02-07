@@ -7,11 +7,12 @@
 
 import Foundation
 
-enum CollisionType:UInt32{
+enum CollisionType: UInt32 {
     case player = 1
     case Enemy = 2
     case playerWeapon = 4
     case enemyWeapon = 8
+    case ground = 16
 }
 
 enum Powers{
