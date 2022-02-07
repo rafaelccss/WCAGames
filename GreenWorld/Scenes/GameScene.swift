@@ -2,9 +2,9 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene,SKPhysicsContactDelegate {
-
+    
     // MARK: - Entities
-
+    
     let player = Player()
     var entityManager: EntityManager!
 
@@ -12,6 +12,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var playerControlComponent: PlayerControlComponent? {
         player.component(ofType: PlayerControlComponent.self)
     }
+    lazy var sceneCamera: SKCameraNode = {
+        let camera = SKCameraNode()
+        camera.setScale(1)
+        return camera
+    }()
     // MARK: - Gestures
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
@@ -21,10 +26,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         switch sender.state {
         case .began:
             playerControlComponent?.handle(direction: sender.direction)
-
+            
         case .ended:
             playerControlComponent?.halt()
-
+            
         default:
             break
         }
@@ -35,13 +40,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
 
     override func update(_ currentTime: TimeInterval) {
-
+        self.sceneCamera.position = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position
+        
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
         entityManager.updateShot(timeSincePreviousUpdate)
         previousUpdateTime = currentTime
     }
-
+    
     override func didMove(to view: SKView) {
         // MARK: - Nodes
         physicsWorld.contactDelegate = self
@@ -49,23 +55,18 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         entityManager.player = self.player
 //        self.setupNodesPosition()
         self.setupGroundPosition()
+        self.camera = sceneCamera
         view.addGestureRecognizer(panGesture)
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     // MARK: - Adding Nodes to Scene
-
-    func setupNodesPosition() {
-
-    }
-
-
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
         let xPositionPlataform = lastNode.position.x + (lastNode.size.width + presentNode.size.width) * 0.5 + dx
         let yPositionPlataform = lastNode.position.y + dy
-
+        
         return CGPoint(x: xPositionPlataform, y: yPositionPlataform)
     }
     
@@ -77,7 +78,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
             notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
         }
-
+        
         if let notifiableEntity = entityB as? ContactNotifiable, let otherEntity = entityA {
             notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
         }
