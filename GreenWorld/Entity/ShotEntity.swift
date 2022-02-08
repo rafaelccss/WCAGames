@@ -32,6 +32,7 @@ class ShotEntity: GKEntity {
         let moveComponent = WalkComponent(velocity: 10)
         moveComponent.direction = directionShot
         addComponent(moveComponent)
+        addComponent(ShotComponent(power, entityManager))
     }
     
     required init?(coder: NSCoder) {

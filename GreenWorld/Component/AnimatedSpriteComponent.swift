@@ -17,6 +17,7 @@ class AnimatedSpriteComponent: GKComponent {
         
 //        self.animationAtlas = SKTextureAtlas(named: atlasName)
         self.spriteNode = SKSpriteNode(color: .red, size: CGSize(width: 10, height: 90))
+    
 //        self.spriteNode = SKSpriteNode(imageNamed: animationAtlas!.textureNames.first!)
 //        self.spriteNode.texture = animationTextures.first!
     }
@@ -28,6 +29,10 @@ class AnimatedSpriteComponent: GKComponent {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didAddToEntity() {
+        self.spriteNode.entity = self.entity
     }
     
     func setAnimation(atlasName: String) {
