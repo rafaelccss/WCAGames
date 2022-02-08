@@ -31,3 +31,23 @@ class JumpState: GKState {
     }
     
 }
+
+class RightJumpState: JumpState {
+    override func didEnter(from previousState: GKState?) {
+        super.didEnter(from: previousState)
+        
+        jumpComponent?.jump(dx: 10, completion: {
+            self.stateMachine?.enter(IdleState.self)
+        })
+    }
+}
+
+class LeftJumpState: JumpState {
+    override func didEnter(from previousState: GKState?) {
+        super.didEnter(from: previousState)
+        
+        jumpComponent?.jump(dx: -10, completion: {
+            self.stateMachine?.enter(IdleState.self)
+        })
+    }
+}

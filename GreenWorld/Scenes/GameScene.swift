@@ -1,6 +1,14 @@
 import SpriteKit
 import GameplayKit
 
+extension GKStateMachine {
+    var lastState: GKState? {
+        get {
+            return lastState
+        }
+    }
+}
+
 class GameScene: SKScene,SKPhysicsContactDelegate {
     
     // MARK: - Entities

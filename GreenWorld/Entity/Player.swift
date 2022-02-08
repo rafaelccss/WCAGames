@@ -19,7 +19,9 @@ class Player: GKEntity {
                 AttackState(self),
                 JumpState(self),
                 LeftWalkState(self),
-                RightWalkState(self)
+                RightWalkState(self),
+                LeftJumpState(self),
+                RightJumpState(self)
             ])
         )
         

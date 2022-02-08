@@ -33,7 +33,17 @@ class PlayerControlComponent: GKComponent {
     }
     
     func jump() {
-        stateMachine.enter(JumpState.self)
+        if let state = stateMachine.currentState?.classForCoder {
+            if state == RightWalkState.self {
+                stateMachine.enter(RightJumpState.self)
+            } else if state == LeftJumpState.self {
+                stateMachine.enter(LeftJumpState.self)
+            } else {
+                stateMachine.enter(JumpState.self)
+            }
+        } else {
+            stateMachine.enter(JumpState.self)
+        }
     }
     
     func moveLeft() {
