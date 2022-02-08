@@ -147,6 +147,14 @@ extension GameScene {
                                                          presentNode: playerNode,
                                                          dx: -200,
                                                          dy: 45 + groundComponentOne.size.height/2)
+        let enemy = Enemy()
+        if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
+            enemyNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
+                                                            presentNode: enemyNode,
+                                                            dx: -100,
+                                                            dy: enemyNode.size.height + groundComponentOne.size.height / 2 + 10)
+            self.addChild(enemyNode)
+        }
 
         self.addChild(groundComponentOne)
         self.addChild(groundComponentTwo)
