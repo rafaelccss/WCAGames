@@ -18,7 +18,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         return camera
     }()
     // MARK: - Gestures
-    // lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
     @objc
@@ -34,29 +34,36 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             break
         }
     }
-    
+
+    @objc
+    func attack(){
+        entityManager.playerAttack()
+    }
+
+
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
+        entityManager.updateShot(timeSincePreviousUpdate)
         previousUpdateTime = currentTime
     }
     
     override func didMove(to view: SKView) {
         // MARK: - Nodes
+        physicsWorld.contactDelegate = self
         self.entityManager = EntityManager(scene: self)
+        entityManager.player = self.player
 //        self.setupNodesPosition()
-        self.setupGroundPosition()
-        self.setupNodesPosition()
+        self.setupGroundPosition() 
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
+        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Adding Nodes to Scene
-    
-    
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
@@ -69,7 +76,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let entityA = contact.bodyA.node?.entity
         let entityB = contact.bodyB.node?.entity
-        
+
+        print("Colidi")
+
         if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
             notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
         }
@@ -138,6 +147,15 @@ extension GameScene {
                                                          presentNode: playerNode,
                                                          dx: -200,
                                                          dy: 45 + groundComponentOne.size.height/2)
+
+        let enemy = Enemy()
+        if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
+            enemyNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
+                                                            presentNode: enemyNode,
+                                                            dx: -100,
+                                                            dy: enemyNode.size.height + groundComponentOne.size.height / 2 + 10)
+            self.addChild(enemyNode)
+        }
 
         self.addChild(groundComponentOne)
         self.addChild(groundComponentTwo)

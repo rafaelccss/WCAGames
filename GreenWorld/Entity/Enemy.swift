@@ -17,8 +17,8 @@ class Enemy: GKEntity {
         
         //let spriteComponent = AnimatedSpriteComponent(atlasName: "")
         let spriteComponent = AnimatedSpriteComponent(color: .blue, size: CGSize(width: 100, height: 100))
-        addPhysics(spriteComponent.spriteNode)
         self.addComponent(spriteComponent)
+        addPhysics(spriteComponent.spriteNode)
         
         self.addComponent(
             EnemyControlComponent(states:
@@ -39,8 +39,20 @@ class Enemy: GKEntity {
     func addPhysics(_ node: SKSpriteNode) {
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
         node.physicsBody?.categoryBitMask = CollisionType.Enemy.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue
-        node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.player.rawValue | CollisionType.playerWeapon.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.playerWeapon.rawValue
+        node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.player.rawValue
         node.physicsBody?.isDynamic = true
+    }
+}
+
+extension Enemy:ContactNotifiable{
+    func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
+        if entity is ShotEntity{
+            guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}
+            self.life -= shotComponent.damage
+            if self.life <= 0{
+                manager.remove(self)
+            }
+        }
     }
 }
