@@ -24,8 +24,8 @@ class JumpComponent: GKComponent {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func jump(dx: CGFloat = 10, completion: @escaping () -> Void = { }) {
-        animatedSpriteComponent?.spriteNode.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 25))
+	func jump(dx: CGFloat, completion: @escaping () -> Void = { }) {
+        animatedSpriteComponent?.spriteNode.physicsBody?.applyImpulse(CGVector(dx: dx, dy: 25))
         
         completion()
 	}

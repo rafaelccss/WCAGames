@@ -2,10 +2,10 @@ import GameplayKit
 
 class PlayerControlComponent: GKComponent {
     
-    var stateMachine: GKStateMachine
+    var stateMachine: GWStateMachine
     
     init(states: [GKState]) {
-        self.stateMachine = GKStateMachine(states: states)
+        self.stateMachine = GWStateMachine(states: states)
         //self.stateMachine.enter()
         super.init()
     }
@@ -29,35 +29,35 @@ class PlayerControlComponent: GKComponent {
     func halt() {
         guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
         
-        stateMachine.enter(IdleState.self)
+        stateMachine.enterTo(IdleState.self)
     }
     
     func jump() {
-        if let state = stateMachine.currentState?.classForCoder {
-            if state == RightWalkState.self {
-                stateMachine.enter(RightJumpState.self)
-            } else if state == LeftJumpState.self {
-                stateMachine.enter(LeftJumpState.self)
+        if let state = stateMachine.previousState?.classForCoder {
+            if state === RightWalkState.self {
+                stateMachine.enterTo(RightJumpState.self)
+            } else if state === LeftWalkState.self {
+                stateMachine.enterTo(LeftJumpState.self)
             } else {
-                stateMachine.enter(JumpState.self)
+                stateMachine.enterTo(JumpState.self)
             }
         } else {
-            stateMachine.enter(JumpState.self)
+            stateMachine.enterTo(JumpState.self)
         }
     }
     
     func moveLeft() {
-        stateMachine.enter(LeftWalkState.self)
+        stateMachine.enterTo(LeftWalkState.self)
     }
     
     func moveRight() {
-        stateMachine.enter(RightWalkState.self)
+        stateMachine.enterTo(RightWalkState.self)
     }
     
     func attack() {
         guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
         
-        stateMachine.enter(AttackState.self)
+        stateMachine.enterTo(AttackState.self)
     }
     
     override func update(deltaTime seconds: TimeInterval) {
