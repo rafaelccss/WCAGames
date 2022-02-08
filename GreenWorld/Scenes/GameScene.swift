@@ -40,6 +40,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         entityManager.playerAttack()
     }
 
+
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         
@@ -55,7 +56,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
 //        self.setupNodesPosition()
-        self.setupGroundPosition()
+        self.setupGroundPosition() 
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
@@ -63,7 +64,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     // MARK: - Adding Nodes to Scene
-
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
@@ -76,8 +76,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let entityA = contact.bodyA.node?.entity
         let entityB = contact.bodyB.node?.entity
-        print("Colidi")
 
+        print("Colidi")
 
         if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
             notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
@@ -147,6 +147,7 @@ extension GameScene {
                                                          presentNode: playerNode,
                                                          dx: -200,
                                                          dy: 45 + groundComponentOne.size.height/2)
+
         let enemy = Enemy()
         if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
             enemyNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
