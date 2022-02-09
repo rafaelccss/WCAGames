@@ -25,7 +25,7 @@ class Player: GKEntity {
             ])
         )
         
-        self.addComponent(WalkComponent())
+        self.addComponent(WalkComponent(velocity: 1))
         self.addComponent(JumpComponent(impulse: 600))
     }
 
