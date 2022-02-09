@@ -7,6 +7,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     let player = Player()
     var entityManager: EntityManager!
+    var lastXPlayerPosition:CGFloat = 0
 
     private var previousUpdateTime: TimeInterval = TimeInterval()
     var playerControlComponent: PlayerControlComponent? {
@@ -20,6 +21,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     // MARK: - Gestures
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
+    
+    let scoreLabel = SKLabelNode(text: "100")
+    let heart = SKSpriteNode(imageNamed: "FullHeart")
     
     @objc
     func walk(_ sender: UIPanGestureRecognizer) {
@@ -51,15 +55,18 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
         entityManager.updateShot(timeSincePreviousUpdate)
         previousUpdateTime = currentTime
+        updatePositionByPlayerPosition()
+        
     }
     
     override func didMove(to view: SKView) {
         // MARK: - Nodes
+        configureScoreLabel()
         physicsWorld.contactDelegate = self
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
 //        self.setupNodesPosition()
-        self.setupGroundPosition() 
+        self.setupGroundPosition()
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
@@ -150,6 +157,7 @@ extension GameScene {
                                                          presentNode: playerNode,
                                                          dx: -200,
                                                          dy: 45 + groundComponentOne.size.height/2)
+        lastXPlayerPosition = playerNode.position.x
 
         let enemy = Enemy()
         if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
@@ -169,5 +177,23 @@ extension GameScene {
         self.addChild(plataformComponentThree)
         self.addChild(plataformComponentFour)
         self.addChild(playerNode)
+    }
+}
+
+extension GameScene {
+    func configureScoreLabel() {
+        heart.position = CGPoint(x: self.frame.minX - 48, y: self.frame.maxY - 48)
+        heart.size = CGSize(width: 64, height: 64)
+        scoreLabel.position = CGPoint(x: heart.position.x + heart.frame.width / 2 + 10 + scoreLabel.frame.width / 2, y: heart.position.y - scoreLabel.frame.height / 2)
+        addChild(heart)
+        addChild(scoreLabel)
+    }
+    
+    func updatePositionByPlayerPosition() {
+        let playerX = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
+        let dx = playerX - lastXPlayerPosition
+        lastXPlayerPosition = playerX
+        heart.position.x += dx
+        scoreLabel.position.x += dx
     }
 }
