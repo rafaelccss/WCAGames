@@ -1,21 +1,16 @@
-//
-//  Enums.swift
-//  GreenWorld
-//
-//  Created by Nathan Batista de Oliveira on 04/02/22.
-//
-
 import Foundation
 
 enum CollisionType: UInt32 {
+
     case player = 1
-    case Enemy = 2
+    case enemy = 2
     case playerWeapon = 4
     case enemyWeapon = 8
     case ground = 16
 }
 
-enum Powers{
+enum Powers {
+
     case None
     case Tupã
     case Polo

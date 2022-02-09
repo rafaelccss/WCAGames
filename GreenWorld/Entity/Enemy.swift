@@ -1,10 +1,3 @@
-//
-//  Enemy.swift
-//  GreenWorld
-//
-//  Created by Luís Filipe Nascimento on 07/02/22.
-//
-
 import SpriteKit
 import GameplayKit
 
@@ -38,8 +31,8 @@ class Enemy: GKEntity {
     
     func addPhysics(_ node: SKSpriteNode) {
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
-        node.physicsBody?.categoryBitMask = CollisionType.Enemy.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.playerWeapon.rawValue
+        node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.playerWeapon.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.player.rawValue
         node.physicsBody?.isDynamic = true
     }
