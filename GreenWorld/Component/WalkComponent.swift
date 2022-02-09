@@ -9,7 +9,7 @@ class WalkComponent: GKComponent {
         self.entity?.component(ofType: AnimatedSpriteComponent.self)?.spriteNode
     }
     
-    init(velocity: CGFloat = 10) {
+    init(velocity: CGFloat = 1) {
         self.velocity = velocity
         super.init()
     }
@@ -32,11 +32,10 @@ class WalkComponent: GKComponent {
         switch direction {
         case .left:
             spriteNode?.xScale = -1
-            spriteNode?.position.x -= velocity
-            
+            spriteNode?.physicsBody?.applyImpulse(CGVector(dx: -velocity, dy: 0))
         case .right:
             spriteNode?.xScale = 1
-            spriteNode?.position.x += velocity
+            spriteNode?.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 0))
             
         default:
             break

@@ -26,8 +26,6 @@ class JumpComponent: GKComponent {
 
 	func jump(dx: CGFloat, completion: @escaping () -> Void = { }) {
         animatedSpriteComponent?.spriteNode.physicsBody?.applyImpulse(CGVector(dx: dx, dy: 25))
-        
-        completion()
 	}
 }
 
