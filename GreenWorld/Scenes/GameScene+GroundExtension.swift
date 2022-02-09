@@ -29,14 +29,16 @@ extension GameScene {
 
         for _  in 1 ... 4 {
             let random = Int.random(in: 300 ... 600)
+            let space = Int.random(in: 6 ... 13)
             let ground = Ground(size: CGSize(width: random, height: 10))
             let plaform = Plataform()
 
-            // Espaço do ground para a plataforma ser aleatório
+            print(space)
+
             guard let plaformNode = plaform.component(ofType: PlataformComponent.self)?.plataformNode else { return }
             plaformNode.position = positionBasedOnLastElement(lastNode: lastNode,
                                                               presentNode: plaformNode,
-                                                              dx: 13,
+                                                              dx: CGFloat(space),
                                                               dy: 80)
             lastNode = plaformNode
 
