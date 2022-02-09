@@ -2,7 +2,11 @@ import UIKit
 import GameplayKit
 
 class JumpState: GKState {
+    
     var entity: GKEntity
+    var dx: CGFloat {
+        0
+    }
     
     init(_ entity: GKEntity) {
         self.entity = entity
@@ -21,7 +25,7 @@ class JumpState: GKState {
         super.didEnter(from: previousState)
         
         //animatedSpriteComponent?.setAnimation(atlasName: Textures.jump.rawValue)
-        jumpComponent?.jump(completion: {
+        jumpComponent?.jump(dx: dx, completion: {
             self.stateMachine?.enter(IdleState.self)
         })
     }
@@ -30,4 +34,16 @@ class JumpState: GKState {
         super.update(deltaTime: seconds)
     }
     
+}
+
+class RightJumpState: JumpState {
+    override var dx: CGFloat {
+        10
+    }
+}
+
+class LeftJumpState: JumpState {
+    override var dx: CGFloat {
+        -10
+    }
 }

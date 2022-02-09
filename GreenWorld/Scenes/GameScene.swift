@@ -43,6 +43,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
+        if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY {
+            print("Game Over!")
+        }
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
