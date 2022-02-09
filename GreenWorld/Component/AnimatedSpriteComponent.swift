@@ -40,8 +40,13 @@ class AnimatedSpriteComponent: GKComponent {
         self.spriteNode.entity = self.entity
     }
     
-    func setAnimation(atlasName: String) {
-//        spriteNode.removeAllActions()
+	func setAnimation(atlasName: String, rangeOfAnimation: ClosedRange<Int>) {
+		
+		let animation: SKAction = .repeatForever(.animate(with:
+														Array(withFormat: atlasName, range: rangeOfAnimation), timePerFrame: 0.1))
+		
+		self.spriteNode.run(animation)
+		//        spriteNode.removeAllActions()
 //        
 //        self.animationAtlas = SKTextureAtlas(named: atlasName)
 //        self.spriteNode.texture = animationTextures.first!
@@ -57,4 +62,12 @@ class AnimatedSpriteComponent: GKComponent {
 //            )
 //        )
     }
+}
+public extension Array where Element == SKTexture {
+	init (withFormat format: String, range: ClosedRange<Int>) {
+		self = range.map({ (index) in
+			let imageNamed = format + "\(index)"
+			return SKTexture(imageNamed: imageNamed)
+		})
+	}
 }

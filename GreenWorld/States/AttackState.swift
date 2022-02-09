@@ -16,7 +16,7 @@ class AttackState: GKState {
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-        animatedSpriteComponent?.setAnimation(atlasName: Textures.shot.rawValue)
+		//animatedSpriteComponent?.setAnimation(atlasName: Textures.shot.rawValue, rangeOfAnimation: <#ClosedRange<Int>#>)
     }
     
     override func update(deltaTime seconds: TimeInterval) {
