@@ -66,6 +66,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
 //        self.setupNodesPosition()
+        self.entityManager.addGrounds()
         self.setupGroundPosition()
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
@@ -102,80 +103,27 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 extension GameScene {
     func setupGroundPosition() {
         let groundOne = Ground(size: CGSize(width: 500, height: 10))
-        let groundTwo = Ground(size: CGSize(width: 300, height: 10))
-        let groundThree = Ground(size: CGSize(width: 600, height: 10))
-        let groundFour = Ground(size: CGSize(width: 500, height: 10))
-
-        let platarformOne = Plataform()
-        let platarformTwo = Plataform()
-        let platarformThree = Plataform()
-        let platarformFour = Plataform()
-
-        guard let groundComponentOne = groundOne.component(ofType: GroundComponent.self)?.groundNode,
-              let groundComponentTwo = groundTwo.component(ofType: GroundComponent.self)?.groundNode,
-              let groundComponentThree = groundThree.component(ofType: GroundComponent.self)?.groundNode,
-              let groundComponentFour = groundFour.component(ofType: GroundComponent.self)?.groundNode,
-
-              let plataformComponentOne = platarformOne.component(ofType: PlataformComponent.self)?.plataformNode,
-              let plataformComponentTwo = platarformTwo.component(ofType: PlataformComponent.self)?.plataformNode,
-              let plataformComponentThree = platarformThree.component(ofType: PlataformComponent.self)?.plataformNode,
-              let plataformComponentFour = platarformFour.component(ofType: PlataformComponent.self)?.plataformNode,
-
-              let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
-
+        guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
+        
+        guard let groundComponentOne = groundOne.component(ofType: GroundComponent.self)?.groundNode else {return}
+        
         groundComponentOne.position = CGPoint(x: scene!.frame.minX + groundComponentOne.size.width/2, y: 50)
-        plataformComponentOne.position = positionBasedOnLastElement(lastNode: groundComponentOne,
-                                                                    presentNode: plataformComponentOne,
-                                                                    dx: 0,
-                                                                    dy: 80)
-        groundComponentTwo.position = positionBasedOnLastElement(lastNode: plataformComponentOne,
-                                                                 presentNode: groundComponentTwo,
-                                                                 dx: 0,
-                                                                 dy: -80)
-        plataformComponentTwo.position = positionBasedOnLastElement(lastNode: groundComponentTwo,
-                                                                    presentNode: plataformComponentTwo,
-                                                                    dx: 0,
-                                                                    dy: 80)
-        groundComponentThree.position = positionBasedOnLastElement(lastNode: plataformComponentTwo,
-                                                                    presentNode: groundComponentThree,
-                                                                    dx: 0,
-                                                                    dy: -80)
-        plataformComponentThree.position = positionBasedOnLastElement(lastNode: groundComponentThree,
-                                                                    presentNode: plataformComponentThree,
-                                                                    dx: 0,
-                                                                    dy: 80)
-        groundComponentFour.position = positionBasedOnLastElement(lastNode: plataformComponentThree,
-                                                                    presentNode: groundComponentFour,
-                                                                    dx: 0,
-                                                                    dy: -80)
-        plataformComponentFour.position = positionBasedOnLastElement(lastNode: groundComponentFour,
-                                                                      presentNode: plataformComponentFour,
-                                                                      dx: 0,
-                                                                      dy: 80)
-
-        playerNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
-                                                         presentNode: playerNode,
-                                                         dx: -200,
-                                                         dy: 45 + groundComponentOne.size.height/2)
+        
         lastXPlayerPosition = playerNode.position.x
 
         let enemy = Enemy()
         if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
             enemyNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
                                                             presentNode: enemyNode,
-                                                            dx: -100,
+                                                            dx:-100,
                                                             dy: enemyNode.size.height + groundComponentOne.size.height / 2 + 10)
             self.addChild(enemyNode)
         }
+        playerNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
+                                                         presentNode: playerNode,
+                                                         dx: -200,
+                                                         dy: 45 + groundComponentOne.size.height/2)
 
-        self.addChild(groundComponentOne)
-        self.addChild(groundComponentTwo)
-        self.addChild(groundComponentThree)
-        self.addChild(groundComponentFour)
-        self.addChild(plataformComponentOne)
-        self.addChild(plataformComponentTwo)
-        self.addChild(plataformComponentThree)
-        self.addChild(plataformComponentFour)
         self.addChild(playerNode)
     }
 }

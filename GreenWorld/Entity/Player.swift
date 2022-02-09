@@ -37,7 +37,7 @@ class Player: GKEntity {
         //node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 90))
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.Enemy.rawValue | CollisionType.enemyWeapon.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
@@ -46,10 +46,14 @@ class Player: GKEntity {
 
 extension Player:ContactNotifiable{
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
-        if entity is ShotEntity{
+       /* if entity is ShotEntity{
             guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}
             self.life -= shotComponent.damage
             self.life = self.life < 0 ? 0 : self.life
+        }*/
+        if (entity is Ground || entity is Plataform){
+            guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
+            playerControlComponent.stateMachine.enterTo(IdleState.self)
         }
     }
 }

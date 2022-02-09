@@ -28,8 +28,8 @@ class ShotEntity: GKEntity {
         spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
         spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
         spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.ground.rawValue
-        spriteComponent.spriteNode.physicsBody?.isDynamic = false
-        let moveComponent = WalkComponent(velocity: 10)
+        spriteComponent.spriteNode.physicsBody?.affectedByGravity = false
+        let moveComponent = WalkComponent(velocity: 3)
         moveComponent.direction = directionShot
         addComponent(moveComponent)
         addComponent(ShotComponent(power, entityManager))
