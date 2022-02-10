@@ -11,8 +11,12 @@ class PlataformComponent: GKComponent {
 
     override init() {
         self.plataformNode = SKSpriteNode(color: SKColor.brown,
-                                       size: CGSize(width: 200, height: 10))
+                                          size: CGSize(width: 200, height: 10))
         super.init()
+    }
+
+    override func didAddToEntity() {
+        self.plataformNode.entity = self.entity
     }
 
     required init?(coder: NSCoder) {

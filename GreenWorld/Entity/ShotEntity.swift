@@ -4,7 +4,7 @@ import SpriteKit
 
 class ShotEntity: GKEntity {
     var direction : MoveDirection
-    init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection){
+    init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection) {
         self.direction = directionShot
         super.init()
         var nameTexture: String
@@ -26,9 +26,9 @@ class ShotEntity: GKEntity {
         spriteComponent.spriteNode.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.size)
         spriteComponent.spriteNode.position = CGPoint(x: playerNode.position.x + 10, y: playerNode.position.y + 20)
         spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
-        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.Enemy.rawValue | CollisionType.ground.rawValue
+        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.ground.rawValue
         spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.ground.rawValue
-        spriteComponent.spriteNode.physicsBody?.isDynamic = false
+        spriteComponent.spriteNode.physicsBody?.affectedByGravity = false
         let moveComponent = WalkComponent(velocity: 10)
         moveComponent.direction = directionShot
         addComponent(moveComponent)
