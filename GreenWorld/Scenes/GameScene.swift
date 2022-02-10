@@ -111,34 +111,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 
 extension GameScene {
-    func setupGroundPosition() {
-        let groundOne = Ground(size: CGSize(width: 500, height: 10))
-        guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
-        
-        guard let groundComponentOne = groundOne.component(ofType: GroundComponent.self)?.groundNode else {return}
-        
-        groundComponentOne.position = CGPoint(x: scene!.frame.minX + groundComponentOne.size.width/2, y: 50)
-        
-        lastXPlayerPosition = playerNode.position.x
-
-        let enemy = Enemy()
-        if let enemyNode =  enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
-            enemyNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
-                                                            presentNode: enemyNode,
-                                                            dx:-100,
-                                                            dy: enemyNode.size.height + groundComponentOne.size.height / 2 + 10)
-            self.addChild(enemyNode)
-        }
-        playerNode.position = positionBasedOnLastElement(lastNode: groundComponentOne,
-                                                         presentNode: playerNode,
-                                                         dx: -200,
-                                                         dy: 45 + groundComponentOne.size.height/2)
-
-        self.addChild(playerNode)
-    }
-}
-
-extension GameScene {
     func configureScoreLabel() {
         let xPlayerPosition = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         heart.position = CGPoint(x: xPlayerPosition - self.view!.frame.width / 2 + 52, y: self.frame.maxY - 48)

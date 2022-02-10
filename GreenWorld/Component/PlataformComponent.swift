@@ -23,7 +23,4 @@ class PlataformComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func didAddToEntity(){
-        plataformNode.entity = entity
-    }
 }

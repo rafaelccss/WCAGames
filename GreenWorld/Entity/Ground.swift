@@ -10,7 +10,7 @@ class Ground: GKEntity {
         groundComponent.groundNode.physicsBody?.isDynamic = false
         groundComponent.groundNode.physicsBody?.categoryBitMask = CollisionType.ground.rawValue
         groundComponent.groundNode.physicsBody?.contactTestBitMask = CollisionType.ground.rawValue | CollisionType.player.rawValue
-        groundComponent.groundNode.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.Enemy.rawValue
+        groundComponent.groundNode.physicsBody?.collisionBitMask = CollisionType.player.rawValue | CollisionType.enemy.rawValue
         self.addComponent(groundComponent)
     }
 

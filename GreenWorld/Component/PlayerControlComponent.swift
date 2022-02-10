@@ -35,22 +35,8 @@ class PlayerControlComponent: GKComponent {
     
     func jump() {
         guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
-        guard stateMachine.currentState?.classForCoder != RightJumpState.self else { return }
-        guard stateMachine.currentState?.classForCoder != LeftJumpState.self else { return }
-//        guard stateMachine.previousState?.classForCoder != JumpState.self else { return }
-//        guard stateMachine.previousState?.classForCoder != RightJumpState.self else { return }
-//        guard stateMachine.previousState?.classForCoder != LeftJumpState.self else { return }
-        if let state = stateMachine.previousState?.classForCoder {
-            if state === RightWalkState.self {
-                stateMachine.enterTo(RightJumpState.self)
-            } else if state === LeftWalkState.self {
-                stateMachine.enterTo(LeftJumpState.self)
-            } else if state === IdleState.self{
-                stateMachine.enterTo(JumpState.self)
-            }
-        } else {
-            stateMachine.enterTo(JumpState.self)
-        }
+        
+        stateMachine.enter(JumpState.self)
     }
     
     func moveLeft() {
@@ -63,8 +49,6 @@ class PlayerControlComponent: GKComponent {
     
     func attack() {
         guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
-        guard stateMachine.currentState?.classForCoder != RightJumpState.self else { return }
-        guard stateMachine.currentState?.classForCoder != LeftJumpState.self else { return }
         
         stateMachine.enterTo(AttackState.self)
     }

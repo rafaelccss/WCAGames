@@ -35,15 +35,3 @@ class JumpState: GKState {
     }
     
 }
-
-class RightJumpState: JumpState {
-    override var dx: CGFloat {
-        10
-    }
-}
-
-class LeftJumpState: JumpState {
-    override var dx: CGFloat {
-        -10
-    }
-}
