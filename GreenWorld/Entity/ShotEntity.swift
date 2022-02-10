@@ -18,7 +18,6 @@ class ShotEntity: GKEntity {
             default:
                 nameTexture = "NormalShot"
         }
-        let texture = SKTexture(imageNamed: nameTexture)
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
         addComponent(spriteComponent)
         let player = entityManager.getPlayer()
