@@ -94,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-         let entityA = contact.bodyA.node?.entity
+        let entityA = contact.bodyA.node?.entity
         let entityB = contact.bodyB.node?.entity
 
         print("Colidi")
@@ -110,7 +110,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 extension GameScene {
     func configureScoreLabel() {
-        heart.position = CGPoint(x: self.frame.minX - 56, y: self.frame.maxY - 48)
+        let xPlayerPosition = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
+        heart.position = CGPoint(x: xPlayerPosition - self.view!.frame.width / 2 + 52, y: self.frame.maxY - 48)
         heart.size = CGSize(width: 48, height: 48)
         coinNode.position = CGPoint(x: heart.position.x + self.view!.frame.width - 112, y: self.frame.maxY - 48)
         coinNode.size = CGSize(width: 32, height: 32)

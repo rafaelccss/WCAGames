@@ -23,6 +23,15 @@ extension GameScene {
         entityManager.addGroundAndPlataform(inicialGround)
         entityManager.add(player)
         entityManager.add(enemy)
+        
+        let coin = Coin()
+        coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = positionBasedOnLastElement(lastNode: inicialGroundNode,
+                                                                                                               presentNode: coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
+                                                                                                               dx: -400,
+                                                                                                               dy: 30)
+        addChild(coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode)
+        coin.delegate = self
+        coins.append(coin)
 
         var lastNode = inicialGroundNode
 
@@ -32,8 +41,6 @@ extension GameScene {
             let space = Int.random(in: 6 ... 13)
             let ground = Ground(size: CGSize(width: random, height: 10))
             let plaform = Plataform()
-
-            print(space)
 
             guard let plaformNode = plaform.component(ofType: PlataformComponent.self)?.plataformNode else { return }
             plaformNode.position = positionBasedOnLastElement(lastNode: lastNode,
