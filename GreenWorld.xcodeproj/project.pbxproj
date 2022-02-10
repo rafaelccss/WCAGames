@@ -10,6 +10,7 @@
 		16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CD253A27AACDC60046CEF2 /* JumpComponent.swift */; };
 		531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6827AC038F00ADB483 /* PlataformComponent.swift */; };
 		531E7C6B27AC048300ADB483 /* Platarfom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6A27AC048300ADB483 /* Platarfom.swift */; };
+		53279A8E27B3FA3900397526 /* GameScene+GroundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */; };
 		5354A09827A96A5700593B96 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5354A09727A96A5700593B96 /* Player.swift */; };
 		5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B027A8156A003B8C6B /* AppDelegate.swift */; };
 		5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B627A8156A003B8C6B /* GameScene.swift */; };
@@ -36,12 +37,15 @@
 		D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36827AD4CA0009D3AC8 /* Textures.swift */; };
 		D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */; };
 		D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */; };
+		D6CD08C427B4087900E56739 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD08C327B4087900E56739 /* Coin.swift */; };
+		D6CD08C627B490EF00E56739 /* RotationYComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD08C527B490EF00E56739 /* RotationYComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		16CD253A27AACDC60046CEF2 /* JumpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpComponent.swift; sourceTree = "<group>"; };
 		531E7C6827AC038F00ADB483 /* PlataformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlataformComponent.swift; sourceTree = "<group>"; };
 		531E7C6A27AC048300ADB483 /* Platarfom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platarfom.swift; sourceTree = "<group>"; };
+		53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+GroundExtension.swift"; sourceTree = "<group>"; };
 		5354A09727A96A5700593B96 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5360A3AD27A8156A003B8C6B /* GreenWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5360A3B027A8156A003B8C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 		D6A5F36827AD4CA0009D3AC8 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkState.swift; sourceTree = "<group>"; };
 		D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackState.swift; sourceTree = "<group>"; };
+		D6CD08C327B4087900E56739 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		D6CD08C527B490EF00E56739 /* RotationYComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationYComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 				531E7C6A27AC048300ADB483 /* Platarfom.swift */,
 				C2778BB627AD6DC700644B59 /* ShotEntity.swift */,
 				D69BE73827B14C9F00BF0977 /* Enemy.swift */,
+				D6CD08C327B4087900E56739 /* Coin.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 				531E7C6827AC038F00ADB483 /* PlataformComponent.swift */,
 				C2778BBA27AD6E3E00644B59 /* ShootingComponent.swift */,
 				D69BE73A27B14F5F00BF0977 /* EnemyControlComponent.swift */,
+				D6CD08C527B490EF00E56739 /* RotationYComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				5360A3B627A8156A003B8C6B /* GameScene.swift */,
+				53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -271,6 +280,7 @@
 				D69BE73927B14C9F00BF0977 /* Enemy.swift in Sources */,
 				C2778BB527AD6D6300644B59 /* Enums.swift in Sources */,
 				5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */,
+				D6CD08C427B4087900E56739 /* Coin.swift in Sources */,
 				538CB2DB27AAAF3C008DAF41 /* Ground.swift in Sources */,
 				531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */,
 				531E7C6B27AC048300ADB483 /* Platarfom.swift in Sources */,
@@ -286,8 +296,10 @@
 				D6A5F36727AD4BDC009D3AC8 /* JumpState.swift in Sources */,
 				D69BE73B27B14F5F00BF0977 /* EnemyControlComponent.swift in Sources */,
 				538CB2D927AAAE22008DAF41 /* GroundComponent.swift in Sources */,
+				53279A8E27B3FA3900397526 /* GameScene+GroundExtension.swift in Sources */,
 				C2778BB927AD6E1600644B59 /* EntityManager.swift in Sources */,
 				C2778BB327AD6D5800644B59 /* Protocols.swift in Sources */,
+				D6CD08C627B490EF00E56739 /* RotationYComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,13 +441,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D7KS69836R;
+				DEVELOPMENT_TEAM = 5H2RJVTS74;
 				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = WCAGames.GreenWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = WCAGames.GreenWorld.Luis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,13 +460,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5H2RJVTS74;
+				DEVELOPMENT_TEAM = D7KS69836R;
 				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = WCAGames.GreenWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = WCAGames.GreenWorld.Luis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

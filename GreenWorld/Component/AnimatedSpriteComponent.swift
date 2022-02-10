@@ -22,6 +22,11 @@ class AnimatedSpriteComponent: GKComponent {
 //        self.spriteNode.texture = animationTextures.first!
     }
     
+    init(spriteNode: SKSpriteNode) {
+        super.init()
+        self.spriteNode = spriteNode
+    }
+    
     init(color: UIColor, size: CGSize) {
         super.init()
         self.spriteNode = SKSpriteNode(color: color, size: size)
