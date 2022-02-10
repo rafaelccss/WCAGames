@@ -1,13 +1,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene,SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Entities
     
     let player = Player()
     var entityManager: EntityManager!
     var lastXPlayerPosition:CGFloat = 0
+    var coins = [Coin]()
+    var count = 0
 
     private var previousUpdateTime: TimeInterval = TimeInterval()
     var playerControlComponent: PlayerControlComponent? {
@@ -24,6 +26,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     let scoreLabel = SKLabelNode(text: "100")
     let heart = SKSpriteNode(imageNamed: "FullHeart")
+    
+    let coinNode = SKSpriteNode(imageNamed: "Coin")
+    let coinsCount = SKLabelNode(text: "000")
     
     @objc
     func walk(_ sender: UIPanGestureRecognizer) {
@@ -71,6 +76,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
         view.addGestureRecognizer(tapGesture)
+        view.isMultipleTouchEnabled = true
     }
     
     // MARK: - Adding Nodes to Scene
@@ -84,7 +90,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        let entityA = contact.bodyA.node?.entity
+         let entityA = contact.bodyA.node?.entity
         let entityB = contact.bodyB.node?.entity
 
         print("Colidi")
@@ -167,7 +173,17 @@ extension GameScene {
                                                             dy: enemyNode.size.height + groundComponentOne.size.height / 2 + 10)
             self.addChild(enemyNode)
         }
-
+        
+        let coin = Coin()
+        coins.append(coin)
+        coin.delegate = self
+        
+        coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position = positionBasedOnLastElement(lastNode: plataformComponentOne,
+                                                                                                               presentNode: coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
+                                                                                                               dx: -100,
+                                                                                                               dy: 32)
+        
+        self.addChild(coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode)
         self.addChild(groundComponentOne)
         self.addChild(groundComponentTwo)
         self.addChild(groundComponentThree)
@@ -182,9 +198,14 @@ extension GameScene {
 
 extension GameScene {
     func configureScoreLabel() {
-        heart.position = CGPoint(x: self.frame.minX - 48, y: self.frame.maxY - 48)
-        heart.size = CGSize(width: 64, height: 64)
+        heart.position = CGPoint(x: self.frame.minX - 56, y: self.frame.maxY - 48)
+        heart.size = CGSize(width: 48, height: 48)
+        coinNode.position = CGPoint(x: heart.position.x + self.view!.frame.width - 112, y: self.frame.maxY - 48)
+        coinNode.size = CGSize(width: 32, height: 32)
         scoreLabel.position = CGPoint(x: heart.position.x + heart.frame.width / 2 + 10 + scoreLabel.frame.width / 2, y: heart.position.y - scoreLabel.frame.height / 2)
+        coinsCount.position = CGPoint(x: coinNode.position.x - coinNode.frame.width / 2 - 10 - coinsCount.frame.width / 2, y: coinNode.position.y - coinsCount.frame.height / 2)
+        addChild(coinNode)
+        addChild(coinsCount)
         addChild(heart)
         addChild(scoreLabel)
     }
@@ -195,5 +216,15 @@ extension GameScene {
         lastXPlayerPosition = playerX
         heart.position.x += dx
         scoreLabel.position.x += dx
+        coinsCount.position.x += dx
+        coinNode.position.x += dx
+    }
+}
+
+extension GameScene: CollecteddCoinDelegate {
+    func collected(_ coin: Coin) {
+        self.coins.removeAll { $0 == coin }
+        count += 1
+        self.coinsCount.text = String.init(format: "%03d", count)
     }
 }

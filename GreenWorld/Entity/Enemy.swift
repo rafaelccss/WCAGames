@@ -45,7 +45,7 @@ class Enemy: GKEntity {
     }
 }
 
-extension Enemy:ContactNotifiable{
+extension Enemy: ContactNotifiable {
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
         if entity is ShotEntity{
             guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}
