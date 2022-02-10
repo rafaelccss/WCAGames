@@ -108,7 +108,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 }
-
 extension GameScene {
     func configureScoreLabel() {
         heart.position = CGPoint(x: self.frame.minX - 56, y: self.frame.maxY - 48)
