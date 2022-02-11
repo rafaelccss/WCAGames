@@ -57,6 +57,7 @@ extension Player: ContactNotifiable{
             self.life -= shotComponent.damage
             self.life = self.life < 0 ? 0 : self.life
         }*/
+<<<<<<< HEAD
         if (entity is Ground || entity is Plataform){
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
@@ -68,5 +69,11 @@ extension Player: ContactNotifiable{
                 manager.removePlayer()
             }
         }
+=======
+//        if (entity is Ground || entity is Plataform){
+//            guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
+//            playerControlComponent.stateMachine.enterTo(IdleState.self)
+//        }
+>>>>>>> dce4793 (árvore do projeto reorganizada porque a scene estava estranha)
     }
 }
