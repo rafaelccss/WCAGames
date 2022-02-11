@@ -30,7 +30,7 @@ class EnemyShotEntity : GKEntity {
         spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue
         spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.ground.rawValue
         spriteComponent.spriteNode.physicsBody?.affectedByGravity = false
-        let moveComponent = WalkComponent(velocity: 3)
+        let moveComponent = WalkComponent(velocity: 1)
         moveComponent.direction = directionShot
         addComponent(moveComponent)
         addComponent(EnemyShotComponent(enemy: enemyEntity, manager: entityManager))

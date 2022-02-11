@@ -36,7 +36,7 @@ class Player: GKEntity {
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 90))
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue | CollisionType.coin.rawValue
-        node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
+        node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
     }

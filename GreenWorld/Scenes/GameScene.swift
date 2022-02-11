@@ -75,8 +75,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
         self.entityManager.addGrounds()
-        self.setupGroundPosition()
         self.enemy = Enemy(manager: self.entityManager)
+        self.setupGroundPosition()
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
