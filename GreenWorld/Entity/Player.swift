@@ -30,7 +30,7 @@ class Player: GKEntity {
             ])
         )
         
-        self.addComponent(WalkComponent(velocity: 5))
+        self.addComponent(WalkComponent(velocity: 2))
         self.addComponent(JumpComponent(impulse: 3000))
     }
 
@@ -45,10 +45,11 @@ class Player: GKEntity {
 			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
 		}
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue | CollisionType.coin.rawValue
-        node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.coin.rawValue
+        node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
+        node.physicsBody?.mass = 0.04
     }
 }
 
