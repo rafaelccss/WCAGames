@@ -17,3 +17,8 @@ class Plataform: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension Plataform:ContactNotifiable{
+    func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
+    }
+}

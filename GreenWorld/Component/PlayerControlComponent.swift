@@ -14,6 +14,7 @@ class PlayerControlComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func handle(direction: MoveDirection) {
         switch direction {
         case .left:
@@ -33,17 +34,9 @@ class PlayerControlComponent: GKComponent {
     }
     
     func jump() {
-        if let state = stateMachine.previousState?.classForCoder {
-            if state === RightWalkState.self {
-                stateMachine.enterTo(RightJumpState.self)
-            } else if state === LeftWalkState.self {
-                stateMachine.enterTo(LeftJumpState.self)
-            } else {
-                stateMachine.enterTo(JumpState.self)
-            }
-        } else {
-            stateMachine.enterTo(JumpState.self)
-        }
+        guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
+        
+        stateMachine.enter(JumpState.self)
     }
     
     func moveLeft() {

@@ -74,7 +74,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
-        self.setupGroundPosition() 
+        self.entityManager.addGrounds()
+        self.setupGroundPosition()
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
@@ -108,6 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 }
+
 extension GameScene {
     func configureScoreLabel() {
         let xPlayerPosition = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x

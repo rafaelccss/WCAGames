@@ -1,18 +1,24 @@
 import Foundation
+import UIKit
+import SpriteKit
 import GameplayKit
 
 class GroundComponent: GKComponent {
 
     // MARK: - Properties
 
-    var groundNode: SKSpriteNode
+    var groundNode: SKSpriteNode!
 
     // MARK: - Init
 
     init(size: CGSize) {
+        super.init()
         self.groundNode = SKSpriteNode(color: SKColor.brown,
                                        size: size)
-        super.init()
+    }
+    
+    override func didAddToEntity() {
+        self.groundNode.entity = self.entity
     }
 
     required init?(coder: NSCoder) {
