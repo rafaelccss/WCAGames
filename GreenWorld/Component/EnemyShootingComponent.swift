@@ -1,10 +1,3 @@
-//
-//  EnemyShootingComponent.swift
-//  GreenWorld
-//
-//  Created by Nathan Batista de Oliveira on 10/02/22.
-//
-
 import Foundation
 import GameplayKit
 import SpriteKit
