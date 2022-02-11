@@ -37,8 +37,11 @@ class Player: GKEntity {
     }
     
     func addPhysics(node: SKSpriteNode) {
-        //node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
-        node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 90))
+		if let texture = node.texture {
+			node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+		} else {
+			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
+		}
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue | CollisionType.coin.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
@@ -47,7 +50,7 @@ class Player: GKEntity {
      }
 }
 
-extension Player:ContactNotifiable{
+extension Player: ContactNotifiable{
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
        /* if entity is ShotEntity{
             guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}

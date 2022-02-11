@@ -26,6 +26,7 @@ class WalkState: GKState {
         
 		animatedSpriteComponent?.setAnimation(atlasName: "Run_", rangeOfAnimation: 0...9)
         walkComponent?.walk(direction)
+		
     }
     
     override func update(deltaTime seconds: TimeInterval) {
