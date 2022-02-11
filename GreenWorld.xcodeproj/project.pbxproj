@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16C773FF27B6A2FE002A27E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C773FE27B6A2F5002A27E6 /* GameScene.swift */; };
 		16C773FD27B69117002A27E6 /* GameScene+GroundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */; };
+		16C773FF27B6A2FE002A27E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C773FE27B6A2F5002A27E6 /* GameScene.swift */; };
 		16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CD253A27AACDC60046CEF2 /* JumpComponent.swift */; };
 		531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6827AC038F00ADB483 /* PlataformComponent.swift */; };
 		531E7C6B27AC048300ADB483 /* Platarfom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6A27AC048300ADB483 /* Platarfom.swift */; };
@@ -44,8 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16C773FE27B6A2F5002A27E6 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = GreenWorld/Entity/Scenes/GameScene.swift; sourceTree = SOURCE_ROOT; };
 		16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameScene+GroundExtension.swift"; path = "GreenWorld/Scenes/GameScene+GroundExtension.swift"; sourceTree = SOURCE_ROOT; };
+		16C773FE27B6A2F5002A27E6 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = GreenWorld/Entity/Scenes/GameScene.swift; sourceTree = SOURCE_ROOT; };
 		16CD253A27AACDC60046CEF2 /* JumpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpComponent.swift; sourceTree = "<group>"; };
 		531E7C6827AC038F00ADB483 /* PlataformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlataformComponent.swift; sourceTree = "<group>"; };
 		531E7C6A27AC048300ADB483 /* Platarfom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platarfom.swift; sourceTree = "<group>"; };
@@ -112,15 +112,15 @@
 		5360A3AF27A8156A003B8C6B /* GreenWorld */ = {
 			isa = PBXGroup;
 			children = (
-				53BD7FEE27A9654300DBB096 /* Scenes */,
-				C2778BB127AD6D4300644B59 /* Extra */,
+				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
 				53BD7FEB27A95B4E00DBB096 /* Component */,
 				53BD7FEA27A95B4700DBB096 /* Entity */,
+				C2778BB127AD6D4300644B59 /* Extra */,
+				53ADE60127AD51470047F26E /* GameScene.sks */,
 				53BD7FED27A9645C00DBB096 /* Main */,
+				53BD7FEE27A9654300DBB096 /* Scenes */,
 				D607A19C27ABFC3800A6F9D8 /* States */,
 				53BD7FEC27A95BF400DBB096 /* System */,
-				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
-				53ADE60127AD51470047F26E /* GameScene.sks */,
 			);
 			path = GreenWorld;
 			sourceTree = "<group>";
@@ -181,8 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				16C773FE27B6A2F5002A27E6 /* GameScene.swift */,
-				53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */,
-				5360A3B627A8156A003B8C6B /* GameScene.swift */,
 				16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */,
 			);
 			name = Scenes;

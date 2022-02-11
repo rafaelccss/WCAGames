@@ -7,7 +7,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = Player()
     var entityManager: EntityManager!
-    var enemy:Enemy!
+    var enemy: Enemy!
     var lastXPlayerPosition:CGFloat = 0
     var coins = [Coin]()
     var count = 0
@@ -49,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     @objc
-    func attack(){
+    func attack() {
         entityManager.playerAttack()
     }
 
@@ -115,6 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 
 extension GameScene {
+
     func configureScoreLabel() {
         let xPlayerPosition = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         heart.position = CGPoint(x: xPlayerPosition - self.view!.frame.width / 2 + 52, y: self.frame.maxY - 48)
@@ -141,6 +142,7 @@ extension GameScene {
 }
 
 extension GameScene: LifeManager {
+
     func didUpdateLife(_ life: Int) {
         self.lifeLabel.text = String.init(format: "%03d", life)
         switch life {

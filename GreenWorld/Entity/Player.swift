@@ -32,8 +32,8 @@ class Player: GKEntity {
             ])
         )
         
-        self.addComponent(WalkComponent(velocity: 2))
-        self.addComponent(JumpComponent(impulse: 3000))
+        self.addComponent(WalkComponent(velocity: 1))
+        self.addComponent(JumpComponent(impulse: 50))
 
     }
 
@@ -54,7 +54,7 @@ class Player: GKEntity {
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
-        node.physicsBody?.mass = 0.04
+        node.physicsBody?.mass = 0.08
     }
 }
 
@@ -62,14 +62,16 @@ extension Player: ContactNotifiable {
 
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
 
-        if (entity is Ground || entity is Plataform){
+        if (entity is Ground || entity is Plataform) {
+
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
         }
-        if entity is EnemyShotEntity{
+        if entity is EnemyShotEntity {
+
             guard let shotComponent = entity.component(ofType: EnemyShotComponent.self) else {return}
             self.life -= shotComponent.damage
-            if(life<=0){
+            if(life<=0) {
                 manager.removePlayer()
             }
         }
