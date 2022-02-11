@@ -40,6 +40,7 @@ class Player: GKEntity {
     
     func addPhysics(node: SKSpriteNode) {
 		if let texture = node.texture {
+
 			node.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: 50, height: 90))
 		} else {
 			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
