@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16C773FD27B69117002A27E6 /* GameScene+GroundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */; };
+		16C773FF27B6A2FE002A27E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C773FE27B6A2F5002A27E6 /* GameScene.swift */; };
 		16CD253B27AACDC60046CEF2 /* JumpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CD253A27AACDC60046CEF2 /* JumpComponent.swift */; };
 		531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6827AC038F00ADB483 /* PlataformComponent.swift */; };
 		531E7C6B27AC048300ADB483 /* Platarfom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E7C6A27AC048300ADB483 /* Platarfom.swift */; };
+		53279A8E27B3FA3900397526 /* GameScene+GroundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */; };
 		5354A09827A96A5700593B96 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5354A09727A96A5700593B96 /* Player.swift */; };
 		5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B027A8156A003B8C6B /* AppDelegate.swift */; };
-		5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B627A8156A003B8C6B /* GameScene.swift */; };
 		5360A3B927A8156A003B8C6B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360A3B827A8156A003B8C6B /* GameViewController.swift */; };
 		5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BA27A8156A003B8C6B /* Main.storyboard */; };
 		5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BD27A8156C003B8C6B /* Assets.xcassets */; };
@@ -44,14 +44,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameScene+GroundExtension.swift"; path = "GreenWorld/Scenes/GameScene+GroundExtension.swift"; sourceTree = SOURCE_ROOT; };
+		16C773FE27B6A2F5002A27E6 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = GreenWorld/Entity/Scenes/GameScene.swift; sourceTree = SOURCE_ROOT; };
 		16CD253A27AACDC60046CEF2 /* JumpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpComponent.swift; sourceTree = "<group>"; };
 		531E7C6827AC038F00ADB483 /* PlataformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlataformComponent.swift; sourceTree = "<group>"; };
 		531E7C6A27AC048300ADB483 /* Platarfom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platarfom.swift; sourceTree = "<group>"; };
+		53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+GroundExtension.swift"; sourceTree = "<group>"; };
 		5354A09727A96A5700593B96 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5360A3AD27A8156A003B8C6B /* GreenWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5360A3B027A8156A003B8C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5360A3B627A8156A003B8C6B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5360A3B827A8156A003B8C6B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5360A3BB27A8156A003B8C6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5360A3BD27A8156C003B8C6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,11 +112,11 @@
 		5360A3AF27A8156A003B8C6B /* GreenWorld */ = {
 			isa = PBXGroup;
 			children = (
-				53BD7FEE27A9654300DBB096 /* Scenes */,
 				C2778BB127AD6D4300644B59 /* Extra */,
 				53BD7FEB27A95B4E00DBB096 /* Component */,
 				53BD7FEA27A95B4700DBB096 /* Entity */,
 				53BD7FED27A9645C00DBB096 /* Main */,
+				53BD7FEE27A9654300DBB096 /* Scenes */,
 				D607A19C27ABFC3800A6F9D8 /* States */,
 				53BD7FEC27A95BF400DBB096 /* System */,
 				5360A3BD27A8156C003B8C6B /* Assets.xcassets */,
@@ -180,11 +180,10 @@
 		53BD7FEE27A9654300DBB096 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5360A3B627A8156A003B8C6B /* GameScene.swift */,
-				16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */,
+				16C773FE27B6A2F5002A27E6 /* GameScene.swift */,
+				53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */,
 			);
-			name = Scenes;
-			path = Entity/Scenes;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		C2778BB127AD6D4300644B59 /* Extra */ = {
@@ -287,7 +286,6 @@
 				D607A19B27ABFA1400A6F9D8 /* PlayerControlComponent.swift in Sources */,
 				D69BE73927B14C9F00BF0977 /* Enemy.swift in Sources */,
 				C2778BB527AD6D6300644B59 /* Enums.swift in Sources */,
-				5360A3B727A8156A003B8C6B /* GameScene.swift in Sources */,
 				D6CD08C427B4087900E56739 /* Coin.swift in Sources */,
 				538CB2DB27AAAF3C008DAF41 /* Ground.swift in Sources */,
 				531E7C6927AC038F00ADB483 /* PlataformComponent.swift in Sources */,
@@ -296,7 +294,7 @@
 				D67F4DCB27AAAEEE00D58283 /* WalkComponent.swift in Sources */,
 				D607A19E27ABFC7900A6F9D8 /* IdleState.swift in Sources */,
 				D62A9A5027B2AA29006CCAF5 /* GWStateMachine.swift in Sources */,
-				16C773FD27B69117002A27E6 /* GameScene+GroundExtension.swift in Sources */,
+				16C773FF27B6A2FE002A27E6 /* GameScene.swift in Sources */,
 				D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */,
 				C2796EF827B537D80031005D /* EnemyShotEntity.swift in Sources */,
 				5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */,
@@ -306,6 +304,7 @@
 				D6A5F36727AD4BDC009D3AC8 /* JumpState.swift in Sources */,
 				D69BE73B27B14F5F00BF0977 /* EnemyControlComponent.swift in Sources */,
 				538CB2D927AAAE22008DAF41 /* GroundComponent.swift in Sources */,
+				53279A8E27B3FA3900397526 /* GameScene+GroundExtension.swift in Sources */,
 				C2778BB927AD6E1600644B59 /* EntityManager.swift in Sources */,
 				C2778BB327AD6D5800644B59 /* Protocols.swift in Sources */,
 				D6CD08C627B490EF00E56739 /* RotationYComponent.swift in Sources */,
