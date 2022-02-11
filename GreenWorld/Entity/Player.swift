@@ -14,7 +14,9 @@ class Player: GKEntity {
     override init() {
         self.life = 100
         super.init()
-        let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+
+        let spriteComponent = AnimatedSpriteComponent(imageName: "Idle_0")
+        addPhysics(node: spriteComponent.spriteNode)
         self.addComponent(spriteComponent)
         spriteComponent.spriteNode.texture = SKTexture(imageNamed: "Idle_0")
         spriteComponent.spriteNode.size = CGSize(width: 50, height: 90)
@@ -32,6 +34,7 @@ class Player: GKEntity {
         
         self.addComponent(WalkComponent(velocity: 2))
         self.addComponent(JumpComponent(impulse: 3000))
+
     }
 
     required init?(coder: NSCoder) {
@@ -42,6 +45,7 @@ class Player: GKEntity {
 		if let texture = node.texture {
 
 			node.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: 50, height: 90))
+
 		} else {
 			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
 		}

@@ -3,10 +3,13 @@ import SpriteKit
 import GameplayKit
 
 class AnimatedSpriteComponent: GKComponent {
+
     var spriteNode: SKSpriteNode!
-    init(atlasName: String) {
+
+    init(imageName: String) {
         super.init()
-        self.spriteNode = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 90))
+        let texture = SKTexture(imageNamed: imageName)
+        self.spriteNode = SKSpriteNode(texture: texture, size: CGSize(width: 50, height: 90))
     }
     
     init(spriteNode: SKSpriteNode) {
@@ -27,10 +30,10 @@ class AnimatedSpriteComponent: GKComponent {
         self.spriteNode.entity = self.entity
     }
     
-	func setAnimation(atlasName: String, rangeOfAnimation: ClosedRange<Int>) {
+	func setAnimation(imageName: String, rangeOfAnimation: ClosedRange<Int>) {
 		
 		let animation: SKAction = .repeatForever(.animate(with:
-														Array(withFormat: atlasName, range: rangeOfAnimation), timePerFrame: 0.1))
+														Array(withFormat: imageName, range: rangeOfAnimation), timePerFrame: 0.1))
 		self.spriteNode.run(animation)
     }
 	
