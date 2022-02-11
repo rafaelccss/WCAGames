@@ -12,7 +12,6 @@ import SpriteKit
 
 class ShotComponent: GKComponent {
     var damage = 50
-    var velocity = 10
     var entityManager: EntityManager
     
     init(_ power:Powers, _ entityManager:EntityManager){

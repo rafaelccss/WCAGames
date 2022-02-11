@@ -11,11 +11,16 @@ enum CollisionType: UInt32 {
 }
 
 enum Powers {
-
     case None
     case Tupã
     case Polo
     case Sumá
     case Guaraci
     case Mboi
+}
+
+enum EnemyType{
+    case Madeireiro
+    case Boss
+    case Garimpeiro
 }
