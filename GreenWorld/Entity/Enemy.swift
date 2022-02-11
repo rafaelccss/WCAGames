@@ -42,12 +42,16 @@ class Enemy: GKEntity {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-        if timeSincePreviousUpdate - seconds >= 1{
+        if timeSincePreviousUpdate - seconds >= 1.5{
+            let shoot = Int.random(in: 1...10)
+            if shoot >= 8 { return }
             guard let enemyNode = self.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}
-            let direction:MoveDirection = enemyNode.xScale == 1 ? .right : .left
-            let enemyShot = EnemyShotEntity(enemy: self, manager: self.entityManager, direction: direction)
-            entityManager.addShot(enemyShot)
-            timeSincePreviousUpdate = 0
+            if let scene = enemyNode.scene{
+                let direction:MoveDirection = enemyNode.xScale == 1 ? .right : .left
+                let enemyShot = EnemyShotEntity(enemy: self, manager: self.entityManager, direction: direction)
+                entityManager.addShot(enemyShot)
+                timeSincePreviousUpdate = 0
+            }
         }
         else{
             timeSincePreviousUpdate += seconds
