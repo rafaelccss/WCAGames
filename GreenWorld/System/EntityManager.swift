@@ -75,7 +75,6 @@ class EntityManager {
             }
         }
     }
-    
     func addGround(_ entity:GKEntity){
         grounds.insert(entity)
 
@@ -157,5 +156,9 @@ class EntityManager {
         let yPositionPlataform = lastNode.position.y + dy
         
         return CGPoint(x: xPositionPlataform, y: yPositionPlataform)
+    }
+    func removePlayer(){
+        guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
+        playerNode.removeFromParent()
     }
 }

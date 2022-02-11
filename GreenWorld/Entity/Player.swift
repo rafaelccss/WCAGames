@@ -53,5 +53,12 @@ extension Player:ContactNotifiable{
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
         }
+        if entity is EnemyShotEntity{
+            guard let shotComponent = entity.component(ofType: EnemyShotComponent.self) else {return}
+            self.life -= shotComponent.damage
+            if(life<=0){
+                manager.removePlayer()
+            }
+        }
     }
 }

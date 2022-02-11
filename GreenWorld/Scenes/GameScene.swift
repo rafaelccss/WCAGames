@@ -6,8 +6,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Entities
     
     let player = Player()
-    let enemy = Enemy()
     var entityManager: EntityManager!
+    var enemy:Enemy!
     var lastXPlayerPosition:CGFloat = 0
     var coins = [Coin]()
     var count = 0
@@ -61,6 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
         entityManager.updateShot(timeSincePreviousUpdate)
+        enemy.update(deltaTime: timeSincePreviousUpdate)
         previousUpdateTime = currentTime
         updatePositionByPlayerPosition()
         
@@ -69,13 +70,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
 
         // MARK: - Nodes
-
         configureScoreLabel()
         physicsWorld.contactDelegate = self
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
         self.entityManager.addGrounds()
         self.setupGroundPosition()
+        self.enemy = Enemy(manager: self.entityManager)
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)

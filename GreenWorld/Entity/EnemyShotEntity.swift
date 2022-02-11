@@ -26,11 +26,11 @@ class EnemyShotEntity : GKEntity {
         guard let enemyNode = enemyEntity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}
         spriteComponent.spriteNode.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.size)
         spriteComponent.spriteNode.position = CGPoint(x: enemyNode.position.x + 10, y: enemyNode.position.y + 20)
-        spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
-        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.ground.rawValue
+        spriteComponent.spriteNode.physicsBody?.categoryBitMask = CollisionType.enemyWeapon.rawValue
+        spriteComponent.spriteNode.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue
         spriteComponent.spriteNode.physicsBody?.collisionBitMask = CollisionType.ground.rawValue
         spriteComponent.spriteNode.physicsBody?.affectedByGravity = false
-        let moveComponent = WalkComponent(velocity: 10)
+        let moveComponent = WalkComponent(velocity: 3)
         moveComponent.direction = directionShot
         addComponent(moveComponent)
         addComponent(EnemyShotComponent(enemy: enemyEntity, manager: entityManager))
@@ -38,5 +38,11 @@ class EnemyShotEntity : GKEntity {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension EnemyShotEntity:ContactNotifiable{
+    func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
+        manager.removeShot(self)
     }
 }
