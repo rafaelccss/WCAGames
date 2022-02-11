@@ -54,8 +54,10 @@ class Player: GKEntity {
     }
 }
 
-extension Player: ContactNotifiable{
+extension Player: ContactNotifiable {
+
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
+
         if (entity is Ground || entity is Plataform){
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
