@@ -15,8 +15,10 @@ class Player: GKEntity {
         self.life = 100
         super.init()
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
-        addPhysics(node: spriteComponent.spriteNode)
         self.addComponent(spriteComponent)
+        spriteComponent.spriteNode.texture = SKTexture(imageNamed: "Idle_0")
+        spriteComponent.spriteNode.size = CGSize(width: 50, height: 90)
+        addPhysics(node: spriteComponent.spriteNode)
         
         self.addComponent(
             PlayerControlComponent(states: [
@@ -28,8 +30,8 @@ class Player: GKEntity {
             ])
         )
         
-        self.addComponent(WalkComponent(velocity: 1))
-        self.addComponent(JumpComponent(impulse: 600))
+        self.addComponent(WalkComponent(velocity: 2))
+        self.addComponent(JumpComponent(impulse: 3000))
     }
 
     required init?(coder: NSCoder) {
@@ -37,23 +39,22 @@ class Player: GKEntity {
     }
     
     func addPhysics(node: SKSpriteNode) {
-        //node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
-        node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 90))
+		if let texture = node.texture {
+			node.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: 50, height: 90))
+		} else {
+			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
+		}
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.ground.rawValue | CollisionType.coin.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.coin.rawValue | CollisionType.enemyWeapon.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
-     }
+        node.physicsBody?.mass = 0.04
+    }
 }
 
-extension Player:ContactNotifiable{
+extension Player: ContactNotifiable{
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
-       /* if entity is ShotEntity{
-            guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}
-            self.life -= shotComponent.damage
-            self.life = self.life < 0 ? 0 : self.life
-        }*/
         if (entity is Ground || entity is Plataform){
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
