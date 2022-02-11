@@ -3,12 +3,17 @@ import GameplayKit
 
 class Player: GKEntity {
     
-    var life: Int = 100
+    var life: Int {
+        willSet {
+            delegate?.didUpdateLife(newValue)
+        }
+    }
+    var delegate: LifeManager?
     
 
     override init() {
+        self.life = 100
         super.init()
-        
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
         addPhysics(node: spriteComponent.spriteNode)
         self.addComponent(spriteComponent)
@@ -41,7 +46,7 @@ class Player: GKEntity {
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
-    }
+     }
 }
 
 extension Player:ContactNotifiable{

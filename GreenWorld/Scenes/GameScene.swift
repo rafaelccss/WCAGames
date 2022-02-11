@@ -11,6 +11,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastXPlayerPosition:CGFloat = 0
     var coins = [Coin]()
     var count = 0
+    var isGameOver = false
 
     private var previousUpdateTime: TimeInterval = TimeInterval()
     var playerControlComponent: PlayerControlComponent? {
@@ -27,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
-    let scoreLabel = SKLabelNode(text: "100")
+    let lifeLabel = SKLabelNode(text: "100")
     let heart = SKSpriteNode(imageNamed: "FullHeart")
     
     let coinNode = SKSpriteNode(imageNamed: "Coin")
@@ -54,8 +55,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
-        if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY {
-            
+        if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver{
+            player.life = 0
+            player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.removeFromParent()
         }
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
@@ -72,6 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         configureScoreLabel()
         physicsWorld.contactDelegate = self
+        self.player.delegate = self
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
         self.setupGroundPosition() 
@@ -115,12 +118,12 @@ extension GameScene {
         heart.size = CGSize(width: 48, height: 48)
         coinNode.position = CGPoint(x: heart.position.x + self.view!.frame.width - 112, y: self.frame.maxY - 48)
         coinNode.size = CGSize(width: 32, height: 32)
-        scoreLabel.position = CGPoint(x: heart.position.x + heart.frame.width / 2 + 10 + scoreLabel.frame.width / 2, y: heart.position.y - scoreLabel.frame.height / 2)
+        lifeLabel.position = CGPoint(x: heart.position.x + heart.frame.width / 2 + 10 + lifeLabel.frame.width / 2, y: heart.position.y - lifeLabel.frame.height / 2)
         coinsCount.position = CGPoint(x: coinNode.position.x - coinNode.frame.width / 2 - 10 - coinsCount.frame.width / 2, y: coinNode.position.y - coinsCount.frame.height / 2)
         addChild(coinNode)
         addChild(coinsCount)
         addChild(heart)
-        addChild(scoreLabel)
+        addChild(lifeLabel)
     }
     
     func updatePositionByPlayerPosition() {
@@ -128,9 +131,24 @@ extension GameScene {
         let dx = playerX - lastXPlayerPosition
         lastXPlayerPosition = playerX
         heart.position.x += dx
-        scoreLabel.position.x += dx
+        lifeLabel.position.x += dx
         coinsCount.position.x += dx
         coinNode.position.x += dx
+    }
+}
+
+extension GameScene: LifeManager {
+    func didUpdateLife(_ life: Int) {
+        self.lifeLabel.text = String.init(format: "%03d", life)
+        switch life {
+        case 51...100:
+            heart.texture = SKTexture(imageNamed: "FullHeart")
+        case 1...50:
+            heart.texture = SKTexture(imageNamed: "HalfHeart")
+        default:
+            self.isGameOver = true
+            heart.texture = SKTexture(imageNamed: "EmptyHeart")
+        }
     }
 }
 
