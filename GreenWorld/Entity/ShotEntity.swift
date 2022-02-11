@@ -3,7 +3,9 @@ import GameplayKit
 import SpriteKit
 
 class ShotEntity: GKEntity {
+
     var direction : MoveDirection
+
     init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection) {
         self.direction = directionShot
         super.init()
@@ -18,7 +20,7 @@ class ShotEntity: GKEntity {
             default:
                 nameTexture = "NormalShot"
         }
-        let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        let spriteComponent = AnimatedSpriteComponent(imageName: "")
         addComponent(spriteComponent)
         let player = entityManager.getPlayer()
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}

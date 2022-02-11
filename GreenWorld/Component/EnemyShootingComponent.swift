@@ -6,8 +6,8 @@ class EnemyShotComponent : GKComponent{
     var damage = 0
     var entityManager:EntityManager!
     
-    init(enemy enemyEntity:Enemy, manager entityManager:EntityManager){
-        self.damage = 25
+    init(enemy enemyEntity: Enemy, manager entityManager: EntityManager) {
+        self.damage = 0
         self.entityManager = entityManager
         super.init()
     }

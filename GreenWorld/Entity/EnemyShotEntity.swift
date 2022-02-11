@@ -1,18 +1,12 @@
-//
-//  EnemyShotEntity.swift
-//  GreenWorld
-//
-//  Created by Nathan Batista de Oliveira on 10/02/22.
-//
-
 import Foundation
 import GameplayKit
 import SpriteKit
 
 class EnemyShotEntity : GKEntity {
+
     var damage:Int = 25
     var direction:MoveDirection
-    init(enemy enemyEntity : Enemy,manager entityManager:EntityManager,direction directionShot:MoveDirection){
+    init(enemy enemyEntity : Enemy, manager entityManager: EntityManager, direction directionShot: MoveDirection) {
         /*switch enemy{
         case .Boss:
             self.life = 200
@@ -20,7 +14,7 @@ class EnemyShotEntity : GKEntity {
             self.life = 100
         }*/
         self.direction = directionShot
-        let spriteComponent = AnimatedSpriteComponent(atlasName: "")
+        let spriteComponent = AnimatedSpriteComponent(imageName: "")
         super.init()
         self.addComponent(spriteComponent)
         guard let enemyNode = enemyEntity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}
