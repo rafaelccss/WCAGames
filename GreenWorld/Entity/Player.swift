@@ -15,8 +15,10 @@ class Player: GKEntity {
         self.life = 100
         super.init()
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
-        addPhysics(node: spriteComponent.spriteNode)
         self.addComponent(spriteComponent)
+        spriteComponent.spriteNode.texture = SKTexture(imageNamed: "Idle__0")
+        spriteComponent.spriteNode.size = CGSize(width: 50, height: 90)
+        addPhysics(node: spriteComponent.spriteNode)
         
         self.addComponent(
             PlayerControlComponent(states: [
@@ -28,8 +30,8 @@ class Player: GKEntity {
             ])
         )
         
-        self.addComponent(WalkComponent(velocity: 1))
-        self.addComponent(JumpComponent(impulse: 600))
+        self.addComponent(WalkComponent(velocity: 5))
+        self.addComponent(JumpComponent(impulse: 3000))
     }
 
     required init?(coder: NSCoder) {
@@ -38,7 +40,7 @@ class Player: GKEntity {
     
     func addPhysics(node: SKSpriteNode) {
 		if let texture = node.texture {
-			node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+			node.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: 50, height: 90))
 		} else {
 			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
 		}
@@ -47,17 +49,11 @@ class Player: GKEntity {
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
-     }
+    }
 }
 
 extension Player: ContactNotifiable{
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
-       /* if entity is ShotEntity{
-            guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}
-            self.life -= shotComponent.damage
-            self.life = self.life < 0 ? 0 : self.life
-        }*/
-<<<<<<< HEAD
         if (entity is Ground || entity is Plataform){
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
@@ -69,11 +65,5 @@ extension Player: ContactNotifiable{
                 manager.removePlayer()
             }
         }
-=======
-//        if (entity is Ground || entity is Plataform){
-//            guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
-//            playerControlComponent.stateMachine.enterTo(IdleState.self)
-//        }
->>>>>>> dce4793 (árvore do projeto reorganizada porque a scene estava estranha)
     }
 }
