@@ -16,7 +16,7 @@ class Player: GKEntity {
         super.init()
         let spriteComponent = AnimatedSpriteComponent(atlasName: "")
         self.addComponent(spriteComponent)
-        spriteComponent.spriteNode.texture = SKTexture(imageNamed: "Idle__0")
+        spriteComponent.spriteNode.texture = SKTexture(imageNamed: "Idle_0")
         spriteComponent.spriteNode.size = CGSize(width: 50, height: 90)
         addPhysics(node: spriteComponent.spriteNode)
         
