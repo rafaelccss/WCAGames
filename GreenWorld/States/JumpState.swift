@@ -24,7 +24,7 @@ class JumpState: GKState {
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-		animatedSpriteComponent?.setAnimation(atlasName: "Jump_", rangeOfAnimation: 0...9)
+        animatedSpriteComponent?.setAnimation(imageName: "Jump_", rangeOfAnimation: 0...9)
         jumpComponent?.jump(dx: dx, completion: {
             self.stateMachine?.enter(IdleState.self)
         })
