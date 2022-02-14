@@ -67,7 +67,7 @@ class EntityManager {
 
     func playerAttack(){
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
-        if let scene = playerNode.scene{
+        if let _ = playerNode.scene {
             let direction:MoveDirection = playerNode.xScale == 1 ? .right : .left
             let shot = ShotEntity(entityManager: self, power: .None, direction: direction)
             self.addShot(shot)

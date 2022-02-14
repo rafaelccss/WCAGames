@@ -46,7 +46,7 @@ class Enemy: GKEntity {
             let shoot = Int.random(in: 1...10)
             if shoot >= 8 { return }
             guard let enemyNode = self.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}
-            if let scene = enemyNode.scene{
+            if let _ = enemyNode.scene{
                 let direction:MoveDirection = enemyNode.xScale == 1 ? .right : .left
                 let enemyShot = EnemyShotEntity(enemy: self, manager: self.entityManager, direction: direction)
                 entityManager.addShot(enemyShot)
