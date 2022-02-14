@@ -10,7 +10,7 @@ class EntityManager {
     let scene: SKScene
     var player = Player()
     var shots = Set<GKEntity>()
-    var coins = [Coin]()
+    var coins = [GKEntity]()
     var enemies = Set<GKEntity>()
 
     init(scene: SKScene) {
