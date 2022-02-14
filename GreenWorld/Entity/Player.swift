@@ -50,7 +50,7 @@ class Player: GKEntity {
 			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
 		}
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.coin.rawValue | CollisionType.enemyWeapon.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.coin.rawValue | CollisionType.enemyWeapon.rawValue | CollisionType.ground.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
@@ -68,6 +68,7 @@ extension Player: ContactNotifiable {
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
             playerControlComponent.stateMachine.enterTo(IdleState.self)
         }
+
         if entity is EnemyShotEntity {
 
             guard let shotComponent = entity.component(ofType: EnemyShotComponent.self) else {return}
