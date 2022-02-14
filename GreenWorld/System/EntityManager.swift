@@ -5,10 +5,11 @@ import GameplayKit
 class EntityManager {
 
     var entities = Set<GKEntity>()
-    var grounds = Set<GKEntity>()
+    var grounds = [GKEntity]()
     let scene: SKScene
     var player = Player()
     var shots = Set<GKEntity>()
+    var coins = [Coin]()
 
     init(scene: SKScene) {
         self.scene = scene
@@ -23,7 +24,7 @@ class EntityManager {
     }
 
     func addGroundAndPlataform(_ entity: GKEntity) {
-        grounds.insert(entity)
+        grounds.append(entity)
 
         if let spriteNode = entity.component(ofType: GroundComponent.self)?.groundNode {
             scene.addChild(spriteNode)
@@ -78,7 +79,7 @@ class EntityManager {
         }
     }
     func addGround(_ entity:GKEntity){
-        grounds.insert(entity)
+        grounds.append(entity)
 
         if let spriteNode = entity.component(ofType: GroundComponent.self)?.groundNode{
           scene.addChild(spriteNode)
@@ -89,66 +90,60 @@ class EntityManager {
     }
     
     func addGrounds(){
-        let groundOne = Ground(size: CGSize(width: 500, height: 10))
-        let groundTwo = Ground(size: CGSize(width: 300, height: 10))
-        let groundThree = Ground(size: CGSize(width: 600, height: 10))
-        let groundFour = Ground(size: CGSize(width: 500, height: 10))
-
-        let platarformOne = Plataform()
-        let platarformTwo = Plataform()
-        let platarformThree = Plataform()
-        let platarformFour = Plataform()
-
-        guard let groundComponentOne = groundOne.component(ofType: GroundComponent.self)?.groundNode,
-              let groundComponentTwo = groundTwo.component(ofType: GroundComponent.self)?.groundNode,
-              let groundComponentThree = groundThree.component(ofType: GroundComponent.self)?.groundNode,
-              let groundComponentFour = groundFour.component(ofType: GroundComponent.self)?.groundNode,
-
-              let plataformComponentOne = platarformOne.component(ofType: PlataformComponent.self)?.plataformNode,
-              let plataformComponentTwo = platarformTwo.component(ofType: PlataformComponent.self)?.plataformNode,
-              let plataformComponentThree = platarformThree.component(ofType: PlataformComponent.self)?.plataformNode,
-              let plataformComponentFour = platarformFour.component(ofType: PlataformComponent.self)?.plataformNode else { return }
         
-
-        groundComponentOne.position = CGPoint(x: scene.frame.minX + groundComponentOne.size.width/2, y: 50)
-        plataformComponentOne.position = positionBasedOnLastElement(lastNode: groundComponentOne,
-                                                                    presentNode: plataformComponentOne,
-                                                                    dx: 0,
-                                                                    dy: 80)
-        groundComponentTwo.position = positionBasedOnLastElement(lastNode: plataformComponentOne,
-                                                                 presentNode: groundComponentTwo,
-                                                                 dx: 0,
-                                                                 dy: -80)
-        plataformComponentTwo.position = positionBasedOnLastElement(lastNode: groundComponentTwo,
-                                                                    presentNode: plataformComponentTwo,
-                                                                    dx: 0,
-                                                                    dy: 80)
-        groundComponentThree.position = positionBasedOnLastElement(lastNode: plataformComponentTwo,
-                                                                    presentNode: groundComponentThree,
-                                                                    dx: 0,
-                                                                    dy: -80)
-        plataformComponentThree.position = positionBasedOnLastElement(lastNode: groundComponentThree,
-                                                                    presentNode: plataformComponentThree,
-                                                                    dx: 0,
-                                                                    dy: 80)
-        groundComponentFour.position = positionBasedOnLastElement(lastNode: plataformComponentThree,
-                                                                    presentNode: groundComponentFour,
-                                                                    dx: 0,
-                                                                    dy: -80)
-        plataformComponentFour.position = positionBasedOnLastElement(lastNode: groundComponentFour,
-                                                                      presentNode: plataformComponentFour,
-                                                                      dx: 0,
-                                                                      dy: 80)
+        let inicialGround = Ground(size: CGSize(width: 500, height: 10))
         
-        self.addGround(groundOne)
-        self.addGround(groundTwo)
-        self.addGround(groundThree)
-        self.addGround(groundFour)
-        self.addGround(platarformOne)
-        self.addGround(platarformTwo)
-        self.addGround(platarformThree)
-        self.addGround(platarformFour)
+        let enemy = Enemy(manager: self)
 
+        guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode,
+              let inicialGroundNode = inicialGround.component(ofType: GroundComponent.self)?.groundNode,
+              let enemyNode = enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
+
+        inicialGroundNode.position = CGPoint(x: scene.frame.minX + inicialGroundNode.size.width/2, y: 50)
+        playerNode.position = positionBasedOnLastElement(lastNode: inicialGroundNode,
+                                                         presentNode: playerNode,
+                                                         dx: -200,
+                                                         dy: 45 + inicialGroundNode.size.height/2)
+        enemyNode.position = positionBasedOnLastElement(lastNode: inicialGroundNode,
+                                                        presentNode: enemyNode,
+                                                        dx: -100,
+                                                        dy: enemyNode.size.height + inicialGroundNode.size.height / 2 + 10)
+
+        self.addGroundAndPlataform(inicialGround)
+        self.add(player)
+        self.add(enemy)
+    
+        var lastNode = inicialGroundNode
+
+
+        for _  in 1 ... 4 {
+            let random = Int.random(in: 300 ... 600)
+            let space = Int.random(in: 6 ... 13)
+            let ground = Ground(size: CGSize(width: random, height: 10))
+            let plaform = Plataform()
+
+            guard let plaformNode = plaform.component(ofType: PlataformComponent.self)?.plataformNode else { return }
+            plaformNode.position = positionBasedOnLastElement(lastNode: lastNode,
+                                                              presentNode: plaformNode,
+                                                              dx: CGFloat(space),
+                                                              dy: 80)
+            lastNode = plaformNode
+
+            guard let groundNode = ground.component(ofType: GroundComponent.self)?.groundNode else { return }
+            groundNode.position = positionBasedOnLastElement(lastNode: lastNode,
+                                                             presentNode: groundNode,
+                                                             dx: 0,
+                                                             dy: -80)
+            lastNode = groundNode
+
+
+            self.addGroundAndPlataform(plaform)
+            self.addGroundAndPlataform(ground)
+        }
+    }
+    
+    func getGround(position:Int) -> GKEntity{
+        return grounds[position]
     }
     
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
@@ -164,3 +159,4 @@ class EntityManager {
         playerNode.removeFromParent()
     }
 }
+
