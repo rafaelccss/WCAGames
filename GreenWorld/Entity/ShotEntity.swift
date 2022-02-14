@@ -19,6 +19,7 @@ class ShotEntity: GKEntity {
                 break
             default:
                 nameTexture = "NormalShot"
+       
         }
         let spriteComponent = AnimatedSpriteComponent(imageName: "")
         addComponent(spriteComponent)
