@@ -25,9 +25,7 @@ class JumpState: GKState {
         super.didEnter(from: previousState)
         
         animatedSpriteComponent?.setAnimation(imageName: "Jump_", rangeOfAnimation: 0...9)
-        jumpComponent?.jump(dx: dx, completion: {
-            self.stateMachine?.enter(IdleState.self)
-        })
+        jumpComponent?.jump(dx: dx)
     }
     
     override func update(deltaTime seconds: TimeInterval) {
