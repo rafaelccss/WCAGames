@@ -96,16 +96,6 @@ class EntityManager {
             }
         }
     }
-    /*
-    func addGround(_ entity:GKEntity){
-
-        if let spriteNode = entity.component(ofType: GroundComponent.self)?.groundNode{
-          scene.addChild(spriteNode)
-        }
-        if let spriteNode = entity.component(ofType: PlataformComponent.self)?.plataformNode{
-            scene.addChild(spriteNode)
-        }
-    }*/
     
     func addGrounds(){
         
