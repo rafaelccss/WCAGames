@@ -9,7 +9,7 @@ class Ground: GKEntity {
         groundComponent.groundNode.physicsBody = SKPhysicsBody(rectangleOf: size)
         groundComponent.groundNode.physicsBody?.isDynamic = true
         groundComponent.groundNode.physicsBody?.allowsRotation = false
-        groundComponent.groundNode.physicsBody?.friction = 0.8
+        groundComponent.groundNode.physicsBody?.friction=0.8
         groundComponent.groundNode.physicsBody?.pinned = true
         groundComponent.groundNode.physicsBody?.categoryBitMask = CollisionType.ground.rawValue
         groundComponent.groundNode.physicsBody?.contactTestBitMask = CollisionType.ground.rawValue
