@@ -54,6 +54,7 @@ class Player: GKEntity {
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
+        node.physicsBody?.friction = 0.2
         node.physicsBody?.mass = 0.08
     }
 }

@@ -6,10 +6,12 @@ class EntityManager {
 
     var entities = Set<GKEntity>()
     var grounds = [GKEntity]()
+    var platforms = Set<GKEntity>()
     let scene: SKScene
     var player = Player()
     var shots = Set<GKEntity>()
     var coins = [Coin]()
+    var enemies = Set<GKEntity>()
 
     init(scene: SKScene) {
         self.scene = scene
@@ -22,15 +24,24 @@ class EntityManager {
             scene.addChild(spriteNode)
         }
     }
+    
+    func addEnemy(_ entity: GKEntity) {
+        enemies.insert(entity)
+
+        if let spriteNode = entity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
+            scene.addChild(spriteNode)
+        }
+    }
 
     func addGroundAndPlataform(_ entity: GKEntity) {
-        grounds.append(entity)
 
         if let spriteNode = entity.component(ofType: GroundComponent.self)?.groundNode {
+            grounds.append(entity)
             scene.addChild(spriteNode)
         }
 
         if let spriteNode = entity.component(ofType: PlataformComponent.self)?.plataformNode {
+            platforms.insert(entity)
             scene.addChild(spriteNode)
         }
     }
@@ -78,40 +89,34 @@ class EntityManager {
             }
         }
     }
+    /*
     func addGround(_ entity:GKEntity){
-        grounds.append(entity)
 
         if let spriteNode = entity.component(ofType: GroundComponent.self)?.groundNode{
           scene.addChild(spriteNode)
         }
         if let spriteNode = entity.component(ofType: PlataformComponent.self)?.plataformNode{
-          scene.addChild(spriteNode)
+            scene.addChild(spriteNode)
         }
-    }
+    }*/
     
     func addGrounds(){
         
         let inicialGround = Ground(size: CGSize(width: 500, height: 10))
         
-        let enemy = Enemy(manager: self)
-
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode,
-              let inicialGroundNode = inicialGround.component(ofType: GroundComponent.self)?.groundNode,
-              let enemyNode = enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
+              let inicialGroundNode = inicialGround.component(ofType: GroundComponent.self)?.groundNode else {return}
+              
 
         inicialGroundNode.position = CGPoint(x: scene.frame.minX + inicialGroundNode.size.width/2, y: 50)
         playerNode.position = positionBasedOnLastElement(lastNode: inicialGroundNode,
                                                          presentNode: playerNode,
                                                          dx: -200,
                                                          dy: 45 + inicialGroundNode.size.height/2)
-        enemyNode.position = positionBasedOnLastElement(lastNode: inicialGroundNode,
-                                                        presentNode: enemyNode,
-                                                        dx: -100,
-                                                        dy: enemyNode.size.height + inicialGroundNode.size.height / 2 + 10)
+        
 
         self.addGroundAndPlataform(inicialGround)
         self.add(player)
-        self.add(enemy)
     
         var lastNode = inicialGroundNode
 
@@ -144,6 +149,27 @@ class EntityManager {
     
     func getGround(position:Int) -> GKEntity{
         return grounds[position]
+    }
+    
+    func setupEnemy(){
+        for index in 0..<grounds.count{
+            let enemy = Enemy(manager: self)
+            guard let enemyNode = enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
+            let ground = grounds[index]
+            let groundNode = ground.component(ofType: GroundComponent.self)?.groundNode
+            
+            enemyNode.position = positionBasedOnLastElement(lastNode: groundNode!,
+                                                            presentNode: enemyNode,
+                                                            dx: -100,
+                                                            dy: enemyNode.size.height + groundNode!.size.height / 2 + 10)
+            self.addEnemy(enemy)
+        }
+    }
+    
+    func updateEnemy(_ deltaTime:TimeInterval){
+        for enemy in enemies{
+            enemy.update(deltaTime: deltaTime)
+        }
     }
     
     func positionBasedOnLastElement(lastNode: SKSpriteNode,

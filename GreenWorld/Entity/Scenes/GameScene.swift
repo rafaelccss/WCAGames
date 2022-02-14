@@ -63,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
         playerControlComponent?.update(deltaTime: timeSincePreviousUpdate)
         entityManager.updateShot(timeSincePreviousUpdate)
-        enemy.update(deltaTime: timeSincePreviousUpdate)
+        self.entityManager.updateEnemy(timeSincePreviousUpdate)
         previousUpdateTime = currentTime
         updatePositionByPlayerPosition()
         
@@ -80,6 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.entityManager.addGrounds()
         self.enemy = Enemy(manager: self.entityManager)
         self.setupCoinPosition()
+        entityManager.setupEnemy()
         self.camera = sceneCamera
         self.sceneCamera.position.y = self.size.height / 2
         view.addGestureRecognizer(panGesture)
