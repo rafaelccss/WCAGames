@@ -27,35 +27,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
-<<<<<<< HEAD
-   
-    @objc
-    func walk(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .began:
-            playerControlComponent?.handle(direction: sender.direction)
-            
-        case .ended:
-            playerControlComponent?.halt()
-            
-        default:
-            break
-        }
-    }
-
-    @objc
-    func attack() {
-        entityManager.playerAttack()
-    }
-
-=======
     let lifeLabel = SKLabelNode(text: "100")
     let heart = SKSpriteNode(imageNamed: "FullHeart")
     
     let coinNode = SKSpriteNode(imageNamed: "Coin")
     let coinsCount = SKLabelNode(text: "000")
     
->>>>>>> 88f2ffd (added init screen and quit game)
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver{
@@ -76,31 +53,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         // MARK: - Nodes
-<<<<<<< HEAD
-        self.entityManager = EntityManager(scene: self)
-        entityManager.player = self.player
-        entityManager.configureScoreLabel()
-        physicsWorld.contactDelegate = self
-        self.player.delegate = self
-        self.entityManager.addGrounds()
-        self.enemy = Enemy(manager: self.entityManager)
-        entityManager.setupCoins()
-        entityManager.setupEnemy()
-        self.camera = sceneCamera
-        self.sceneCamera.position.y = self.size.height / 2
-        view.addGestureRecognizer(panGesture)
-        view.addGestureRecognizer(tapGesture)
-        view.isMultipleTouchEnabled = true
-=======
         if !isCreated {
-            configureScoreLabel()
-            physicsWorld.contactDelegate = self
-            self.player.delegate = self
             self.entityManager = EntityManager(scene: self)
             entityManager.player = self.player
+            entityManager.configureScoreLabel()
+            physicsWorld.contactDelegate = self
+            self.player.delegate = self
             self.entityManager.addGrounds()
             self.enemy = Enemy(manager: self.entityManager)
-            self.setupGroundPosition()
+            entityManager.setupCoins()
+            entityManager.setupEnemy()
             self.camera = sceneCamera
             self.sceneCamera.position.y = self.size.height / 2
             view.addGestureRecognizer(panGesture)
@@ -108,7 +70,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             view.isMultipleTouchEnabled = true
             isCreated = true
         }
->>>>>>> 88f2ffd (added init screen and quit game)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -156,7 +117,7 @@ extension GameScene {
 
 
 extension GameScene: LifeManager {
-
+    
     func didUpdateLife(_ life: Int) {
         entityManager.didUpdateLife(life)
     }
