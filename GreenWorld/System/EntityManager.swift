@@ -7,13 +7,20 @@ class EntityManager {
     var entities = Set<GKEntity>()
     var grounds = [GKEntity]()
     var platforms = Set<GKEntity>()
-    let scene: SKScene
+    let scene: GameScene
     var player = Player()
     var shots = Set<GKEntity>()
-    var coins = [GKEntity]()
+    var coins:[GKEntity] = []
     var enemies = Set<GKEntity>()
+    var count = 0
+    let coinsCount = SKLabelNode(text: "000")
+    let coinNode = SKSpriteNode(imageNamed: "Coin")
+    let lifeLabel = SKLabelNode(text: "100")
+    let heart = SKSpriteNode(imageNamed: "FullHeart")
+    var lastXPlayerPosition:CGFloat = 0
 
-    init(scene: SKScene) {
+
+    init(scene: GameScene) {
         self.scene = scene
     }
 
@@ -147,6 +154,30 @@ class EntityManager {
         }
     }
     
+    func configureScoreLabel() {
+        let xPlayerPosition = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
+        heart.position = CGPoint(x: xPlayerPosition - scene.view!.frame.width / 2 + 52, y: scene.frame.maxY - 48)
+        heart.size = CGSize(width: 48, height: 48)
+        coinNode.position = CGPoint(x: heart.position.x + scene.view!.frame.width - 112, y: scene.frame.maxY - 48)
+        coinNode.size = CGSize(width: 32, height: 32)
+        lifeLabel.position = CGPoint(x: heart.position.x + heart.frame.width / 2 + 10 + lifeLabel.frame.width / 2, y: heart.position.y - lifeLabel.frame.height / 2)
+        coinsCount.position = CGPoint(x: coinNode.position.x - coinNode.frame.width / 2 - 10 - coinsCount.frame.width / 2, y: coinNode.position.y - coinsCount.frame.height / 2)
+        scene.addChild(coinNode)
+        scene.addChild(coinsCount)
+        scene.addChild(heart)
+        scene.addChild(lifeLabel)
+    }
+    
+    func updatePositionByPlayerPosition() {
+        let playerX = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
+        let dx = playerX - lastXPlayerPosition
+        lastXPlayerPosition = playerX
+        heart.position.x += dx
+        lifeLabel.position.x += dx
+        coinsCount.position.x += dx
+        coinNode.position.x += dx
+    }
+    
     func getGround(position:Int) -> GKEntity{
         return grounds[position]
     }
@@ -166,6 +197,28 @@ class EntityManager {
         }
     }
     
+    func addCoin(_ entity:GKEntity){
+        coins.append(entity)
+        
+        if let spriteNode = entity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
+            scene.addChild(spriteNode)
+        }
+    }
+    
+    func setupCoins(){
+        for platform in platforms {
+            let plataformNode = platform.component(ofType: PlataformComponent.self)?.plataformNode
+            let coin = Coin()
+            coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = positionBasedOnLastElement(lastNode: plataformNode!,
+                                                                                                                   presentNode: coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
+                                                                                                                   dx: -(plataformNode?.size.width)!/2,
+                                                                                                                   dy: (plataformNode?.size.height)! + 30)
+            coin.delegate = self
+            self.addCoin(coin)
+            
+        }
+    }
+    
     func updateEnemy(_ deltaTime:TimeInterval){
         for enemy in enemies{
             enemy.update(deltaTime: deltaTime)
@@ -180,9 +233,32 @@ class EntityManager {
         
         return CGPoint(x: xPositionPlataform, y: yPositionPlataform)
     }
+    
     func removePlayer(){
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
         playerNode.removeFromParent()
     }
+    
+    func didUpdateLife(_ life:Int){
+        self.lifeLabel.text = String.init(format: "%03d", life)
+        switch life {
+        case 51...100:
+            heart.texture = SKTexture(imageNamed: "FullHeart")
+        case 1...50:
+            heart.texture = SKTexture(imageNamed: "HalfHeart")
+        default:
+            scene.notifyGameOver()
+            heart.texture = SKTexture(imageNamed: "EmptyHeart")
+        }
+    }
+    
 }
+extension EntityManager : CollecteddCoinDelegate{
+    func collected(_ coin: Coin) {
+        self.coins.removeAll { $0 == coin }
+        count += 1
+        coinsCount.text = String.init(format: "%03d", count)
+    }
+}
+
 
