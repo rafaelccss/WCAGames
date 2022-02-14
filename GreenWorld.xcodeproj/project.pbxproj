@@ -39,6 +39,7 @@
 		D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36827AD4CA0009D3AC8 /* Textures.swift */; };
 		D6A5F36B27AD4E1D009D3AC8 /* WalkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */; };
 		D6A5F36D27AD4F42009D3AC8 /* AttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */; };
+		D6B19F2E27BA76FC000219D7 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B19F2D27BA76FC000219D7 /* GameOverScene.swift */; };
 		D6CD08C427B4087900E56739 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD08C327B4087900E56739 /* Coin.swift */; };
 		D6CD08C627B490EF00E56739 /* RotationYComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD08C527B490EF00E56739 /* RotationYComponent.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		D6A5F36827AD4CA0009D3AC8 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		D6A5F36A27AD4E1D009D3AC8 /* WalkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkState.swift; sourceTree = "<group>"; };
 		D6A5F36C27AD4F42009D3AC8 /* AttackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackState.swift; sourceTree = "<group>"; };
+		D6B19F2D27BA76FC000219D7 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		D6CD08C327B4087900E56739 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		D6CD08C527B490EF00E56739 /* RotationYComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationYComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,9 +184,11 @@
 			children = (
 				16C773FE27B6A2F5002A27E6 /* GameScene.swift */,
 				16C773FC27B69117002A27E6 /* GameScene+GroundExtension.swift */,
+				53279A8D27B3FA3900397526 /* GameScene+GroundExtension.swift */,
+				D6B19F2D27BA76FC000219D7 /* GameOverScene.swift */,
 			);
 			name = Scenes;
-			path = Entity/Scenes;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		C2778BB127AD6D4300644B59 /* Extra */ = {
@@ -297,6 +301,7 @@
 				D62A9A5027B2AA29006CCAF5 /* GWStateMachine.swift in Sources */,
 				16C773FF27B6A2FE002A27E6 /* GameScene.swift in Sources */,
 				16C773FD27B69117002A27E6 /* GameScene+GroundExtension.swift in Sources */,
+				D6B19F2E27BA76FC000219D7 /* GameOverScene.swift in Sources */,
 				D6A5F36927AD4CA0009D3AC8 /* Textures.swift in Sources */,
 				C2796EF827B537D80031005D /* EnemyShotEntity.swift in Sources */,
 				5360A3B127A8156A003B8C6B /* AppDelegate.swift in Sources */,

@@ -9,7 +9,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var entityManager: EntityManager!
     var enemy: Enemy!
     var isGameOver = false
-
+    var isCreated = false
+    var handle: HandleWithScenes?
+    
     private var previousUpdateTime: TimeInterval = TimeInterval()
     var playerControlComponent: PlayerControlComponent? {
         player.component(ofType: PlayerControlComponent.self)
@@ -19,12 +21,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera.setScale(1)
         return camera
     }()
-
+    
     // MARK: - Gestures
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
+<<<<<<< HEAD
    
     @objc
     func walk(_ sender: UIPanGestureRecognizer) {
@@ -45,11 +48,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         entityManager.playerAttack()
     }
 
+=======
+    let lifeLabel = SKLabelNode(text: "100")
+    let heart = SKSpriteNode(imageNamed: "FullHeart")
+    
+    let coinNode = SKSpriteNode(imageNamed: "Coin")
+    let coinsCount = SKLabelNode(text: "000")
+    
+>>>>>>> 88f2ffd (added init screen and quit game)
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver{
             player.life = 0
             player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.removeFromParent()
+            handle?.callOptionScene()
         }
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
@@ -62,8 +74,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
-
+        
         // MARK: - Nodes
+<<<<<<< HEAD
         self.entityManager = EntityManager(scene: self)
         entityManager.player = self.player
         entityManager.configureScoreLabel()
@@ -78,10 +91,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view.addGestureRecognizer(panGesture)
         view.addGestureRecognizer(tapGesture)
         view.isMultipleTouchEnabled = true
+=======
+        if !isCreated {
+            configureScoreLabel()
+            physicsWorld.contactDelegate = self
+            self.player.delegate = self
+            self.entityManager = EntityManager(scene: self)
+            entityManager.player = self.player
+            self.entityManager.addGrounds()
+            self.enemy = Enemy(manager: self.entityManager)
+            self.setupGroundPosition()
+            self.camera = sceneCamera
+            self.sceneCamera.position.y = self.size.height / 2
+            view.addGestureRecognizer(panGesture)
+            view.addGestureRecognizer(tapGesture)
+            view.isMultipleTouchEnabled = true
+            isCreated = true
+        }
+>>>>>>> 88f2ffd (added init screen and quit game)
     }
     
-    // MARK: - Adding Nodes to Scene
+    func didBegin(_ contact: SKPhysicsContact) {
+        let entityA = contact.bodyA.node?.entity
+        let entityB = contact.bodyB.node?.entity
+        
+        if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
+            notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
+        }
+        
+        if let notifiableEntity = entityB as? ContactNotifiable, let otherEntity = entityA {
+            notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
+        }
+    }
+}
 
+extension GameScene {
+    // MARK: - Adding Nodes to Scene
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
@@ -91,19 +136,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGPoint(x: xPositionPlataform, y: yPositionPlataform)
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-        let entityA = contact.bodyA.node?.entity
-        let entityB = contact.bodyB.node?.entity
-
-        print("Colidi")
-
-        if let notifiableEntity = entityA as? ContactNotifiable, let otherEntity = entityB {
-            notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
+    @objc func walk(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            playerControlComponent?.handle(direction: sender.direction)
+            
+        case .ended:
+            playerControlComponent?.halt()
+            
+        default:
+            break
         }
-        
-        if let notifiableEntity = entityB as? ContactNotifiable, let otherEntity = entityA {
-            notifiableEntity.contactDidBegin(with: otherEntity, self.entityManager)
-        }
+    }
+    
+    @objc func attack(){
+        entityManager.playerAttack()
     }
 }
 
