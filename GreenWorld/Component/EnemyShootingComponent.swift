@@ -5,9 +5,8 @@ import SpriteKit
 class EnemyShotComponent : GKComponent{
     var damage = 0
     var entityManager:EntityManager!
-    
-    init(enemy enemyEntity: Enemy, manager entityManager: EntityManager) {
-        self.damage = 0
+    init(enemy enemyEntity:Enemy, manager entityManager:EntityManager){
+        self.damage = 5
         self.entityManager = entityManager
         super.init()
     }
