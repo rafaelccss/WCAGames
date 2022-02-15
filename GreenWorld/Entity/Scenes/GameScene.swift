@@ -136,7 +136,7 @@ extension GameScene : CollecteddCoinDelegate{
         entityManager.coins.removeAll { $0 == coin }
         count += 1
         entityManager.coinsCount.text = String.init(format: "%03d", count)
-        if count == 1 {
+        if count == 3 {
             handle?.callPowerScene()
         }
         
