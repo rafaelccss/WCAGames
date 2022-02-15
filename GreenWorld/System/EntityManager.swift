@@ -12,12 +12,12 @@ class EntityManager {
     var shots = Set<GKEntity>()
     var coins:[GKEntity] = []
     var enemies = Set<GKEntity>()
-    var count = 0
     let coinsCount = SKLabelNode(text: "000")
     let coinNode = SKSpriteNode(imageNamed: "Coin")
     let lifeLabel = SKLabelNode(text: "100")
     let heart = SKSpriteNode(imageNamed: "FullHeart")
     var lastXPlayerPosition:CGFloat = 0
+    var currentPower: Powers = .None
 
 
     init(scene: GameScene) {
@@ -69,7 +69,7 @@ class EntityManager {
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
         if let _ = playerNode.scene {
             let direction:MoveDirection = playerNode.xScale == 1 ? .right : .left
-            let shot = ShotEntity(entityManager: self, power: .None, direction: direction)
+            let shot = ShotEntity(entityManager: self, power: currentPower, direction: direction)
             self.addShot(shot)
         }
     }
@@ -201,19 +201,7 @@ class EntityManager {
         }
     }
     
-    func setupCoins(){
-        for platform in platforms {
-            let plataformNode = platform.component(ofType: PlataformComponent.self)?.plataformNode
-            let coin = Coin()
-            coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = positionBasedOnLastElement(lastNode: plataformNode!,
-                                                                                                                   presentNode: coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
-                                                                                                                   dx: -(plataformNode?.size.width)!/2,
-                                                                                                                   dy: (plataformNode?.size.height)! + 30)
-            coin.delegate = self
-            self.addCoin(coin)
-            
-        }
-    }
+    
     
     func updateEnemy(_ deltaTime:TimeInterval){
         for enemy in enemies{
@@ -249,12 +237,3 @@ class EntityManager {
     }
     
 }
-extension EntityManager : CollecteddCoinDelegate{
-    func collected(_ coin: Coin) {
-        self.coins.removeAll { $0 == coin }
-        count += 1
-        coinsCount.text = String.init(format: "%03d", count)
-    }
-}
-
-

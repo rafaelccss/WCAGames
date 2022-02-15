@@ -10,13 +10,13 @@ enum CollisionType: UInt32 {
     case coin = 32
 }
 
-enum Powers {
-    case None
-    case Tupã
-    case Polo
-    case Sumá
-    case Guaraci
-    case Mboi
+enum Powers: String {
+    case None = "Nonde"
+    case Tupã = "Tupã"
+    case Polo = "Polo"
+    case Sumá = "Sumá"
+    case Guaraci = "Guaraci"
+    case Mboi = "Mboi"
 }
 
 enum EnemyType{

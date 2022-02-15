@@ -12,7 +12,6 @@ class GameOverScene: SKScene {
     var center: CGPoint?
     var optionButton: SKLabelNode?
     var quitButton: SKLabelNode?
-    var parentViewController: UIViewController?
     var option: OptionMenu
     var handle: HandleWithScenes?
     

@@ -36,7 +36,7 @@ class EnemyShotEntity : GKEntity {
     }
 }
 
-extension EnemyShotEntity:ContactNotifiable{
+extension EnemyShotEntity: ContactNotifiable {
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
         manager.removeShot(self)
     }
