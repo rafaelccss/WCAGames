@@ -36,6 +36,7 @@ class Feather: GKEntity {
 }
 
 extension Feather: ContactNotifiable {
+
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
         if entity is Player {
             delegate?.collected(self)

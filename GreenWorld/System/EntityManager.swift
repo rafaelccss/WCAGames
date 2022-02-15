@@ -236,20 +236,6 @@ class EntityManager {
         }
     }
 
-    func setupFeather(){
-        for platform in platforms {
-            let plataformNode = platform.component(ofType: PlataformComponent.self)?.plataformNode
-            let feather = Feather()
-            feather.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = positionBasedOnLastElement(lastNode: plataformNode!,
-                                                                                                                   presentNode: feather.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
-                                                                                                                   dx: -(plataformNode?.size.width)!/2,
-                                                                                                                   dy: (plataformNode?.size.height)! + 8)
-            feather.delegate = self
-            self.addFeather(feather)
-            
-        }
-    }
-
     func updateEnemy(_ deltaTime:TimeInterval){
         for enemy in enemies{
             enemy.update(deltaTime: deltaTime)
