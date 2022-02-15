@@ -8,7 +8,7 @@ class Plataform: GKEntity {
         plataformComponent.plataformNode.physicsBody = SKPhysicsBody(rectangleOf: plataformComponent.plataformNode.size)
         plataformComponent.plataformNode.physicsBody?.isDynamic = false
         plataformComponent.plataformNode.physicsBody?.categoryBitMask = CollisionType.ground.rawValue
-        plataformComponent.plataformNode.physicsBody?.contactTestBitMask = CollisionType.playerWeapon.rawValue
+        plataformComponent.plataformNode.physicsBody?.contactTestBitMask = CollisionType.playerWeapon.rawValue | CollisionType.enemy.rawValue
         plataformComponent.plataformNode.physicsBody?.collisionBitMask = CollisionType.playerWeapon.rawValue
         self.addComponent(plataformComponent)
     }
