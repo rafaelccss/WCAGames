@@ -7,7 +7,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = Player()
     var entityManager: EntityManager!
-   // var enemy: Enemy!
     var isGameOver = false
     var isCreated = false
     var handle: HandleWithScenes?
