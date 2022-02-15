@@ -7,12 +7,15 @@
 
 import UIKit
 import SpriteKit
+import GameplayKit
 
 class PowersScene: SKScene {
     
     let powers: [Powers]!
     var powersNode = [PowerNode]()
     var powerSelected: Powers!
+    let confirmLabel = SKLabelNode(text: "Confirm")
+    var handle: HandleWithScenes?
     
     init(size: CGSize, powers: [Powers]) {
         self.powers = powers
@@ -25,7 +28,7 @@ class PowersScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = .blue
+        self.backgroundColor = .black
         generatePowerNodes(powers)
     }
     
@@ -44,29 +47,40 @@ class PowersScene: SKScene {
             powersNode.append(node)
             node.alpha = 0
         }
+        
+        confirmLabel.position = CGPoint(x: self.frame.midX, y: self.frame.minY + confirmLabel.frame.height / 2 + self.size.height * 0.1)
+        addChild(confirmLabel)
         showNodes()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
         
-        var nodeSelected: PowerNode?
-        
-        for node in powersNode {
-            if node.contains(location) {
-                nodeSelected = node
-                node.isSelected = true
-                break
+        if confirmLabel.contains(location) {
+            if powerSelected != nil {
+                handle?.didSelectPower(powerSelected)
+            }
+        } else {
+            var nodeSelected: PowerNode?
+            
+            for node in powersNode {
+                if node.contains(location) {
+                    nodeSelected = node
+                    node.isSelected = true
+                    powerSelected = node.power
+                    break
+                }
+            }
+            
+            if let nodeSel = nodeSelected {
+                for node in powersNode.filter({ $0 !=  nodeSel}) {
+                    node.isSelected = false
+                }
             }
         }
-        
-        if let nodeSel = nodeSelected {
-            for node in powersNode.filter({ $0 !=  nodeSel}) {
-                node.isSelected = false
-            }
-        }
-        
     }
+    
+    
     
     func showNodes() {
         let buttonFadeInTime = 0.25

@@ -6,6 +6,7 @@ protocol HandleWithScenes {
     func callOptionScene()
     func resumeScene()
     func quitGame()
+    func didSelectPower(_ power: Powers)
 }
 
 class GameViewController: UIViewController {
@@ -35,6 +36,7 @@ class GameViewController: UIViewController {
         self.powerScene = PowersScene(size: self.view.frame.size, powers: [.Guaraci, .Mboi, .Tupã])
         self.optionScene = GameOverScene(size: self.view.frame.size, option: .pause)
         optionScene?.handle = self
+        powerScene?.handle = self
     }
     
     func presentPauseScene() {
@@ -68,6 +70,10 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: HandleWithScenes {
+    func didSelectPower(_ power: Powers) {
+        print(power)
+    }
+    
     func quitGame() {
         self.dismiss(animated: false, completion: nil)
     }
