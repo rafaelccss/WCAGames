@@ -8,20 +8,20 @@ class Enemy: GKEntity {
     var entityManager:EntityManager!
     var enemyType:EnemyType!
     
-    init(manager entityManager:EntityManager,type:EnemyType) {
+    init(manager entityManager: EntityManager,type: EnemyType) {
         self.entityManager = entityManager
         self.enemyType = type
-        switch(type){
+
+        switch(type) {
         case .Madeireiro,.Garimpeiro:
             self.life = 100
         case .Boss:
             self.life = 500
         }
         super.init()
-        
-        //let spriteComponent = AnimatedSpriteComponent(atlasName: "")
-        let spriteComponent = AnimatedSpriteComponent(color: .blue, size: CGSize(width: 100, height: 100))
-        spriteComponent.spriteNode.xScale = -1
+
+        let spriteComponent = AnimatedSpriteComponent(imageName: "Logger")
+        spriteComponent.spriteNode.xScale = 1
         self.addComponent(spriteComponent)
         addPhysics(spriteComponent.spriteNode)
         
@@ -34,7 +34,7 @@ class Enemy: GKEntity {
             ])
         )
         
-        self.addComponent(WalkComponent(velocity: 2))
+        self.addComponent(WalkComponent(velocity: 1.2))
         guard let walkComponent = self.component(ofType: WalkComponent.self) else {return}
         walkComponent.direction = .left
     }
@@ -61,7 +61,7 @@ class Enemy: GKEntity {
             isOnScreen = true
         }
         guard let walkComponent = self.component(ofType: WalkComponent.self) else {return}
-        if self.enemyType != EnemyType.Boss{
+        if self.enemyType != EnemyType.Boss {
             walkComponent.update(deltaTime: seconds)
         }
         if(isOnScreen){
@@ -89,6 +89,7 @@ class Enemy: GKEntity {
 }
 
 extension Enemy: ContactNotifiable {
+
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
         if entity is ShotEntity {
             guard let shotComponent = entity.component(ofType: ShotComponent.self) else {return}

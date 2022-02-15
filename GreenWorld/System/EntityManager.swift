@@ -10,10 +10,11 @@ class EntityManager {
     let scene: GameScene
     var player = Player()
     var shots = Set<GKEntity>()
-    var coins:[GKEntity] = []
+    var feathers: [GKEntity] = []
     var enemies = Set<GKEntity>()
-    let coinsCount = SKLabelNode(text: "000")
-    let coinNode = SKSpriteNode(imageNamed: "Coin")
+    var count = 0
+    let feathersCount = SKLabelNode(text: "000")
+    let featherNode = SKSpriteNode(imageNamed: "Feather_0")
     let lifeLabel = SKLabelNode(text: "100")
     let heart = SKSpriteNode(imageNamed: "FullHeart")
     var lastXPlayerPosition:CGFloat = 0
@@ -165,12 +166,12 @@ class EntityManager {
         let xPlayerPosition = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         heart.position = CGPoint(x: xPlayerPosition - scene.view!.frame.width / 2 + 52, y: scene.frame.maxY - 48)
         heart.size = CGSize(width: 48, height: 48)
-        coinNode.position = CGPoint(x: heart.position.x + scene.view!.frame.width - 112, y: scene.frame.maxY - 48)
-        coinNode.size = CGSize(width: 32, height: 32)
+        featherNode.position = CGPoint(x: heart.position.x + scene.view!.frame.width - 112, y: scene.frame.maxY - 48)
+        featherNode.size = CGSize(width: 32, height: 32)
         lifeLabel.position = CGPoint(x: heart.position.x + heart.frame.width / 2 + 10 + lifeLabel.frame.width / 2, y: heart.position.y - lifeLabel.frame.height / 2)
-        coinsCount.position = CGPoint(x: coinNode.position.x - coinNode.frame.width / 2 - 10 - coinsCount.frame.width / 2, y: coinNode.position.y - coinsCount.frame.height / 2)
-        scene.addChild(coinNode)
-        scene.addChild(coinsCount)
+        feathersCount.position = CGPoint(x: featherNode.position.x - featherNode.frame.width / 2 - 10 - feathersCount.frame.width / 2, y: featherNode.position.y - feathersCount.frame.height / 2)
+        scene.addChild(featherNode)
+        scene.addChild(feathersCount)
         scene.addChild(heart)
         scene.addChild(lifeLabel)
     }
@@ -181,8 +182,8 @@ class EntityManager {
         lastXPlayerPosition = playerX
         heart.position.x += dx
         lifeLabel.position.x += dx
-        coinsCount.position.x += dx
-        coinNode.position.x += dx
+        feathersCount.position.x += dx
+        featherNode.position.x += dx
     }
     func setupInvisibleGround(){
         var newGrounds = [GKEntity]()
@@ -227,16 +228,14 @@ class EntityManager {
         }
     }
     
-    func addCoin(_ entity:GKEntity){
-        coins.append(entity)
+    func addFeather(_ entity:GKEntity){
+        feathers.append(entity)
         
         if let spriteNode = entity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
             scene.addChild(spriteNode)
         }
     }
-    
-    
-    
+
     func updateEnemy(_ deltaTime:TimeInterval){
         for enemy in enemies{
             enemy.update(deltaTime: deltaTime)
@@ -270,4 +269,12 @@ class EntityManager {
         }
     }
     
+}
+
+extension EntityManager : CollecteddFeatherDelegate{
+    func collected(_ feather: Feather) {
+        self.feathers.removeAll { $0 == feather }
+        count += 1
+        feathersCount.text = String.init(format: "%03d", count)
+    }
 }

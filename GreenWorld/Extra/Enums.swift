@@ -7,7 +7,7 @@ enum CollisionType: UInt32 {
     case playerWeapon = 4
     case enemyWeapon = 8
     case ground = 16
-    case coin = 32
+    case feather = 32
     case invisibleGround = 64
 }
 

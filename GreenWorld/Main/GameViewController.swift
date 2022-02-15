@@ -71,6 +71,7 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: HandleWithScenes {
+
     func callPowerScene() {
         let transitionFadeLength = 0.3
         let transitionFadeColor = UIColor.black

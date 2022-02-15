@@ -5,14 +5,15 @@ class PlataformComponent: GKComponent {
 
     // MARK: - Properties
 
-    var plataformNode: SKSpriteNode
+    var plataformNode: SKSpriteNode!
 
     // MARK: - Init
 
-    override init() {
-        self.plataformNode = SKSpriteNode(color: SKColor.brown,
-                                          size: CGSize(width: 200, height: 10))
+    init(imageName: String) {
         super.init()
+        let texture = SKTexture(imageNamed: imageName)
+        self.plataformNode = SKSpriteNode(texture: texture, size: CGSize(width: 200, height: 48))
+
     }
 
     override func didAddToEntity() {

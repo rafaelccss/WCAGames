@@ -26,7 +26,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
-    
+
+    let lifeLabel = SKLabelNode(text: "100")
+    let heart = SKSpriteNode(imageNamed: "FullHeart")
+    let featherNode = SKSpriteNode(imageNamed: "Feather_0")
+    let featherCount = SKLabelNode(text: "000")
+
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver {
@@ -55,8 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             physicsWorld.contactDelegate = self
             self.player.delegate = self
             self.entityManager.addGrounds()
-            //self.enemy = Enemy(manager: self.entityManager)
-            self.setupCoins()
+            setupFeathers()
             entityManager.setupEnemy()
             self.camera = sceneCamera
             self.sceneCamera.position.y = self.size.height / 2
@@ -68,15 +72,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func setupCoins(){
+    func setupFeathers() {
         let platforms = entityManager.platforms
         for platform in platforms {
             let plataformNode = platform.component(ofType: PlataformComponent.self)?.plataformNode
-            let coin = Coin()
-            coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = CGPoint(x: plataformNode!.frame.midX, y: plataformNode!.frame.maxY + 32)
-            coin.delegate = self
-            entityManager.addCoin(coin)
-            
+
+            let feather = Feather()
+            feather.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = CGPoint(x: plataformNode!.frame.midX, y: plataformNode!.frame.maxY + 32)
+            feather.delegate = self
+            entityManager.addFeather(feather)
         }
     }
     
@@ -131,14 +135,16 @@ extension GameScene: LifeManager {
     }
 }
 
-extension GameScene : CollecteddCoinDelegate{
-    func collected(_ coin: Coin) {
-        entityManager.coins.removeAll { $0 == coin }
+extension GameScene : CollecteddFeatherDelegate {
+
+    func collected(_ feather: Feather) {
+
+        entityManager.feathers.removeAll { $0 == feather }
         count += 1
-        entityManager.coinsCount.text = String.init(format: "%03d", count)
+
+        entityManager.feathersCount.text = String.init(format: "%03d", count)
         if count == 3 {
             handle?.callPowerScene()
         }
-        
     }
 }
