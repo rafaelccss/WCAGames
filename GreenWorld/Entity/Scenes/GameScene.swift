@@ -73,10 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for platform in platforms {
             let plataformNode = platform.component(ofType: PlataformComponent.self)?.plataformNode
             let coin = Coin()
-            coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = positionBasedOnLastElement(lastNode: plataformNode!,
-                                                                                                                   presentNode: coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
-                                                                                                                   dx: -(plataformNode?.size.width)!/2,
-                                                                                                                   dy: (plataformNode?.size.height)! + 30)
+            coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = CGPoint(x: plataformNode!.frame.midX, y: plataformNode!.frame.maxY + 32)
             coin.delegate = self
             entityManager.addCoin(coin)
             
