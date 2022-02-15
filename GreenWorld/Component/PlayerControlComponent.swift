@@ -29,7 +29,7 @@ class PlayerControlComponent: GKComponent {
     
     func halt() {
         guard stateMachine.currentState?.classForCoder != JumpState.self else { return }
-        
+        self.entity?.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         stateMachine.enterTo(IdleState.self)
     }
     
