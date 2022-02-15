@@ -9,8 +9,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var entityManager: EntityManager!
     var isGameOver = false
     var isCreated = false
+    var count = 0
     var handle: HandleWithScenes?
-    
     private var previousUpdateTime: TimeInterval = TimeInterval()
     var playerControlComponent: PlayerControlComponent? {
         player.component(ofType: PlayerControlComponent.self)
@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.player.delegate = self
             self.entityManager.addGrounds()
             //self.enemy = Enemy(manager: self.entityManager)
-            entityManager.setupCoins()
+            self.setupCoins()
             entityManager.setupEnemy()
             self.camera = sceneCamera
             self.sceneCamera.position.y = self.size.height / 2
@@ -69,6 +69,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             view.addGestureRecognizer(tapGesture)
             view.isMultipleTouchEnabled = true
             isCreated = true
+        }
+    }
+    
+    func setupCoins(){
+        let platforms = entityManager.platforms
+        for platform in platforms {
+            let plataformNode = platform.component(ofType: PlataformComponent.self)?.plataformNode
+            let coin = Coin()
+            coin.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position = positionBasedOnLastElement(lastNode: plataformNode!,
+                                                                                                                   presentNode: coin.component(ofType: AnimatedSpriteComponent.self)!.spriteNode,
+                                                                                                                   dx: -(plataformNode?.size.width)!/2,
+                                                                                                                   dy: (plataformNode?.size.height)! + 30)
+            coin.delegate = self
+            entityManager.addCoin(coin)
+            
         }
     }
     
@@ -123,3 +138,13 @@ extension GameScene: LifeManager {
     }
 }
 
+extension GameScene : CollecteddCoinDelegate{
+    func collected(_ coin: Coin) {
+        entityManager.coins.removeAll { $0 == coin }
+        count += 1
+        if count == 1 {
+            handle?.callOptionScene()
+        }
+        coinsCount.text = String.init(format: "%03d", count)
+    }
+}

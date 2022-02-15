@@ -71,7 +71,8 @@ class GameViewController: UIViewController {
 
 extension GameViewController: HandleWithScenes {
     func didSelectPower(_ power: Powers) {
-        print(power)
+        gameScene?.entityManager.currentPower = power
+        unpauseGame()
     }
     
     func quitGame() {
