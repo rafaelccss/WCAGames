@@ -25,7 +25,11 @@ class ShotEntity: GKEntity {
                 nameTexture = "NormalShot"
        
         }
-        let spriteComponent = AnimatedSpriteComponent(color: color, size: CGSize(width: 25, height: 25))
+        let spriteComponent = AnimatedSpriteComponent(imageName: "Kunai")
+        //let spriteComponent = AnimatedSpriteComponent(color: color, size: CGSize(width: 25, height: 25))
+        spriteComponent.spriteNode.color = color
+        spriteComponent.spriteNode.colorBlendFactor = 0.6
+        spriteComponent.spriteNode.size = CGSize(width: 80, height: 16)
         addComponent(spriteComponent)
         let player = entityManager.getPlayer()
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}
