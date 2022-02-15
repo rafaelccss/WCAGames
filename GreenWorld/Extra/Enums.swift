@@ -8,6 +8,7 @@ enum CollisionType: UInt32 {
     case enemyWeapon = 8
     case ground = 16
     case coin = 32
+    case invisibleGround = 64
 }
 
 enum Powers: String {

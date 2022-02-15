@@ -6,8 +6,6 @@ class Enemy: GKEntity {
     var life = 100
     var timeSincePreviousUpdate:TimeInterval = TimeInterval()
     var entityManager:EntityManager!
-    var maxRangeWalk:CGFloat = 0
-    var minRangeWalk:CGFloat = 0
     var enemyType:EnemyType!
     
     init(manager entityManager:EntityManager,type:EnemyType) {
@@ -48,7 +46,7 @@ class Enemy: GKEntity {
     func addPhysics(_ node: SKSpriteNode) {
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
         node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.playerWeapon.rawValue | CollisionType.ground.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.playerWeapon.rawValue | CollisionType.invisibleGround.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.player.rawValue
         node.physicsBody?.isDynamic = true
     }
@@ -99,16 +97,9 @@ extension Enemy: ContactNotifiable {
                 manager.remove(self)
             }
         }
-        if entity is Plataform{
-            guard let walkComponent = self.component(ofType: WalkComponent.self) else {return}
-            switch walkComponent.direction{
-            case .right:
-                walkComponent.direction = .left
-            case .left:
-                walkComponent.direction = .right
-            default:
-                walkComponent.direction = .none
-            }
+        guard let walkComponent = self.component(ofType: WalkComponent.self) else {return}
+        if entity is Ground || entity is Plataform{
+            walkComponent.direction = walkComponent.direction == .right ? .left : .right
         }
     }
 }

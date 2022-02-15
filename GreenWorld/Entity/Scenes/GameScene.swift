@@ -65,6 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             entityManager.setupEnemy()
             self.camera = sceneCamera
             self.sceneCamera.position.y = self.size.height / 2
+            entityManager.setupInvisibleGround()
             view.addGestureRecognizer(panGesture)
             view.addGestureRecognizer(tapGesture)
             view.isMultipleTouchEnabled = true
