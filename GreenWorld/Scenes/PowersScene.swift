@@ -80,8 +80,6 @@ class PowersScene: SKScene {
         }
     }
     
-    
-    
     func showNodes() {
         let buttonFadeInTime = 0.25
         

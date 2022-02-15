@@ -34,10 +34,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
-        if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver{
+        if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver {
             player.life = 0
             player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.removeFromParent()
-            handle?.callOptionScene()
+            handle?.quitGame()
         }
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
