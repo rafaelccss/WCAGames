@@ -1,10 +1,3 @@
-//
-//  RotationYComponent.swift
-//  GreenWorld
-//
-//  Created by Luís Filipe Nascimento on 09/02/22.
-//
-
 import UIKit
 import GameplayKit
 
@@ -26,8 +19,8 @@ class RotationYComponent: GKComponent {
             .repeatForever(
                 SKAction.sequence(
                     [
-                        SKAction.scaleX(to: -1, duration: 0.5),
-                        SKAction.scaleX(to: 1, duration: 0.5)
+                        SKAction.scaleX(to: -1, duration: 0.7),
+                        SKAction.scaleX(to: 1, duration: 0.7)
                     ]
                 )
             )

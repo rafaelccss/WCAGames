@@ -33,7 +33,8 @@ class AnimatedSpriteComponent: GKComponent {
 	func setAnimation(imageName: String, rangeOfAnimation: ClosedRange<Int>) {
 		
 		let animation: SKAction = .repeatForever(.animate(with:
-														Array(withFormat: imageName, range: rangeOfAnimation), timePerFrame: 0.1))
+														Array(withFormat: imageName, range: rangeOfAnimation),
+                                                          timePerFrame: 0.1))
 		self.spriteNode.run(animation)
     }
 	
@@ -43,7 +44,9 @@ class AnimatedSpriteComponent: GKComponent {
 	
 }
 public extension Array where Element == SKTexture {
+
 	init (withFormat format: String, range: ClosedRange<Int>) {
+
 		self = range.map({ (index) in
 			let imageNamed = format + "\(index)"
 			return SKTexture(imageNamed: imageNamed)

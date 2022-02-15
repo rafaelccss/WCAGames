@@ -4,8 +4,8 @@ class Plataform: GKEntity {
 
     override init() {
         super.init()
-        let plataformComponent = PlataformComponent()
-        plataformComponent.plataformNode.physicsBody = SKPhysicsBody(rectangleOf: plataformComponent.plataformNode.size)
+        let plataformComponent = PlataformComponent(imageName: "Plataform_\(Int.random(in: 0...1))")
+        plataformComponent.plataformNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 40))
         plataformComponent.plataformNode.physicsBody?.isDynamic = false
         plataformComponent.plataformNode.physicsBody?.categoryBitMask = CollisionType.ground.rawValue
         plataformComponent.plataformNode.physicsBody?.contactTestBitMask = CollisionType.playerWeapon.rawValue | CollisionType.enemy.rawValue

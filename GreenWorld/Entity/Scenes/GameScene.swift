@@ -26,7 +26,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
-    
+
+    let lifeLabel = SKLabelNode(text: "100")
+    let heart = SKSpriteNode(imageNamed: "FullHeart")
+    let featherNode = SKSpriteNode(imageNamed: "Feather_0")
+    let featherCount = SKLabelNode(text: "000")
+
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver {
@@ -55,8 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             physicsWorld.contactDelegate = self
             self.player.delegate = self
             self.entityManager.addGrounds()
-            //self.enemy = Enemy(manager: self.entityManager)
-            self.setupCoins()
+            entityManager.setupFeather()
             entityManager.setupEnemy()
             self.camera = sceneCamera
             self.sceneCamera.position.y = self.size.height / 2

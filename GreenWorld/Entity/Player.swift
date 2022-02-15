@@ -18,10 +18,8 @@ class Player: GKEntity {
         let spriteComponent = AnimatedSpriteComponent(imageName: "Idle_0")
         addPhysics(node: spriteComponent.spriteNode)
         self.addComponent(spriteComponent)
-        spriteComponent.spriteNode.texture = SKTexture(imageNamed: "Idle_0")
-        spriteComponent.spriteNode.size = CGSize(width: 50, height: 90)
-        addPhysics(node: spriteComponent.spriteNode)
-        
+
+
         self.addComponent(
             PlayerControlComponent(states: [
                 IdleState(self),
@@ -42,15 +40,17 @@ class Player: GKEntity {
     }
     
     func addPhysics(node: SKSpriteNode) {
+
 		if let texture = node.texture {
 
 			node.physicsBody = SKPhysicsBody(texture: texture, size: CGSize(width: 50, height: 90))
 
 		} else {
+
 			node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 90))
 		}
         node.physicsBody?.categoryBitMask = CollisionType.player.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.coin.rawValue | CollisionType.enemyWeapon.rawValue | CollisionType.ground.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.player.rawValue | CollisionType.feather.rawValue | CollisionType.enemyWeapon.rawValue | CollisionType.ground.rawValue
         node.physicsBody?.collisionBitMask = CollisionType.ground.rawValue | CollisionType.enemy.rawValue
         node.physicsBody?.allowsRotation = false
         node.physicsBody?.isDynamic = true
@@ -73,9 +73,9 @@ extension Player: ContactNotifiable {
 
         if entity is EnemyShotEntity {
 
-            guard let shotComponent = entity.component(ofType: EnemyShotComponent.self) else {return}
+            guard let shotComponent = entity.component(ofType: EnemyShotComponent.self) else { return }
             self.life -= shotComponent.damage
-            if(life<=0) {
+            if(life <= 0) {
                 manager.removePlayer()
             }
         }
