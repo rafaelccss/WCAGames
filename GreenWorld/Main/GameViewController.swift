@@ -12,6 +12,7 @@ class GameViewController: UIViewController {
     
     var optionScene: GameOverScene?
     var gameScene: GameScene?
+    var powerScene: PowersScene?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class GameViewController: UIViewController {
             
             view.showsFPS = false
         }
-        
+        self.powerScene = PowersScene(size: self.view.frame.size, powers: [.Guaraci, .Mboi, .Tupã])
         self.optionScene = GameOverScene(size: self.view.frame.size, option: .pause)
         optionScene?.handle = self
     }
@@ -43,7 +44,7 @@ class GameViewController: UIViewController {
         pauseTransition.pausesOutgoingScene = true
         
         let currentSKView = view as! SKView
-        currentSKView.presentScene(optionScene!, transition: pauseTransition)
+        currentSKView.presentScene(powerScene!, transition: pauseTransition)
     }
     
     func unpauseGame() {
