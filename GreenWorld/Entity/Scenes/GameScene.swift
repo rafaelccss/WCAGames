@@ -26,18 +26,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(attack))
     lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(walk))
     
-    let lifeLabel = SKLabelNode(text: "100")
-    let heart = SKSpriteNode(imageNamed: "FullHeart")
-    
-    let coinNode = SKSpriteNode(imageNamed: "Coin")
-    let coinsCount = SKLabelNode(text: "000")
     
     override func update(_ currentTime: TimeInterval) {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver {
             player.life = 0
             player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.removeFromParent()
-            handle?.quitGame()
+            handle?.callOptionScene()
         }
         
         let timeSincePreviousUpdate = currentTime - previousUpdateTime
@@ -143,9 +138,10 @@ extension GameScene : CollecteddCoinDelegate{
     func collected(_ coin: Coin) {
         entityManager.coins.removeAll { $0 == coin }
         count += 1
+        entityManager.coinsCount.text = String.init(format: "%03d", count)
         if count == 1 {
-            handle?.callOptionScene()
+            handle?.callPowerScene()
         }
-        coinsCount.text = String.init(format: "%03d", count)
+        
     }
 }

@@ -66,7 +66,7 @@ extension Player: ContactNotifiable {
         if (entity is Ground || entity is Plataform) {
 
             guard let playerControlComponent = self.component(ofType: PlayerControlComponent.self) else {return}
-            if playerControlComponent.stateMachine.currentState === JumpState.self {
+            if playerControlComponent.stateMachine.currentState?.classForCoder === JumpState.self {
                 playerControlComponent.stateMachine.enterTo(IdleState.self)
             }
         }
