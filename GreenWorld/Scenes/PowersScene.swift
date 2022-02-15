@@ -29,7 +29,9 @@ class PowersScene: SKScene {
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .black
-        generatePowerNodes(powers)
+        if self.children.count == 0 {
+            generatePowerNodes(powers)
+        }
     }
     
     func generatePowerNodes(_ with: [Powers]) {

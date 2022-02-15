@@ -123,6 +123,7 @@ class EntityManager {
             let space = Int.random(in: 6 ... 13)
             let ground = Ground(size: CGSize(width: random, height: 10))
             let plaform = Plataform()
+            let randPlatform = Int.random(in : 1...10)
 
             guard let plaformNode = plaform.component(ofType: PlataformComponent.self)?.plataformNode else { return }
             plaformNode.position = positionBasedOnLastElement(lastNode: lastNode,
@@ -130,16 +131,32 @@ class EntityManager {
                                                               dx: CGFloat(space),
                                                               dy: 80)
             lastNode = plaformNode
+            
+            self.addGroundAndPlataform(plaform)
+            
+            var dy:CGFloat = -80
+            
+            if randPlatform >= 5 {
+                let plaform2 = Plataform()
+                guard let plaformNode2 = plaform2.component(ofType: PlataformComponent.self)?.plataformNode else { return }
+                plaformNode2.position = positionBasedOnLastElement(lastNode: lastNode,
+                                                                  presentNode: plaformNode2,
+                                                                  dx: CGFloat(space),
+                                                                  dy: 80)
+                lastNode = plaformNode2
+                self.addGroundAndPlataform(plaform2)
+                dy = -160
+            }
+            
 
             guard let groundNode = ground.component(ofType: GroundComponent.self)?.groundNode else { return }
             groundNode.position = positionBasedOnLastElement(lastNode: lastNode,
                                                              presentNode: groundNode,
                                                              dx: 0,
-                                                             dy: -80)
+                                                             dy: dy)
             lastNode = groundNode
 
 
-            self.addGroundAndPlataform(plaform)
             self.addGroundAndPlataform(ground)
         }
     }
@@ -167,7 +184,29 @@ class EntityManager {
         coinsCount.position.x += dx
         coinNode.position.x += dx
     }
-    
+    func setupInvisibleGround(){
+        var newGrounds = [GKEntity]()
+        for index in 1..<grounds.count{
+            let previousGround = grounds[index-1]
+            let currentGround = grounds[index]
+            guard let previousGroundNode = previousGround.component(ofType: GroundComponent.self)?.groundNode else {return}
+            guard let currentGroundNode = previousGround.component(ofType: GroundComponent.self)?.groundNode else {return}
+            let width = (currentGroundNode.position.x - currentGroundNode.size.width/2) - (previousGroundNode.position.x + previousGroundNode.size.width/2)
+            let size = CGSize(width: width > 0 ? width : width * -1 ,
+                              height: currentGroundNode.size.height)
+            let newGround = Ground(size: size)
+            let newGroundNode = newGround.component(ofType: GroundComponent.self)?.groundNode
+            newGroundNode?.position.x = previousGroundNode.position.x + previousGroundNode.size.width/2 + size.width/2
+            newGroundNode?.position.y = previousGroundNode.position.y
+            newGroundNode?.physicsBody?.categoryBitMask = CollisionType.invisibleGround.rawValue
+            newGroundNode?.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+            newGroundNode?.physicsBody?.collisionBitMask = 0x0
+            newGroundNode?.alpha = 0.0
+            newGrounds.append(newGround)
+            scene.addChild(newGroundNode!)
+        }
+        grounds += newGrounds
+    }
     func getGround(position:Int) -> GKEntity{
         return grounds[position]
     }
@@ -179,16 +218,11 @@ class EntityManager {
             guard let enemyNode = enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
             let ground = grounds[index]
             let groundNode = ground.component(ofType: GroundComponent.self)?.groundNode
-            let maxRange = ((groundNode?.position.x)!) + ((groundNode?.size.width)!)/2
-            let minRange = ((groundNode?.position.x)!) - ((groundNode?.size.width)!)/2
-            
-            enemy.maxRangeWalk = maxRange
-            enemy.minRangeWalk = minRange
             
             enemyNode.position = positionBasedOnLastElement(lastNode: groundNode!,
                                                             presentNode: enemyNode,
-                                                            dx: -100,
-                                                            dy: enemyNode.size.height + groundNode!.size.height / 2 + 10)
+                                                            dx: -120,
+                                                            dy: enemyNode.size.height + groundNode!.size.height / 2)
             self.addEnemy(enemy)
         }
     }

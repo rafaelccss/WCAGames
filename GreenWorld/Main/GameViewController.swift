@@ -4,6 +4,7 @@ import GameplayKit
 
 protocol HandleWithScenes {
     func callOptionScene()
+    func callPowerScene()
     func resumeScene()
     func quitGame()
     func didSelectPower(_ power: Powers)
@@ -46,7 +47,7 @@ class GameViewController: UIViewController {
         pauseTransition.pausesOutgoingScene = true
         
         let currentSKView = view as! SKView
-        currentSKView.presentScene(powerScene!, transition: pauseTransition)
+        currentSKView.presentScene(optionScene!, transition: pauseTransition)
     }
     
     func unpauseGame() {
@@ -70,6 +71,16 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: HandleWithScenes {
+    func callPowerScene() {
+        let transitionFadeLength = 0.3
+        let transitionFadeColor = UIColor.black
+        let pauseTransition = SKTransition.fade(with: transitionFadeColor, duration: transitionFadeLength)
+        pauseTransition.pausesOutgoingScene = true
+        
+        let currentSKView = view as! SKView
+        currentSKView.presentScene(powerScene!, transition: pauseTransition)
+    }
+    
     func didSelectPower(_ power: Powers) {
         gameScene?.entityManager.currentPower = power
         unpauseGame()
