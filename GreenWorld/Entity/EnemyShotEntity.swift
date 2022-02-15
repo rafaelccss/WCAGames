@@ -13,6 +13,7 @@ class EnemyShotEntity : GKEntity {
         default:
             self.life = 100
         }*/
+        self.damage = enemyEntity.enemyType == .Boss ? 50 : 25
         self.direction = directionShot
         let spriteComponent = AnimatedSpriteComponent(imageName: "")
         super.init()

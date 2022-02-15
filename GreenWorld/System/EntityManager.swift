@@ -174,10 +174,16 @@ class EntityManager {
     
     func setupEnemy(){
         for index in 0..<grounds.count{
-            let enemy = Enemy(manager: self)
+            let typeEnemy:EnemyType = index == (grounds.count - 1) ? .Boss : .Madeireiro
+            let enemy = Enemy(manager: self,type: typeEnemy)
             guard let enemyNode = enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
             let ground = grounds[index]
             let groundNode = ground.component(ofType: GroundComponent.self)?.groundNode
+            let maxRange = ((groundNode?.position.x)!) + ((groundNode?.size.width)!)/2
+            let minRange = ((groundNode?.position.x)!) - ((groundNode?.size.width)!)/2
+            
+            enemy.maxRangeWalk = maxRange
+            enemy.minRangeWalk = minRange
             
             enemyNode.position = positionBasedOnLastElement(lastNode: groundNode!,
                                                             presentNode: enemyNode,

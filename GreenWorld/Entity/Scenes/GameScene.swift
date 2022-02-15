@@ -7,7 +7,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = Player()
     var entityManager: EntityManager!
-    var enemy: Enemy!
     var isGameOver = false
     var isCreated = false
     var handle: HandleWithScenes?
@@ -47,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.entityManager.updateEnemy(timeSincePreviousUpdate)
         previousUpdateTime = currentTime
         entityManager.updatePositionByPlayerPosition()
+        entityManager.updateEnemy(timeSincePreviousUpdate)
         
     }
     
@@ -60,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             physicsWorld.contactDelegate = self
             self.player.delegate = self
             self.entityManager.addGrounds()
-            self.enemy = Enemy(manager: self.entityManager)
+            //self.enemy = Enemy(manager: self.entityManager)
             entityManager.setupCoins()
             entityManager.setupEnemy()
             self.camera = sceneCamera
