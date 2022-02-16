@@ -3,28 +3,22 @@ import GameplayKit
 import SpriteKit
 
 class ShotEntity: GKEntity {
-
+    
     var direction : MoveDirection
-
+    
     init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection) {
         self.direction = directionShot
         super.init()
-        var color: UIColor
-        switch power {
-            case .Tupã:
-            color = .blue
-                break
-            case .Guaraci:
-            color = .red
-                break
-            default:
-            color = .brown
-        }
-        let spriteComponent = AnimatedSpriteComponent(imageName: "Arrow")
+        
+        let spriteComponent = AnimatedSpriteComponent(imageName: "\(power.rawValue)Attack")
         //let spriteComponent = AnimatedSpriteComponent(color: color, size: CGSize(width: 25, height: 25))
-        spriteComponent.spriteNode.color = color
-        spriteComponent.spriteNode.colorBlendFactor = 0.8
-        spriteComponent.spriteNode.size = CGSize(width: 80, height: 16)
+        if power == .None {
+            spriteComponent.spriteNode.color = .brown
+            spriteComponent.spriteNode.colorBlendFactor = 0.8
+            spriteComponent.spriteNode.size = CGSize(width: 80, height: 16)
+        } else {
+            spriteComponent.spriteNode.size = CGSize(width: 80, height: 32)
+        }
         addComponent(spriteComponent)
         let player = entityManager.getPlayer()
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else {return}

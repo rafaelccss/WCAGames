@@ -21,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera.setScale(1)
         return camera
     }()
+    let colorFactor = 0.8
     
     // MARK: - Gestures
     
@@ -65,6 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.entityManager.addGrounds()
             setupFeathers()
             entityManager.setupEnemy()
+            entityManager.healDelegate = self
             self.camera = sceneCamera
             self.sceneCamera.position.y = self.size.height / 2
             entityManager.setupInvisibleGround()
@@ -76,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.size = self.size
             background.xScale = 1.2
             background.color = .red
-            background.colorBlendFactor = 0.8
+            background.colorBlendFactor = colorFactor
             background.zPosition = -10
             addChild(background)
         }
@@ -166,5 +168,11 @@ extension GameScene : CollecteddFeatherDelegate {
         if count == 3 {
             handle?.callPowerScene()
         }
+    }
+}
+
+extension GameScene: HealWorldDelegate {
+    func enemyDefeated(enemiesDefeated: CGFloat, totalEnemies: CGFloat) {
+        background.colorBlendFactor = colorFactor - colorFactor * enemiesDefeated / totalEnemies
     }
 }

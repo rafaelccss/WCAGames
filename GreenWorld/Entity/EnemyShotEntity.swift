@@ -17,7 +17,7 @@ class EnemyShotEntity : GKEntity {
         self.damage = enemyEntity.enemyType == .Boss ? 50 : 25
         self.direction = directionShot
 
-        let spriteComponent = AnimatedSpriteComponent(imageName: enemyEntity.enemyType == EnemyType.Boss ? "Wood" : "Axe", size: CGSize(width: 56, height: 56))
+        let spriteComponent = AnimatedSpriteComponent(imageName: enemyEntity.enemyType == EnemyType.Madeireiro ? "Wood" : "Axe", size: CGSize(width: 56, height: 56))
         spriteComponent.spriteNode.run(.repeatForever(.rotate(byAngle: .pi * 2, duration: 1)))
         
         super.init()
@@ -41,7 +41,6 @@ class EnemyShotEntity : GKEntity {
 }
 
 extension EnemyShotEntity: ContactNotifiable {
-
     func contactDidBegin(with entity: GKEntity, _ manager: EntityManager) {
         manager.removeShot(self)
     }

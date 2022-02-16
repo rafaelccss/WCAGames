@@ -11,7 +11,7 @@ enum CollisionType: UInt32 {
 }
 
 enum Powers: String {
-    case None = "Nonde"
+    case None = "Arrow"
     case Tupã = "Thunder"
     case Polo = "Polo"
     case Sumá = "Sumá"

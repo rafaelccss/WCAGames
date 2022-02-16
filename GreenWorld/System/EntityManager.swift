@@ -2,6 +2,10 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+protocol HealWorldDelegate {
+    func enemyDefeated(enemiesDefeated: CGFloat, totalEnemies: CGFloat)
+}
+
 class EntityManager {
 
     var entities = Set<GKEntity>()
@@ -14,6 +18,9 @@ class EntityManager {
     var enemies = Set<GKEntity>()
     var count = 0
     var playerFirstPosition: CGPoint!
+    var totalEnemies: CGFloat?
+    var enemiesDefeated:CGFloat = 0
+    var healDelegate: HealWorldDelegate?
     
     let feathersCount = SKLabelNode(text: "000")
     let featherNode = SKSpriteNode(imageNamed: "Feather_0")
@@ -81,7 +88,12 @@ class EntityManager {
         if let spriteNode = entity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode {
             spriteNode.removeFromParent()
         }
-
+        if entity.classForCoder === Enemy.self {
+            enemiesDefeated += 1
+            if let totalEnemies = totalEnemies {
+                healDelegate?.enemyDefeated(enemiesDefeated: enemiesDefeated, totalEnemies: totalEnemies)
+            }
+        }
         entities.remove(entity)
     }
 
@@ -229,6 +241,7 @@ class EntityManager {
                                                             dy: enemyNode.size.height + groundNode!.size.height / 2)
             self.addEnemy(enemy)
         }
+        totalEnemies = CGFloat(enemies.count)
     }
     
     func addFeather(_ entity:GKEntity){

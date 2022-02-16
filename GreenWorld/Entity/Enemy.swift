@@ -22,6 +22,9 @@ class Enemy: GKEntity {
 
         let spriteComponent = AnimatedSpriteComponent(imageName: "Logger")
         spriteComponent.spriteNode.xScale = 1
+        if type == .Boss {
+            spriteComponent.spriteNode.xScale = -1 
+        }
         self.addComponent(spriteComponent)
         addPhysics(spriteComponent.spriteNode)
         
