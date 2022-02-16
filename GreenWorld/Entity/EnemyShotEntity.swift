@@ -16,7 +16,7 @@ class EnemyShotEntity : GKEntity {
         }*/
         self.damage = enemyEntity.enemyType == .Boss ? 50 : 25
         self.direction = directionShot
-        let spriteComponent = AnimatedSpriteComponent(imageName: "")
+        let spriteComponent = AnimatedSpriteComponent(imageName: "Wood", size: CGSize(width: 56, height: 56))
         super.init()
         self.addComponent(spriteComponent)
         guard let enemyNode = enemyEntity.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }

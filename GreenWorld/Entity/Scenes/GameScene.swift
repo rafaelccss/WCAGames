@@ -7,6 +7,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = Player()
     var entityManager: EntityManager!
+    var background = SKSpriteNode(imageNamed: "Background")
     var isGameOver = false
     var isCreated = false
     var count = 0
@@ -47,7 +48,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         previousUpdateTime = currentTime
         entityManager.updatePositionByPlayerPosition()
         entityManager.updateEnemy(timeSincePreviousUpdate)
-        
+        if let xPlayer = entityManager.player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode.position.x {
+            background.position.x = xPlayer
+        }
     }
     
     override func didMove(to view: SKView) {
@@ -69,6 +72,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             view.addGestureRecognizer(tapGesture)
             view.isMultipleTouchEnabled = true
             isCreated = true
+            background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+            background.size = self.size
+            background.xScale = 1.2
+            background.color = .red
+            background.colorBlendFactor = 0.8
+            background.zPosition = -10
+            addChild(background)
         }
     }
     
@@ -153,7 +163,7 @@ extension GameScene : CollecteddFeatherDelegate {
         count += 1
 
         entityManager.feathersCount.text = String.init(format: "%03d", count)
-        if count == 3 {
+        if count == 1 {
             handle?.callPowerScene()
         }
     }

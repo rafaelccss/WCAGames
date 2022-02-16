@@ -19,7 +19,6 @@
 		5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5360A3BD27A8156C003B8C6B /* Assets.xcassets */; };
 		538CB2D927AAAE22008DAF41 /* GroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2D827AAAE22008DAF41 /* GroundComponent.swift */; };
 		538CB2DB27AAAF3C008DAF41 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CB2DA27AAAF3C008DAF41 /* Ground.swift */; };
-		53ADE60227AD51470047F26E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 53ADE60127AD51470047F26E /* GameScene.sks */; };
 		C2778BB327AD6D5800644B59 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB227AD6D5800644B59 /* Protocols.swift */; };
 		C2778BB527AD6D6300644B59 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB427AD6D6300644B59 /* Enums.swift */; };
 		C2778BB727AD6DC700644B59 /* ShotEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2778BB627AD6DC700644B59 /* ShotEntity.swift */; };
@@ -61,7 +60,6 @@
 		5360A3BF27A8156C003B8C6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		538CB2D827AAAE22008DAF41 /* GroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundComponent.swift; sourceTree = "<group>"; };
 		538CB2DA27AAAF3C008DAF41 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
-		53ADE60127AD51470047F26E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		C2778BB227AD6D5800644B59 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		C2778BB427AD6D6300644B59 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C2778BB627AD6DC700644B59 /* ShotEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotEntity.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				53BD7FEB27A95B4E00DBB096 /* Component */,
 				53BD7FEA27A95B4700DBB096 /* Entity */,
 				C2778BB127AD6D4300644B59 /* Extra */,
-				53ADE60127AD51470047F26E /* GameScene.sks */,
 				53BD7FED27A9645C00DBB096 /* Main */,
 				53BD7FEE27A9654300DBB096 /* Scenes */,
 				D607A19C27ABFC3800A6F9D8 /* States */,
@@ -282,7 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5360A3BC27A8156A003B8C6B /* Main.storyboard in Resources */,
-				53ADE60227AD51470047F26E /* GameScene.sks in Resources */,
 				5360A3BE27A8156C003B8C6B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +465,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D7KS69836R;
+				DEVELOPMENT_TEAM = 5H2RJVTS74;
 				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -488,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D7KS69836R;
+				DEVELOPMENT_TEAM = 5H2RJVTS74;
 				INFOPLIST_FILE = GreenWorld/Main/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
