@@ -59,7 +59,7 @@ class GameOverScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             if optionButton!.contains(location) {
-                handle?.resumeScene()
+                handle?.restartScene()
             } else if quitButton!.contains(location) {
                 handle?.quitGame()
             }
