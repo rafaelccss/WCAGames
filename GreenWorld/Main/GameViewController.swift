@@ -5,7 +5,7 @@ import GameplayKit
 protocol HandleWithScenes {
     func callOptionScene()
     func callPowerScene()
-    func resumeScene()
+    func restartScene()
     func quitGame()
     func didSelectPower(_ power: Powers)
 }
@@ -19,6 +19,14 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        generateGameScene()
+        self.powerScene = PowersScene(size: self.view.frame.size, powers: [.Guaraci, .Tupã])
+        self.optionScene = GameOverScene(size: self.view.frame.size, option: .restart)
+        optionScene?.handle = self
+        powerScene?.handle = self
+    }
+    
+    func generateGameScene() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             let scene = GameScene(size: view.frame.size)
@@ -34,10 +42,6 @@ class GameViewController: UIViewController {
             
             view.showsFPS = false
         }
-        self.powerScene = PowersScene(size: self.view.frame.size, powers: [.Guaraci, .Mboi, .Tupã])
-        self.optionScene = GameOverScene(size: self.view.frame.size, option: .pause)
-        optionScene?.handle = self
-        powerScene?.handle = self
     }
     
     func presentPauseScene() {
@@ -59,7 +63,6 @@ class GameViewController: UIViewController {
         let currentSKView = view as! SKView
         currentSKView.presentScene(gameScene!, transition: unpauseTransition)
     }
-
 
     override var shouldAutorotate: Bool {
         return true
@@ -91,7 +94,8 @@ extension GameViewController: HandleWithScenes {
         self.dismiss(animated: false, completion: nil)
     }
     
-    func resumeScene() {
+    func restartScene() {
+        gameScene?.restartGame()
         unpauseGame()
     }
     

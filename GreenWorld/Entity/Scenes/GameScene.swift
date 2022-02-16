@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.sceneCamera.position.x = player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.x
         if player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position.y < self.frame.minY && !isGameOver {
             player.life = 0
-            player.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.removeFromParent()
+            entityManager.removePlayer()
             handle?.callOptionScene()
         }
         
@@ -100,6 +100,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 extension GameScene {
     // MARK: - Adding Nodes to Scene
+    
+    func restartPlayer() {
+        entityManager.revivePlayer()
+    }
+    
     func positionBasedOnLastElement(lastNode: SKSpriteNode,
                                     presentNode: SKSpriteNode,
                                     dx: CGFloat, dy: CGFloat) -> CGPoint {
@@ -124,6 +129,11 @@ extension GameScene {
     
     @objc func attack(){
         entityManager.playerAttack()
+    }
+    
+    func restartGame() {
+        entityManager.revivePlayer()
+        self.isGameOver = false
     }
 }
 

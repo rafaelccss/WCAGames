@@ -13,6 +13,8 @@ class EntityManager {
     var feathers: [GKEntity] = []
     var enemies = Set<GKEntity>()
     var count = 0
+    var playerFirstPosition: CGPoint!
+    
     let feathersCount = SKLabelNode(text: "000")
     let featherNode = SKSpriteNode(imageNamed: "Feather_0")
     let lifeLabel = SKLabelNode(text: "100")
@@ -111,6 +113,7 @@ class EntityManager {
                                                          presentNode: playerNode,
                                                          dx: -200,
                                                          dy: 45 + inicialGroundNode.size.height/2)
+        playerFirstPosition = playerNode.position
         
 
         self.addGroundAndPlataform(inicialGround)
@@ -254,6 +257,13 @@ class EntityManager {
     func removePlayer(){
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
         playerNode.removeFromParent()
+    }
+    
+    func revivePlayer() {
+        guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }
+        player.life = 100
+        scene.addChild(playerNode)
+        playerNode.position = playerFirstPosition
     }
     
     func didUpdateLife(_ life:Int){
