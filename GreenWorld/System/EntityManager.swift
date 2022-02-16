@@ -100,15 +100,15 @@ class EntityManager {
         }
     }
     
-    func addGrounds(){
+    func addGrounds() {
         
-        let inicialGround = Ground(size: CGSize(width: 500, height: 10))
+        let inicialGround = Ground(size: CGSize(width: 500, height: 52))
         
         guard let playerNode = player.component(ofType: AnimatedSpriteComponent.self)?.spriteNode,
               let inicialGroundNode = inicialGround.component(ofType: GroundComponent.self)?.groundNode else {return}
               
 
-        inicialGroundNode.position = CGPoint(x: scene.frame.minX + inicialGroundNode.size.width/2, y: 50)
+        inicialGroundNode.position = CGPoint(x: scene.frame.minX + inicialGroundNode.size.width/2, y: 40)
         playerNode.position = positionBasedOnLastElement(lastNode: inicialGroundNode,
                                                          presentNode: playerNode,
                                                          dx: -200,
@@ -122,10 +122,10 @@ class EntityManager {
         var lastNode = inicialGroundNode
 
 
-        for _  in 1 ... 4 {
+        for _  in 1 ... 15 {
             let random = Int.random(in: 300 ... 600)
             let space = Int.random(in: 6 ... 13)
-            let ground = Ground(size: CGSize(width: random, height: 10))
+            let ground = Ground(size: CGSize(width: random, height: 52))
             let plaform = Plataform()
             let randPlatform = Int.random(in : 1...10)
 
@@ -194,7 +194,7 @@ class EntityManager {
             let previousGround = grounds[index-1]
             let currentGround = grounds[index]
             guard let previousGroundNode = previousGround.component(ofType: GroundComponent.self)?.groundNode else {return}
-            guard let currentGroundNode = previousGround.component(ofType: GroundComponent.self)?.groundNode else {return}
+            guard let currentGroundNode = currentGround.component(ofType: GroundComponent.self)?.groundNode else {return}
             let width = (currentGroundNode.position.x - currentGroundNode.size.width/2) - (previousGroundNode.position.x + previousGroundNode.size.width/2)
             let size = CGSize(width: width > 0 ? width : width * -1 ,
                               height: currentGroundNode.size.height)
@@ -216,7 +216,7 @@ class EntityManager {
     }
     
     func setupEnemy(){
-        for index in 0..<grounds.count{
+        for index in 1..<grounds.count {
             let typeEnemy:EnemyType = index == (grounds.count - 1) ? .Boss : .Madeireiro
             let enemy = Enemy(manager: self,type: typeEnemy)
             guard let enemyNode = enemy.component(ofType: AnimatedSpriteComponent.self)?.spriteNode else { return }

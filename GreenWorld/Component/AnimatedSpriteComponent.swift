@@ -11,6 +11,12 @@ class AnimatedSpriteComponent: GKComponent {
         let texture = SKTexture(imageNamed: imageName)
         self.spriteNode = SKSpriteNode(texture: texture, size: CGSize(width: 50, height: 90))
     }
+
+    init(imageName: String, size: CGSize) {
+        super.init()
+        let texture = SKTexture(imageNamed: imageName)
+        self.spriteNode = SKSpriteNode(texture: texture, size: size)
+    }
     
     init(spriteNode: SKSpriteNode) {
         super.init()

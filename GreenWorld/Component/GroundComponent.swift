@@ -13,8 +13,8 @@ class GroundComponent: GKComponent {
 
     init(size: CGSize) {
         super.init()
-        self.groundNode = SKSpriteNode(color: SKColor.brown,
-                                       size: size)
+        let texture = SKTexture(imageNamed: "Ground")
+        self.groundNode = SKSpriteNode(texture: texture, size: size)
     }
     
     override func didAddToEntity() {

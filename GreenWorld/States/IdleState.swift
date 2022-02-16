@@ -21,6 +21,6 @@ class IdleState: GKState {
         super.didEnter(from: previousState)
 		animatedSpriteComponent?.haltActions()
 		walkComponent?.halt()
-        animatedSpriteComponent?.setAnimation(imageName: "Idle_", rangeOfAnimation: 0...9)
+        animatedSpriteComponent?.setAnimation(imageName: "Idle_", rangeOfAnimation: 0...0)
     }
 }

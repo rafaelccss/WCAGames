@@ -9,26 +9,21 @@ class ShotEntity: GKEntity {
     init(entityManager:EntityManager,power:Powers,direction directionShot:MoveDirection) {
         self.direction = directionShot
         super.init()
-        var nameTexture: String
         var color: UIColor
         switch power {
             case .Tupã:
-                nameTexture = "TupãShot"
             color = .blue
                 break
             case .Guaraci:
-                nameTexture = "GuaraciShot"
-            color = .white
+            color = .red
                 break
             default:
-            color = .red
-                nameTexture = "NormalShot"
-       
+            color = .brown
         }
-        let spriteComponent = AnimatedSpriteComponent(imageName: "Kunai")
+        let spriteComponent = AnimatedSpriteComponent(imageName: "Arrow")
         //let spriteComponent = AnimatedSpriteComponent(color: color, size: CGSize(width: 25, height: 25))
         spriteComponent.spriteNode.color = color
-        spriteComponent.spriteNode.colorBlendFactor = 0.6
+        spriteComponent.spriteNode.colorBlendFactor = 0.8
         spriteComponent.spriteNode.size = CGSize(width: 80, height: 16)
         addComponent(spriteComponent)
         let player = entityManager.getPlayer()
