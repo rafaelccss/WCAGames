@@ -163,7 +163,7 @@ extension GameScene : CollecteddFeatherDelegate {
         count += 1
 
         entityManager.feathersCount.text = String.init(format: "%03d", count)
-        if count == 1 {
+        if count == 3 {
             handle?.callPowerScene()
         }
     }
